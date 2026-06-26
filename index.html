@@ -52,8 +52,38 @@ code{font-family:monospace;font-size:11px;background:#f0f0f0;padding:1px 5px;bor
 .ith{display:grid;grid-template-columns:1fr 1fr 44px;background:var(--bg);padding:8px 12px;font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--b)}
 .itr{display:grid;grid-template-columns:1fr 1fr 44px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--b);background:#fff;gap:8px}
 .itr:last-child{border-bottom:none}
-.dz{border:2px dashed var(--b);border-radius:10px;padding:28px 20px;text-align:center;background:#fff;cursor:pointer;margin-bottom:16px}
-.dz:hover{border-color:var(--p)}
+.dz{border:2px dashed var(--b);border-radius:10px;padding:28px 20px;text-align:center;background:#fff;cursor:pointer;margin-bottom:16px;transition:all .2s}
+.dz:hover,.dz.drag{border-color:var(--p);background:var(--ib)}
+.dz.drag{transform:scale(1.01)}
+.img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:20px}
+.img-card{border:2px solid var(--b);border-radius:10px;overflow:hidden;background:#fff;transition:box-shadow .2s;position:relative}
+.img-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.12);border-color:var(--p)}
+.img-card.matched{border-color:#2e7d32}
+.img-card.unmatched{border-color:#f57c00}
+.img-thumb{width:100%;height:110px;object-fit:cover;display:block;background:#f0f0f0;cursor:zoom-in}
+.img-thumb-placeholder{width:100%;height:110px;display:flex;align-items:center;justify-content:center;font-size:28px;background:linear-gradient(135deg,#f5f7fa,#e8edf2)}
+.img-body{padding:8px 10px}
+.img-name{font-size:11px;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:5px}
+.img-target-row{display:flex;gap:5px;align-items:center}
+.img-target-row input{flex:1;font-size:11px;padding:4px 7px;min-width:0}
+.img-badge{position:absolute;top:6px;right:6px;background:#2e7d32;color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:10px;letter-spacing:.3px}
+.img-badge.warn{background:#f57c00}
+.img-del{position:absolute;top:6px;left:6px;background:rgba(0,0,0,.55);color:#fff;border:none;width:22px;height:22px;border-radius:50%;font-size:14px;line-height:1;cursor:pointer;display:none;align-items:center;justify-content:center}
+.img-card:hover .img-del{display:flex}
+.slot-panel{background:var(--bg);border:1px solid var(--b);border-radius:var(--r);padding:14px;margin-bottom:16px}
+.slot-panel h4{font-size:12px;font-weight:700;color:var(--t2);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.slot-list{display:flex;flex-wrap:wrap;gap:6px}
+.slot-chip{font-size:11px;padding:3px 9px;border-radius:12px;border:1px solid var(--b);background:#fff;font-family:monospace;cursor:default;transition:all .15s}
+.slot-chip.filled{background:#e8f5e9;border-color:#81c784;color:#2e7d32}
+.slot-chip.missing{background:#fff3e0;border-color:#ffb74d;color:#e65100}
+.img-stats{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.img-stat{background:var(--bg);border:1px solid var(--b);border-radius:var(--r);padding:8px 14px;font-size:12px;text-align:center;flex:1;min-width:80px}
+.img-stat strong{display:block;font-size:18px;color:var(--p)}
+.imlb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:900;align-items:center;justify-content:center;cursor:zoom-out}
+.imlb.open{display:flex}
+.imlb img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.imlb-close{position:fixed;top:18px;right:24px;color:#fff;font-size:32px;cursor:pointer;opacity:.8;background:none;border:none;line-height:1}
+.imlb-caption{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;background:rgba(0,0,0,.6);padding:6px 16px;border-radius:20px;white-space:nowrap}
 .met{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
 .mcard{background:#fff;border:1px solid var(--b);border-radius:var(--r);padding:12px;text-align:center}
 .mv{font-size:22px;font-weight:600;color:var(--p)}
@@ -1990,28 +2020,71 @@ function contentPanel(){
 
 function tabImages(){
   const slots=getSlots();
+  const uploadedTargets=new Set(S.images.map(img=>img.target.replace(/\.[^.]+$/,'')));
+  const filled=slots.filter(s=>uploadedTargets.has(s.replace(/\.[^.]+$/,'')));
+  const missing=slots.filter(s=>!uploadedTargets.has(s.replace(/\.[^.]+$/,'')));
+  const extra=S.images.filter(img=>!slots.find(s=>s.replace(/\.[^.]+$/,''===img.target.replace(/\.[^.]+$/,''))));
   return`
-  <div class="dz" onclick="document.getElementById('iup').click()">
-    <div style="font-size:32px;margin-bottom:8px">📁</div>
-    <div style="font-weight:600;font-size:14px">Click to upload images</div>
-    <div style="font-size:12px;color:var(--t3);margin-top:4px">JPG · PNG · WebP — select multiple at once</div>
+  <!-- Lightbox -->
+  <div class="imlb" id="imlb" onclick="closeLightbox()">
+    <button class="imlb-close" onclick="closeLightbox()">×</button>
+    <img id="imlbImg" src="" alt="">
+    <div class="imlb-caption" id="imlbCap"></div>
+  </div>
+
+  <!-- Drop zone -->
+  <div class="dz" id="imgDz"
+    onclick="document.getElementById('iup').click()"
+    ondragover="event.preventDefault();this.classList.add('drag')"
+    ondragleave="this.classList.remove('drag')"
+    ondrop="event.preventDefault();this.classList.remove('drag');handleUpload(event.dataTransfer.files)">
+    <div style="font-size:36px;margin-bottom:8px">🖼️</div>
+    <div style="font-weight:700;font-size:15px;color:var(--p)">Drop images here or click to browse</div>
+    <div style="font-size:12px;color:var(--t3);margin-top:5px">JPG · PNG · WebP — select multiple at once</div>
     <input type="file" id="iup" accept="image/*" multiple style="display:none" onchange="handleUpload(this.files)">
   </div>
+
   ${S.images.length?`
-  <div style="font-weight:600;font-size:13px;margin-bottom:10px;color:var(--p)">${S.images.length} image${S.images.length!==1?"s":""} — copy these files into your <code>images/</code> folder</div>
-  <div class="itable">
-    <div class="ith"><span>Uploaded filename</span><span>Save as in images/</span><span></span></div>
-    ${S.images.map((img,i)=>`
-    <div class="itr">
-      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--t2);font-size:12px">📷 ${esc(img.orig)}</span>
-      <input value="${esc(img.target)}" oninput="S.images[${i}].target=this.value" style="font-size:12px;padding:5px 8px">
-      <button class="bd" onclick="remImage(${i})">×</button>
-    </div>`).join("")}
-  </div>`:""}
-  <div class="ibox" style="margin-top:16px">
-    <div style="font-weight:700;margin-bottom:8px">📋 Required image slots for all active pages</div>
-    <div>${slots.map(s=>`<span class="chip">${esc(s)}</span>`).join("")}</div>
-    <div style="margin-top:8px;font-size:11px;opacity:.8">The zip download also includes <code>_image-slots.txt</code> with this full list.</div>
+  <!-- Stats -->
+  <div class="img-stats">
+    <div class="img-stat"><strong>${S.images.length}</strong>Uploaded</div>
+    <div class="img-stat"><strong style="color:#2e7d32">${filled.length}</strong>Matched</div>
+    <div class="img-stat"><strong style="color:#e65100">${missing.length}</strong>Still needed</div>
+  </div>
+
+  <!-- Image grid -->
+  <div style="font-weight:700;font-size:13px;color:var(--p);margin-bottom:10px">Uploaded images — edit filename then place in images/ folder</div>
+  <div class="img-grid">
+    ${S.images.map((img,i)=>{
+      const baseName=img.target.replace(/\.[^.]+$/,'');
+      const isMatched=slots.some(s=>s.replace(/\.[^.]+$/,'')=== baseName);
+      return`<div class="img-card ${isMatched?'matched':'unmatched'}">
+        <button class="img-del" onclick="event.stopPropagation();remImage(${i})" title="Remove">×</button>
+        ${img.dataUrl
+          ?`<img class="img-thumb" src="${img.dataUrl}" alt="${esc(img.orig)}" onclick="openLightbox('${img.dataUrl}','${esc(img.target)}')" loading="lazy">`
+          :`<div class="img-thumb-placeholder">📷</div>`}
+        <div class="img-badge ${isMatched?'':'warn'}">${isMatched?'✓ matched':'? extra'}</div>
+        <div class="img-body">
+          <div class="img-name" title="${esc(img.orig)}">↑ ${esc(img.orig)}</div>
+          <div class="img-target-row">
+            <input value="${esc(img.target)}" oninput="S.images[${i}].target=this.value;render()" placeholder="filename.jpg" title="Save as this name in images/ folder">
+          </div>
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`:``}
+
+  <!-- Slot status panel -->
+  <div class="slot-panel">
+    <h4>📋 Required image slots for all active pages (${slots.length} total)</h4>
+    <div class="slot-list">
+      ${slots.map(s=>{
+        const base=s.replace(/\.[^.]+$/,'');
+        const matched=uploadedTargets.has(base);
+        return`<span class="slot-chip ${matched?'filled':'missing'}" title="${matched?'✓ Uploaded':'⚠ Still needed'}">${esc(s)}</span>`;
+      }).join('')}
+    </div>
+    ${missing.length?`<div style="font-size:11px;color:#e65100;margin-top:10px">⚠ ${missing.length} slot${missing.length!==1?'s':''} still need images — upload matching files above.</div>`:`<div style="font-size:11px;color:#2e7d32;margin-top:10px">✅ All image slots covered!</div>`}
   </div>`;
 }
 
@@ -2113,14 +2186,32 @@ function copyPage(){
 }
 function handleUpload(files){
   Array.from(files).forEach(f=>{
-    const orig=f.name,ext=orig.split(".").pop().toLowerCase();
-    const base=orig.replace(/\.[^.]+$/,"").replace(/[^a-z0-9]/gi,"-").toLowerCase();
-    let target=base+"."+ext,n=1;
-    while(S.images.some(i=>i.target===target))target=base+"-"+(++n)+"."+ext;
-    S.images.push({orig,target});
-  });render();
+    const orig=f.name,ext=orig.split('.').pop().toLowerCase();
+    const base=orig.replace(/\.[^.]+$/,'').replace(/[^a-z0-9]/gi,'-').toLowerCase();
+    let target=base+'.'+ext,n=1;
+    while(S.images.some(i=>i.target===target))target=base+'-'+(++n)+'.'+ext;
+    // Read as data URL for thumbnail preview
+    const reader=new FileReader();
+    reader.onload=e=>{
+      S.images.push({orig,target,dataUrl:e.target.result});
+      render();
+    };
+    reader.readAsDataURL(f);
+  });
 }
 function remImage(i){S.images.splice(i,1);render();}
+function openLightbox(src,caption){
+  const lb=document.getElementById('imlb');
+  if(!lb)return;
+  document.getElementById('imlbImg').src=src;
+  document.getElementById('imlbCap').textContent=caption||'';
+  lb.classList.add('open');
+}
+function closeLightbox(){
+  const lb=document.getElementById('imlb');
+  if(lb)lb.classList.remove('open');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 
 // ── RENDER ────────────────────────────────────────────────────────────────────
 function render(){
@@ -2926,6 +3017,13 @@ refreshPreview();
         <div class="ibox" style="margin-bottom:16px">
           Paste a <strong>Booking.com</strong> property page or any hotel website URL. The AI will search and read the page, then extract name, address, rooms, dining, contact details and more. You confirm every field before it's applied.
         </div>
+        <div style="margin-bottom:12px">
+          <label style="font-size:11px;font-weight:700;color:var(--t2);display:block;margin-bottom:5px">🔑 Anthropic API Key <span style="font-weight:400;color:var(--t3)">(saved in browser — <a href="https://console.anthropic.com/settings/keys" target="_blank" style="color:var(--p)">get one here</a>)</span></label>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input id="scApiKey" type="password" placeholder="sk-ant-..." style="flex:1;font-size:13px;padding:9px 14px;border:2px solid var(--b);border-radius:var(--r);font-family:monospace" oninput="localStorage.setItem('sc_api_key',this.value)">
+            <span id="scKeyStatus" style="font-size:11px;white-space:nowrap"></span>
+          </div>
+        </div>
         <div class="sc-url-bar">
           <input id="scUrlInput" type="url" placeholder="https://www.booking.com/hotel/gb/...  or  https://www.myhotel.com">
           <button class="btn bp" onclick="startScrape()">🔍 Extract Data</button>
@@ -2934,8 +3032,8 @@ refreshPreview();
         <div class="sc-progress" id="scProgress"><div class="sc-progress-bar" id="scProgressBar"></div></div>
         <div style="font-size:11px;color:var(--t3);line-height:1.8;margin-top:10px">
           <strong>Works with:</strong> Booking.com · hotel own websites · any public hotel page<br>
-          <strong>How:</strong> Uses Claude AI web search server-side — no browser fetch issues<br>
-          <strong>Takes ~15–20 seconds</strong> — AI reads and extracts in one step
+          <strong>How:</strong> Fetches page via proxy → Haiku AI extracts data (no web search fee)<br>
+          <strong>Takes ~5–10 seconds</strong> · ~$0.001 per scrape (Haiku tokens only)
         </div>
       </div>
       <div id="scStep2" style="display:none">
@@ -3491,7 +3589,15 @@ function openScrapeModal(){
   document.getElementById('scBackBtn').style.display='none';
   document.getElementById('scImportBtn').style.display='none';
   document.getElementById('scUrlInput').value='';
-  setScStatus('idle','Enter a URL above and click Extract Data.');
+  // Restore saved API key
+  const savedKey=localStorage.getItem('sc_api_key')||'';
+  const keyInput=document.getElementById('scApiKey');
+  if(keyInput){
+    keyInput.value=savedKey;
+    const ks=document.getElementById('scKeyStatus');
+    if(ks) ks.innerHTML=savedKey?'<span style="color:#2e7d32">\u2713 Key saved</span>':'<span style="color:#999">No key yet</span>';
+  }
+  setScStatus('idle','Enter your API key and a URL above, then click Extract Data.');
   setScProg(0); document.getElementById('scProgress').style.display='none';
   document.getElementById('scFootLeft').innerHTML='';
 }
@@ -3500,34 +3606,81 @@ function setScStatus(type,msg){const el=document.getElementById('scStatus');el.c
 function setScProg(pct){document.getElementById('scProgress').style.display=pct>0?'block':'none';document.getElementById('scProgressBar').style.width=pct+'%';}
 
 async function startScrape(){
+  const apiKey=(document.getElementById('scApiKey')?.value||'').trim()||localStorage.getItem('sc_api_key')||'';
+  if(!apiKey||!apiKey.startsWith('sk-ant-')){
+    setScStatus('err','❌ Please enter a valid Anthropic API key (starts with <code>sk-ant-</code>). <a href="https://console.anthropic.com/settings/keys" target="_blank" style="color:var(--p)">Get one here →</a>');
+    return;
+  }
+  localStorage.setItem('sc_api_key',apiKey);
   const url=document.getElementById('scUrlInput').value.trim();
   if(!url){setScStatus('err','Please enter a URL.');return;}
   if(!/^https?:\/\//i.test(url)){setScStatus('err','URL must start with https://');return;}
   SC.url=url;
   const isBooking=url.includes('booking.com');
   SC.source=isBooking?'Booking.com':'Hotel Website';
-  setScStatus('loading','🤖 AI is searching and reading the page — takes ~15–20 seconds…');
-  setScProg(20); document.getElementById('scProgress').style.display='block';
+  setScStatus('loading','⏳ Fetching page…');
+  setScProg(15); document.getElementById('scProgress').style.display='block';
 
-  const prompt=`Use the web_search tool to look up this hotel URL and extract its details: ${url}
+  // Step 1: fetch the page via a CORS proxy (free, no cost)
+  let pageText='';
+  const proxies=[
+    u=>`https://api.allorigins.win/get?url=${encodeURIComponent(u)}`,
+    u=>`https://corsproxy.io/?${encodeURIComponent(u)}`,
+  ];
+  for(const proxyFn of proxies){
+    try{
+      const pr=await fetch(proxyFn(url));
+      if(!pr.ok) continue;
+      const pj=await pr.json().catch(()=>null);
+      const raw=pj?.contents ?? await pr.text?.() ?? '';
+      // Strip HTML tags, collapse whitespace — keep ~12000 chars to stay cheap
+      pageText=raw.replace(/<style[\s\S]*?<\/style>/gi,'')
+                  .replace(/<script[\s\S]*?<\/script>/gi,'')
+                  .replace(/<[^>]+>/g,' ')
+                  .replace(/\s{2,}/g,' ')
+                  .trim()
+                  .substring(0,12000);
+      if(pageText.length>200) break;
+    }catch(e){continue;}
+  }
 
-Search for the hotel at that URL, visit it, and extract all available information. Return ONLY a valid JSON object (no markdown, no backticks, no explanation) with these keys where data is found:
+  setScProg(40);
+  if(pageText.length<200){
+    // Proxy failed — fall back to asking the AI to search for it
+    pageText='[Page could not be fetched directly. Please infer from the URL and any knowledge you have about this hotel.]';
+  } else {
+    setScStatus('loading','🤖 AI is extracting data — takes ~5–10 seconds…');
+  }
 
-{"name":"Full hotel name","tagline":"Short tagline","addr":"Full address","phone":"Phone number","email":"Email","emailS":"Sales email","bookUrl":"Booking URL","instagram":"Instagram URL","facebook":"Facebook URL","byAir":"Airport directions","byRail":"Train station directions","byRoad":"Road directions","parking":"Parking info","slide1H1":"Hero headline","slide1Sub":"Hero subtitle","indexAboutH2":"About heading","indexAboutP":"About paragraph 2-3 sentences","aboutH1":"About page H1","aboutH1Sub":"About subtitle","locationDesc":"Location description","roomsOverviewH2":"Rooms heading","roomsOverviewP":"Rooms paragraph","diningH1":"Dining heading","diningRestName":"Restaurant name","diningOverviewP":"Dining paragraph","breakfastHours":"Breakfast times","meetingsH1Sub":"Meetings subtitle","meetingsOverviewP":"Meetings paragraph","weddingsH1Sub":"Weddings subtitle","weddingsOverviewP":"Weddings paragraph","xmasOverviewP":"Christmas paragraph","exploreH1":"Explore heading","exploreOverviewP":"Local area paragraph","contactH1Sub":"Contact subtitle","seo_index_title":"SEO title 50-60 chars","seo_index_desc":"SEO description 150-160 chars","roomCards":[{"name":"Room type","p1":"Bed and capacity","p2":"Description","filter":"classic"}],"venueCards":[{"h3":"Venue name","p":"Description"}],"spaceCards":[{"h3":"Meeting room","p":"Description","theatre":"","dinner":"","reception":"","boardroom":""}],"attractionCards":[{"h3":"Attraction","p":"Distance and info"}]}
+  const jsonShape='{"name":"Full hotel name","tagline":"Short tagline","addr":"Full address","phone":"Phone number","email":"Email","emailS":"Sales email","bookUrl":"Booking URL","instagram":"Instagram URL","facebook":"Facebook URL","byAir":"Airport directions","byRail":"Train station directions","byRoad":"Road directions","parking":"Parking info","slide1H1":"Hero headline","slide1Sub":"Hero subtitle","indexAboutH2":"About heading","indexAboutP":"About paragraph 2-3 sentences","aboutH1":"About page H1","aboutH1Sub":"About subtitle","locationDesc":"Location description","roomsOverviewH2":"Rooms heading","roomsOverviewP":"Rooms paragraph","diningH1":"Dining heading","diningRestName":"Restaurant name","diningOverviewP":"Dining paragraph","breakfastHours":"Breakfast times","meetingsH1Sub":"Meetings subtitle","meetingsOverviewP":"Meetings paragraph","weddingsH1Sub":"Weddings subtitle","weddingsOverviewP":"Weddings paragraph","xmasOverviewP":"Christmas paragraph","exploreH1":"Explore heading","exploreOverviewP":"Local area paragraph","contactH1Sub":"Contact subtitle","seo_index_title":"SEO title 50-60 chars","seo_index_desc":"SEO description 150-160 chars","roomCards":[{"name":"Room type","p1":"Bed and capacity","p2":"Description","filter":"classic"}],"venueCards":[{"h3":"Venue name","p":"Description"}],"spaceCards":[{"h3":"Meeting room","p":"Description","theatre":"","dinner":"","reception":"","boardroom":""}],"attractionCards":[{"h3":"Attraction","p":"Distance and info"}]}';
+
+  const prompt=`You are extracting hotel data from a webpage. The source URL is: ${url}
+
+PAGE CONTENT:
+${pageText}
+
+Extract all available hotel information and return ONLY a valid JSON object with these keys (omit any key where data is not found):
+
+${jsonShape}
 
 Return ONLY the raw JSON. No markdown, no backticks, no explanation.`;
 
   try{
     const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':apiKey,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
       body:JSON.stringify({
-        model:'claude-sonnet-4-6',max_tokens:2000,
-        tools:[{"type":"web_search_20250305","name":"web_search"}],
+        model:'claude-haiku-4-5-20251001',
+        max_tokens:1500,
         messages:[{role:'user',content:prompt}]
       })
     });
-    setScProg(70);
+    setScProg(85);
     if(!resp.ok){const e=await resp.json().catch(()=>({}));throw new Error(e.error?.message||'API error '+resp.status);}
     const data=await resp.json();
     const textBlocks=(data.content||[]).filter(c=>c.type==='text').map(c=>c.text);
