@@ -246,7 +246,7 @@ code{font-family:monospace;font-size:11px;background:#f0f0f0;padding:1px 5px;bor
       </div>
       <iframe id="previewFrame" class="preview-iframe"></iframe>
     </div>
-    <div class="preview-scale-note">Live preview — updates as you type · Images shown as placeholders</div>
+    <div class="preview-scale-note">Live preview — updates as you type · Upload images to see them here</div>
   </div>
 </div>
 </div>
@@ -2915,7 +2915,34 @@ function togglePreview(){
 
 function refreshPreview(){
   const frame = document.getElementById('previewFrame');
-  const html = buildPreview(S, PREV_PAGE);
+  let html = buildPreview(S, PREV_PAGE);
+
+  // Substitute uploaded image dataUrls into the preview so images show live
+  // Build a map of "target-without-ext" -> dataUrl
+  const imgMap={};
+  (S.images||[]).forEach(img=>{
+    if(img.dataUrl){
+      // Key by full target (e.g. "rooms-1.jpg") and by base (e.g. "rooms-1")
+      const base=img.target.replace(/\.[^.]+$/,'');
+      imgMap[img.target]=img.dataUrl;
+      imgMap[base+'.jpg']=img.dataUrl;
+      imgMap[base+'.png']=img.dataUrl;
+      imgMap[base+'.webp']=img.dataUrl;
+    }
+  });
+  if(Object.keys(imgMap).length){
+    // Replace src="images/XXX" and url('images/XXX') with dataUrls
+    html=html.replace(/(?:src=["']|url\(['"]?)images\/([^"')]+)["')]?/g,(match,fname)=>{
+      const du=imgMap[fname];
+      if(!du) return match;
+      // Preserve the original wrapper (src= or url()
+      if(match.startsWith('src=')) return \`src="\${du}"\`;
+      if(match.startsWith("url('")) return \`url('\${du}')\`;
+      if(match.startsWith('url("')) return \`url("\${du}")\`;
+      return \`url('\${du}')\`;
+    });
+  }
+
   const blob = new Blob([html], {type:'text/html'});
   const url = URL.createObjectURL(blob);
   frame.onload = () => URL.revokeObjectURL(url);
