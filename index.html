@@ -3071,8 +3071,8 @@ function handleBulkFile2(file){
       let wb;
       if(ext==='csv') wb=XLSX.read(e.target.result,{type:'string'});
       else wb=XLSX.read(e.target.result,{type:'binary'});
-      // Try 'Data' sheet first, otherwise first sheet
-      const shName=wb.SheetNames.includes('Data')?'Data':wb.SheetNames[0];
+      // Try 'Data' sheet first, then General sheet, otherwise first sheet
+      const shName=wb.SheetNames.includes('Data')?'Data':(wb.SheetNames.find(n=>/general/i.test(n))||wb.SheetNames[0]);
       const ws=wb.Sheets[shName];
       const raw=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
       if(!raw||raw.length<2){showBuStatusMsg('err','File appears empty.');return;}
@@ -3108,22 +3108,66 @@ function autoMapBuColumns(){
   });
   // Also scan page-wise sheets
   if(BU._wb){
+    // Map each array key to a substring that appears in the relevant sheet name
     const pageSheetMap={
-      'room':'roomCards','meeting':'spaceCards','venue':'venueCards',
-      'history':'histCards','value':'valueCards','ceremony':'ceremonyCards',
-      'package':'packageCards','xmas_tab':'xmasTabs','xmas_hl':'xmasHighlights',
-      'attraction':'attractionCards','highlight':'highlights','thing':'thingCards',
-      'dining_gallery':'diningGallery','gallery':'galleryItems',
+      'roomCards':'room','spaceCards':'meeting','venueCards':'dining',
+      'histCards':'about','valueCards':'about','ceremonyCards':'wedding',
+      'packageCards':'wedding','xmasTabs':'christmas','xmasHighlights':'christmas',
+      'attractionCards':'explore','highlights':'homepage','thingCards':'homepage',
+      'diningGallery':'dining','galleryItems':'gallery',
     };
     // Pre-load array data from page tabs
     BU._pageArrayData={};
-    Object.entries(pageSheetMap).forEach(([rt,arr])=>{
-      const shName=BU._wb.SheetNames.find(n=>n.toLowerCase().includes(arr.toLowerCase().slice(0,6)));
+    Object.entries(pageSheetMap).forEach(([arr,sheetFragment])=>{
+      const shName=BU._wb.SheetNames.find(n=>n.toLowerCase().includes(sheetFragment));
       if(shName){
         const ws=BU._wb.Sheets[shName];
-        const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
+        // Sheet headers are multiline "Label\narrName.field" — find the header row,
+        // extract the field key from the second line, then parse data rows manually.
+        const raw=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
+        // Find the header row: the one where a cell contains the array name
+        const arrPrefix=arr+'.';
+        const hdrIdx=raw.findIndex(r=>r.some(c=>String(c).includes(arrPrefix)));
+        if(hdrIdx===-1) return;
+        // Build a map of col index -> field key
+        const colMap={};
+        raw[hdrIdx].forEach((cell,ci)=>{
+          const s=String(cell);
+          const match=s.match(new RegExp(arr+'\\.([\\w]+)'));
+          if(match) colMap[ci]=match[1];
+        });
+        if(!Object.keys(colMap).length) return;
+        // Parse data rows after the header
+        const rows=[];
+        for(let ri=hdrIdx+1;ri<raw.length;ri++){
+          const r=raw[ri];
+          const obj={};let hasData=false;
+          Object.entries(colMap).forEach(([ci,fk])=>{
+            const v=String(r[ci]||'').trim();
+            if(v){obj[fk]=v;hasData=true;}
+          });
+          if(hasData) rows.push(obj);
+        }
         if(rows.length) BU._pageArrayData[arr]=rows;
       }
+    });
+    // Scan all sheets for scalar key-value pairs (e.g. roomsH1Sub, meetingsOverviewH2)
+    // and append them as [key, value] rows into BU.rows so parseBuData finds them
+    BU._wb.SheetNames.forEach(sn=>{
+      if(/how.to.use/i.test(sn)) return; // skip instructions tab
+      const ws2=BU._wb.Sheets[sn];
+      const raw2=XLSX.utils.sheet_to_json(ws2,{header:1,defval:''});
+      raw2.forEach(row=>{
+        const k=String(row[0]||'').trim();
+        const v=String(row[1]||'').trim();
+        // A scalar row: first col is a plain field key (no spaces/emoji/special chars except letters/digits/_)
+        // and it's a known BU_FIELD key
+        if(k&&v&&/^[a-zA-Z][a-zA-Z0-9_]+$/.test(k)){
+          if(BU_FIELDS.find(f=>f.k===k)&&!BU.rows.find(r=>String(r[0]||'').trim()===k)){
+            BU.rows.push([k,v]);
+          }
+        }
+      });
     });
   }
 }
