@@ -14,9 +14,9 @@ textarea{resize:vertical;line-height:1.5}
 label{font-size:12px;font-weight:600;color:var(--t2);display:block;margin-bottom:4px}
 .hint{font-size:11px;color:var(--t3);margin-bottom:4px;display:block}
 code{font-family:monospace;font-size:11px;background:#f0f0f0;padding:1px 5px;border-radius:3px}
-.topbar{background:var(--pd);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:12px}
+.topbar{background:var(--pd);color:#fff;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:8px;min-height:52px;flex-shrink:0}
 .tlogo{width:32px;height:32px;background:var(--a);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
-.btn{font-family:inherit;cursor:pointer;border-radius:var(--r);padding:8px 14px;font-size:12px;font-weight:600;border:none}
+.btn{font-family:inherit;cursor:pointer;border-radius:var(--r);padding:7px 11px;font-size:11px;font-weight:600;border:none;white-space:nowrap}
 .bp{background:var(--p);color:#fff}
 .ba{background:var(--a);color:#fff}
 .bo{background:#fff;border:1px solid var(--b);color:var(--t)}
@@ -74,7 +74,7 @@ code{font-family:monospace;font-size:11px;background:#f0f0f0;padding:1px 5px;bor
 .chip{display:inline-block;background:#fff;border:1px solid var(--b);border-radius:4px;padding:2px 7px;font-family:monospace;font-size:11px;margin:2px 3px 2px 0}
 .dlall{background:#fff;border:1px solid var(--b);border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
 
-    .app-wrap{display:flex;flex:1;overflow:hidden;height:calc(100vh - 84px)}
+    .app-wrap{display:flex;flex:1;overflow:hidden;min-height:0}
     .form-side{flex:0 0 480px;min-width:320px;display:flex;flex-direction:column;border-right:1px solid var(--b);overflow:hidden}
     .preview-side{flex:1;display:flex;flex-direction:column;background:#e8eaed;overflow:hidden}
     .preview-side.hidden{display:none}
@@ -175,16 +175,16 @@ code{font-family:monospace;font-size:11px;background:#f0f0f0;padding:1px 5px;bor
 </style>
 </head>
 <body>
-<div style="display:flex;flex-direction:column;min-height:100vh">
+<div style="display:flex;flex-direction:column;height:100vh;overflow:hidden">
 <div class="topbar">
-  <div style="display:flex;align-items:center;gap:10px">
+  <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
     <div class="tlogo">S</div>
     <div>
-      <div style="font-weight:600;font-size:13px">Sunday Properties — Website Builder v5</div>
+      <div style="font-weight:600;font-size:12px;white-space:nowrap">Sunday Properties — Website Builder v5</div>
       <div style="font-size:10px;opacity:.6;margin-top:1px" id="tsub">Multi-page generator</div>
     </div>
   </div>
-  <div style="display:flex;gap:8px;flex-wrap:wrap">
+  <div style="display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;align-items:center;flex-shrink:1">
     <button class="btn bg_" onclick="togglePreview()" id="prevToggleBtn">👁 Hide Preview</button>
     <button class="btn bg_" onclick="openScrapeModal()" title="Auto-fill from any hotel URL or Booking.com">🌐 Scrape URL</button>
     <button class="btn bg_" onclick="openBulkModal()" title="Import all data from Excel or CSV">📊 Bulk Upload</button>
@@ -3054,12 +3054,12 @@ function openBulkModal(){
 }
 function closeBulkModal(){document.getElementById('buOverlay').style.display='none';}
 function switchBuTab(tab,btn){
-  ['Upload','Map','Preview'].forEach(t=>{
-    const el=document.getElementById('buTab'+t);
-    if(el)el.style.display=(t.toLowerCase()===tab)?'block':'none';
+  ['upload','map','preview'].forEach(t=>{
+    const el=document.getElementById('buTab'+t.charAt(0).toUpperCase()+t.slice(1));
+    if(el) el.style.display=(t===tab)?'block':'none';
   });
   document.querySelectorAll('.bu-tab').forEach(b=>b.classList.remove('act'));
-  if(btn)btn.classList.add('act');
+  if(btn) btn.classList.add('act');
 }
 function handleBulkFile2(file){
   if(!file)return;
@@ -3165,7 +3165,7 @@ function buildBuMapUI(){
 }
 function buildBuColSelect(key,sel){
   let opts=`<option value="">— skip —</option>`;
-  BU.headers.forEach((h,i)=>opts+=`<option value="${i}"${sel===i?' selected':''}>${h||(&#39;col &#39;+(i+1))}</option>`);
+  BU.headers.forEach((h,i)=>opts+=`<option value="${i}"${sel===i?' selected':''}>${h||('col '+(i+1))}</option>`);
   return `<select onchange="BU.mapping['${key}']=this.value===''?undefined:parseInt(this.value)">${opts}</select>`;
 }
 function buildBuPreviewUI(){
