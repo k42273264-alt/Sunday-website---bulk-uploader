@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Sunday Properties — Website Builder v4</title>
+<title>Sunday Properties — Website Builder v5</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:14px;color:#1a1a1a;background:#f0f2f5}
@@ -74,79 +74,6 @@ code{font-family:monospace;font-size:11px;background:#f0f0f0;padding:1px 5px;bor
 .chip{display:inline-block;background:#fff;border:1px solid var(--b);border-radius:4px;padding:2px 7px;font-family:monospace;font-size:11px;margin:2px 3px 2px 0}
 .dlall{background:#fff;border:1px solid var(--b);border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
 
-/* ── BULK UPLOAD MODAL ──────────────────────────────────────── */
-.bu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
-.bu-modal{background:#fff;border-radius:12px;width:100%;max-width:680px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.bu-head{background:var(--pd);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
-.bu-head h2{font-size:15px;font-weight:700;margin:0}
-.bu-close{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;padding:0 4px;line-height:1;opacity:.8}
-.bu-close:hover{opacity:1}
-.bu-body{padding:20px;overflow-y:auto;flex:1}
-.bu-drop{border:2px dashed var(--b);border-radius:10px;padding:36px 20px;text-align:center;background:var(--bg);cursor:pointer;margin-bottom:16px;transition:border-color .2s,background .2s}
-.bu-drop:hover,.bu-drop.drag{border-color:var(--p);background:var(--ib)}
-.bu-drop-icon{font-size:36px;margin-bottom:8px}
-.bu-drop p{font-size:13px;color:var(--t2);margin:4px 0}
-.bu-drop small{font-size:11px;color:var(--t3)}
-.bu-preview{background:#f8f9fa;border:1px solid var(--b);border-radius:var(--r);padding:14px;margin-bottom:14px;font-size:12px;max-height:260px;overflow-y:auto}
-.bu-preview table{width:100%;border-collapse:collapse;font-size:11px}
-.bu-preview th{background:var(--pd);color:#fff;padding:5px 8px;text-align:left;position:sticky;top:0;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
-.bu-preview td{padding:5px 8px;border-bottom:1px solid #eee;vertical-align:top}
-.bu-preview tr:last-child td{border-bottom:none}
-.bu-preview tr:nth-child(even) td{background:#f5f5f5}
-.bu-status{padding:10px 14px;border-radius:var(--r);font-size:12px;margin-bottom:12px;display:none}
-.bu-status.ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7;display:block}
-.bu-status.err{background:#ffebee;color:#c62828;border:1px solid #ef9a9a;display:block}
-.bu-status.warn{background:#fff8e1;color:#f57f17;border:1px solid #ffe082;display:block}
-.bu-foot{padding:14px 20px;border-top:1px solid var(--b);display:flex;gap:10px;justify-content:flex-end;flex-shrink:0;background:#fafafa}
-.bu-field-map{background:#fff;border:1px solid var(--b);border-radius:var(--r);padding:12px;margin-bottom:12px}
-.bu-field-map h4{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
-.bu-map-row{display:grid;grid-template-columns:1fr 20px 1fr;align-items:center;gap:6px;margin-bottom:4px;font-size:11px}
-.bu-map-row select{font-size:11px;padding:4px 6px}
-.bu-map-arrow{text-align:center;color:var(--t3)}
-.bu-tabs{display:flex;gap:6px;margin-bottom:16px;border-bottom:1px solid var(--b);padding-bottom:12px;flex-wrap:wrap}
-.bu-tab{background:var(--bg);border:1px solid var(--b);border-radius:20px;padding:4px 12px;font-size:11px;cursor:pointer;font-family:inherit;color:var(--t2)}
-.bu-tab.act{background:var(--p);color:#fff;border-color:var(--p)}
-
-/* ── SCRAPE MODAL ───────────────────────────────────────────── */
-.sc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px}
-.sc-modal{background:#fff;border-radius:14px;width:100%;max-width:780px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.35)}
-.sc-head{background:var(--pd);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;gap:12px}
-.sc-head h2{font-size:15px;font-weight:700;margin:0}
-.sc-close{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:0 4px;line-height:1;opacity:.8}
-.sc-close:hover{opacity:1}
-.sc-body{padding:22px;overflow-y:auto;flex:1}
-.sc-url-bar{display:flex;gap:8px;margin-bottom:16px}
-.sc-url-bar input{flex:1;font-size:13px;padding:10px 14px;border:2px solid var(--b);border-radius:var(--r)}
-.sc-url-bar input:focus{border-color:var(--p);outline:none}
-.sc-url-bar button{flex-shrink:0}
-.sc-status{padding:10px 14px;border-radius:var(--r);font-size:12px;margin-bottom:14px;line-height:1.6}
-.sc-status.idle{background:var(--ib);color:var(--it);border:1px solid #b3c8e8}
-.sc-status.loading{background:#fff8e1;color:#f57f17;border:1px solid #ffe082}
-.sc-status.ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
-.sc-status.err{background:#ffebee;color:#c62828;border:1px solid #ef9a9a}
-.sc-progress{height:4px;background:var(--b);border-radius:2px;margin-bottom:16px;overflow:hidden;display:none}
-.sc-progress-bar{height:100%;background:var(--p);border-radius:2px;transition:width .4s;width:0%}
-.sc-confirm-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:12px}
-.sc-confirm-head{background:var(--pd);color:#fff;padding:8px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
-.sc-confirm-row{display:contents}
-.sc-confirm-row:not(:last-child) > div{border-bottom:1px solid var(--b)}
-.sc-confirm-label{padding:9px 14px;background:var(--bg);font-weight:600;color:var(--t2);border-right:1px solid var(--b)}
-.sc-confirm-val{padding:9px 14px;background:#fff;position:relative}
-.sc-confirm-val input,.sc-confirm-val textarea{width:100%;border:1px solid transparent;background:transparent;padding:0;font-size:12px;color:var(--t);font-family:inherit;outline:none;resize:none}
-.sc-confirm-val input:focus,.sc-confirm-val textarea:focus{border-color:var(--p);background:#fff;padding:3px 6px;border-radius:4px}
-.sc-confirm-row.arr-row .sc-confirm-label{background:#f0f4ff;color:var(--p)}
-.sc-confirm-row.arr-row .sc-confirm-val{background:#f8f9ff}
-.sc-sel-all{display:flex;gap:8px;align-items:center;margin-bottom:10px;font-size:12px}
-.sc-sel-all input[type=checkbox]{width:14px;height:14px;accent-color:var(--p)}
-.sc-group-head{background:linear-gradient(90deg,var(--pd),var(--p));color:#fff;padding:9px 14px;font-size:12px;font-weight:700;letter-spacing:.4px;grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
-.sc-check-col{width:30px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--b);background:var(--bg)}
-.sc-check-col input{accent-color:var(--p);width:14px;height:14px}
-.sc-foot{padding:14px 22px;border-top:1px solid var(--b);display:flex;gap:10px;justify-content:space-between;align-items:center;flex-shrink:0;background:#fafafa}
-.sc-foot-left{font-size:11px;color:var(--t3)}
-.sc-source-chip{display:inline-flex;align-items:center;gap:5px;background:#e8f0fb;border:1px solid #b3c8e8;border-radius:20px;padding:3px 10px;font-size:10px;color:var(--it);font-weight:600}
-
-
-
     .app-wrap{display:flex;flex:1;overflow:hidden;height:calc(100vh - 84px)}
     .form-side{flex:0 0 480px;min-width:320px;display:flex;flex-direction:column;border-right:1px solid var(--b);overflow:hidden}
     .preview-side{flex:1;display:flex;flex-direction:column;background:#e8eaed;overflow:hidden}
@@ -164,6 +91,87 @@ code{font-family:monospace;font-size:11px;background:#f0f0f0;padding:1px 5px;bor
     .preview-iframe{width:100%;flex:1;border:none;border-radius:0 0 8px 8px;background:#fff;display:block}
     .preview-scale-note{font-size:10px;color:#999;text-align:center;padding:4px;flex-shrink:0}
 
+
+/* block type picker */
+.block-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.btype-btn{background:#fff;border:1px solid var(--b);border-radius:var(--r);padding:10px 8px;text-align:center;cursor:pointer;font-family:inherit;transition:all .15s}
+.btype-btn:hover{border-color:var(--p);background:var(--ib)}
+.btype-icon{font-size:20px;display:block;margin-bottom:4px}
+.btype-label{font-size:11px;font-weight:600;color:var(--t2)}
+/* custom block card */
+.block-card{background:#fff;border:1px solid var(--b);border-radius:var(--r);margin-bottom:8px;overflow:hidden}
+.block-card-header{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--bg);border-bottom:1px solid var(--b);cursor:grab}
+.block-card-body{padding:12px 14px}
+.block-type-tag{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:2px 7px;border-radius:10px;background:var(--ib);color:var(--it)}
+.block-move{background:none;border:none;color:var(--t3);cursor:pointer;padding:0 4px;font-size:14px}
+/* custom page card in Pages tab */
+.cpage-card{background:#fff;border:1.5px solid var(--a);border-radius:10px;padding:14px;margin-bottom:10px}
+.cpage-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cpage-title{font-weight:600;font-size:13px;color:var(--a)}
+/* custom section toggle tag */
+.ctag{display:inline-block;background:#fff7ee;border:1px solid var(--a);color:var(--a);border-radius:10px;padding:2px 8px;font-size:10px;font-weight:600;margin-left:6px}
+
+
+/* ── BULK UPLOAD MODAL ──────────────────────────────────────── */
+.bu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
+.bu-modal{background:#fff;border-radius:12px;width:100%;max-width:680px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.bu-head{background:var(--pd);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.bu-head h2{font-size:15px;font-weight:700;margin:0}
+.bu-close{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;padding:0 4px;line-height:1;opacity:.8}
+.bu-close:hover{opacity:1}
+.bu-body{padding:20px;overflow-y:auto;flex:1}
+.bu-drop{border:2px dashed var(--b);border-radius:10px;padding:36px 20px;text-align:center;background:var(--bg);cursor:pointer;margin-bottom:16px;transition:border-color .2s,background .2s}
+.bu-drop:hover,.bu-drop.drag{border-color:var(--p);background:var(--ib)}
+.bu-preview{background:#f8f9fa;border:1px solid var(--b);border-radius:var(--r);padding:14px;margin-bottom:14px;font-size:12px;max-height:260px;overflow-y:auto}
+.bu-preview table{width:100%;border-collapse:collapse;font-size:11px}
+.bu-preview th{background:var(--pd);color:#fff;padding:5px 8px;text-align:left;position:sticky;top:0;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+.bu-preview td{padding:5px 8px;border-bottom:1px solid #eee;vertical-align:top}
+.bu-preview tr:nth-child(even) td{background:#f5f5f5}
+.bu-status{padding:10px 14px;border-radius:var(--r);font-size:12px;margin-bottom:12px;display:none}
+.bu-status.ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7;display:block}
+.bu-status.err{background:#ffebee;color:#c62828;border:1px solid #ef9a9a;display:block}
+.bu-field-map{background:#fff;border:1px solid var(--b);border-radius:var(--r);padding:12px;margin-bottom:12px}
+.bu-field-map h4{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.bu-map-row{display:grid;grid-template-columns:1fr 20px 1fr;align-items:center;gap:6px;margin-bottom:4px;font-size:11px}
+.bu-map-row select{font-size:11px;padding:4px 6px}
+.bu-tabs-row{display:flex;gap:6px;margin-bottom:16px;border-bottom:1px solid var(--b);padding-bottom:12px;flex-wrap:wrap}
+.bu-tab{background:var(--bg);border:1px solid var(--b);border-radius:20px;padding:4px 12px;font-size:11px;cursor:pointer;font-family:inherit;color:var(--t2)}
+.bu-tab.act{background:var(--p);color:#fff;border-color:var(--p)}
+.bu-foot{padding:14px 20px;border-top:1px solid var(--b);display:flex;gap:10px;justify-content:flex-end;flex-shrink:0;background:#fafafa}
+/* ── SCRAPE MODAL ───────────────────────────────────────────── */
+.sc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px}
+.sc-modal{background:#fff;border-radius:14px;width:100%;max-width:780px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.sc-head{background:var(--pd);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.sc-head h2{font-size:15px;font-weight:700;margin:0}
+.sc-close{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:0 4px;line-height:1;opacity:.8}
+.sc-body{padding:22px;overflow-y:auto;flex:1}
+.sc-url-bar{display:flex;gap:8px;margin-bottom:16px}
+.sc-url-bar input{flex:1;font-size:13px;padding:10px 14px;border:2px solid var(--b);border-radius:var(--r)}
+.sc-url-bar input:focus{border-color:var(--p);outline:none}
+.sc-status{padding:10px 14px;border-radius:var(--r);font-size:12px;margin-bottom:14px;line-height:1.6}
+.sc-status.idle{background:var(--ib);color:var(--it);border:1px solid #b3c8e8}
+.sc-status.loading{background:#fff8e1;color:#f57f17;border:1px solid #ffe082}
+.sc-status.ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+.sc-status.err{background:#ffebee;color:#c62828;border:1px solid #ef9a9a}
+.sc-progress{height:4px;background:var(--b);border-radius:2px;margin-bottom:16px;overflow:hidden;display:none}
+.sc-progress-bar{height:100%;background:var(--p);border-radius:2px;transition:width .4s;width:0%}
+.sc-confirm-grid{font-size:12px;margin-bottom:14px}
+.sc-group-head{background:linear-gradient(90deg,var(--pd),var(--p));color:#fff;padding:8px 14px;font-size:11px;font-weight:700;letter-spacing:.4px;display:flex;justify-content:space-between;border-radius:6px 6px 0 0;margin-top:12px}
+.sc-field-row{display:grid;grid-template-columns:30px 180px 1fr;align-items:center;border-bottom:1px solid var(--b);min-height:34px}
+.sc-field-row:last-child{border-bottom:none}
+.sc-check-col{display:flex;align-items:center;justify-content:center;padding:6px 4px;border-right:1px solid var(--b)}
+.sc-check-col input{accent-color:var(--p);width:14px;height:14px}
+.sc-label-col{padding:6px 10px;font-weight:600;color:var(--t2);font-size:11px;border-right:1px solid var(--b);background:var(--bg)}
+.sc-val-col{padding:4px 8px}
+.sc-val-col input,.sc-val-col textarea{width:100%;border:none;background:transparent;font-size:11px;font-family:inherit;outline:none;resize:none;padding:2px 0}
+.sc-val-col input:focus,.sc-val-col textarea:focus{background:var(--ib);border-radius:3px;padding:2px 4px}
+.sc-val-existing{font-size:9px;color:var(--t3);margin-top:1px;font-style:italic}
+.sc-sel-all{display:flex;gap:8px;align-items:center;margin-bottom:12px;font-size:12px}
+.sc-sel-all input{width:14px;height:14px;accent-color:var(--p)}
+.sc-foot{padding:14px 22px;border-top:1px solid var(--b);display:flex;gap:10px;justify-content:space-between;align-items:center;flex-shrink:0;background:#fafafa}
+.sc-source-chip{display:inline-flex;align-items:center;gap:5px;background:#e8f0fb;border:1px solid #b3c8e8;border-radius:20px;padding:3px 10px;font-size:10px;color:var(--it);font-weight:600}
+/* toast */
+#buToast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2e7d32;color:#fff;padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;z-index:700;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:opacity .4s;pointer-events:none}
 </style>
 </head>
 <body>
@@ -172,18 +180,18 @@ code{font-family:monospace;font-size:11px;background:#f0f0f0;padding:1px 5px;bor
   <div style="display:flex;align-items:center;gap:10px">
     <div class="tlogo">S</div>
     <div>
-      <div style="font-weight:600;font-size:13px">Sunday Properties — Website Builder v4</div>
+      <div style="font-weight:600;font-size:13px">Sunday Properties — Website Builder v5</div>
       <div style="font-size:10px;opacity:.6;margin-top:1px" id="tsub">Multi-page generator</div>
     </div>
   </div>
-  <div style="display:flex;gap:8px">
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
     <button class="btn bg_" onclick="togglePreview()" id="prevToggleBtn">👁 Hide Preview</button>
-    <button class="btn bg_" onclick="openScrapeModal()" title="Scrape data from a hotel or Booking.com URL">🌐 Scrape URL</button>
-    <button class="btn bg_" onclick="triggerBulkUpload()" title="Import all data from Excel or CSV">📊 Bulk Upload</button>
-    <input type="file" id="bulkFileInput" accept=".xlsx,.xls,.csv" style="display:none" onchange="handleBulkFile(this)">
-    <button class="btn bg_" onclick="downloadBulkTemplate()">📥 Download Template</button>
+    <button class="btn bg_" onclick="openScrapeModal()" title="Auto-fill from any hotel URL or Booking.com">🌐 Scrape URL</button>
+    <button class="btn bg_" onclick="openBulkModal()" title="Import all data from Excel or CSV">📊 Bulk Upload</button>
+    <input type="file" id="bulkFileInput" accept=".xlsx,.xls,.csv" style="display:none">
+    <button class="btn bg_" onclick="downloadBulkTemplate()">📥 Template</button>
     <button class="btn bg_" onclick="copyPage()" id="copybtn">📋 Copy page HTML</button>
-    <button class="btn ba" onclick="downloadZip()">⬇ Download all pages (.zip)</button>
+    <button class="btn ba" onclick="downloadZip()">⬇ Download .zip</button>
   </div>
 </div>
 <div class="tabs" id="tabbar"></div>
@@ -341,6 +349,11 @@ const S={
     explore:{title:"",desc:"",kw:""},
   },
   activePages:["index","about","rooms","dining","meetings","weddings","christmas","gallery","contact","explore"],
+
+  // Custom pages
+  customPages:[],
+  // Per-page custom sections (blocks): key = pageId, value = array of blocks
+  customBlocks:{},
   images:[],
   enT:{},deT:{}
 };
@@ -365,6 +378,7 @@ const TABS=[
   {id:"images", label:"Images"},
   {id:"seo",    label:"SEO"},
   {id:"trans",  label:"Translations"},
+  {id:"custpages",label:"✚ Custom Pages"},
   {id:"output", label:"📄 Output"},
 ];
 
@@ -390,6 +404,8 @@ function sharedHeader(){
   const isDE=S.type==="de";
   const bookUrl=esc(S.bookUrl||"#");
   // Aerodrome-style: About (dropdown) + Stay (dropdown) + flat links
+  const customPageNavLinks=S.customPages.filter(cp=>cp.name)
+    .map(cp=>`<li><a href="${slug(cp.name)}.html">${esc(cp.name)}</a></li>`).join('\n              ');
   const navLinks=PAGES.filter(p=>ap().has(p.id)&&!["index","contact","about","rooms","gallery","explore"].includes(p.id))
     .map(p=>`<li><a href="${p.file}">${esc(p.label)}</a></li>`).join("\n              ");
 
@@ -439,6 +455,8 @@ function sharedHeader(){
 
 function sharedFooter(){
   const year=new Date().getFullYear();
+  const customPageFooterLinks=S.customPages.filter(cp=>cp.name)
+    .map(cp=>`<li><a href="${slug(cp.name)}.html">${esc(cp.name)}</a></li>`).join('');
   const ql=PAGES.filter(p=>ap().has(p.id)&&!["index","contact","about","rooms","gallery","explore"].includes(p.id))
     .map(p=>`<li><a href="${p.file}">${esc(p.label)}</a></li>`).join("");
   const exploreLink=ap().has("explore")?`<li><a href="explore.html">Explore</a></li>`:"";
@@ -1245,11 +1263,115 @@ function genExplore(){
 }
 
 // ── GENERATE ALL ──────────────────────────────────────────────────────────────
+
+function genCustomPage(cp){
+  const bk=esc(S.bookUrl||'#');
+  const blocks=getBlocks(cp.id);
+  const blocksHTML=blocks.map(b=>renderBlockToHTML(b)).join('\n');
+
+  const body=`
+    <section class="hero-section" id="hero" style="background-image:url('images/${slug(cp.name)}-hero.jpg')">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>${esc(cp.name||'Page')}</h1>
+        <p>${esc(cp.heroSub||'')}</p>
+        <a href="#overview" class="btn-primary">Discover More</a>
+      </div>
+    </section>
+
+    <section class="overview-section" id="overview">
+      <div class="section-label">${esc(cp.name||'')}</div>
+      <div class="overview-container">
+        <div class="overview-divider"></div>
+        <h2>${esc(cp.overviewH2||cp.name||'')}</h2>
+        <p>${esc(cp.overviewP||'')}</p>
+        <div class="overview-divider"></div>
+      </div>
+    </section>
+
+    ${blocksHTML}
+
+    <section class="cta-section">
+      <div class="cta-container">
+        <h2>${esc(cp.ctaH2||'Get in Touch')}</h2>
+        <p>${esc(cp.ctaP||'')}</p>
+        <a href="contact.html" class="btn-primary">${esc(cp.ctaBtn||'Enquire Now')}</a>
+      </div>
+    </section>`;
+
+  const seo=S.seo[cp.id]||{title:'',desc:'',kw:''};
+  return pageShell(cp.id,
+    seo.title||`${esc(cp.name)} — ${esc(S.name)}`,
+    seo.desc||cp.overviewP.substring(0,160),
+    seo.kw,
+    `${slug(cp.name)}.css`,
+    body,
+    `${slug(cp.name)}.js`
+  );
+}
+
+function renderBlockToHTML(b){
+  switch(b.type){
+    case'text': return`
+    <section class="info-section" style="padding:50px 20px;max-width:800px;margin:0 auto;text-align:center">
+      ${b.heading?`<h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2rem);color:#1a2e3a;margin-bottom:16px">${esc(b.heading)}</h2>`:''}
+      <p style="font-family:'Lora',serif;font-size:1rem;color:#1a1a1a;line-height:1.8">${esc(b.body||'')}</p>
+    </section>`;
+
+    case'imgtext': return`
+    <section class="magazine-section${b.reverse?' reverse':''}" style="max-width:1100px;margin:40px auto;padding:0 20px">
+      <div class="single-banner">
+        <img src="images/${esc(b.imgSlot||'section')}.jpg" alt="${esc(b.heading||'')}" loading="lazy"/>
+      </div>
+      <div class="magazine-content">
+        ${b.heading?`<h2>${esc(b.heading)}</h2>`:''}
+        <p>${esc(b.body||'')}</p>
+        ${b.ctaLabel?`<a href="${esc(b.ctaLink||'contact.html')}" class="btn-primary">${esc(b.ctaLabel)}</a>`:''}
+      </div>
+    </section>`;
+
+    case'iconcards': return`
+    <section style="padding:50px 20px;text-align:center;background:#f9f9f9">
+      ${b.heading?`<h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2rem);color:#1a2e3a;margin-bottom:28px">${esc(b.heading)}</h2>`:''}
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:1000px;margin:0 auto">
+        ${(b.cards||[]).map(c=>`
+        <div style="background:#fff;border-radius:10px;padding:24px 16px;box-shadow:0 4px 12px rgba(0,0,0,.08);text-align:center">
+          <i class="${esc(c.icon||'fas fa-star')}" style="font-size:2rem;color:#d4a373;margin-bottom:12px;display:block"></i>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#1a2e3a;margin-bottom:8px">${esc(c.title||'')}</h3>
+          <p style="font-family:'Lora',serif;font-size:.88rem;color:#1a1a1a">${esc(c.body||'')}</p>
+        </div>`).join('')}
+      </div>
+    </section>`;
+
+    case'bullets': return`
+    <section style="padding:50px 20px;max-width:700px;margin:0 auto">
+      ${b.heading?`<h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.5vw,2rem);color:#1a2e3a;margin-bottom:20px;text-align:center">${esc(b.heading)}</h2>`:''}
+      <ul style="list-style:disc;padding-left:24px;font-family:'Lora',serif;font-size:.95rem;color:#1a1a1a;line-height:2.2">
+        ${(b.bullets||'').split('\n').filter(l=>l.trim()).map(l=>`<li>${esc(l.trim())}</li>`).join('')}
+      </ul>
+    </section>`;
+
+    case'cta': return`
+    <section class="cta-section">
+      <div class="cta-container">
+        <h2>${esc(b.ctaH2||b.heading||'')}</h2>
+        <p>${esc(b.sub||'')}</p>
+        <a href="${esc(b.btnLink||'contact.html')}" class="btn-primary">${esc(b.btnLabel||'Enquire Now')}</a>
+      </div>
+    </section>`;
+
+    case'rawhtml': return b.html||'';
+
+    default: return'';
+  }
+}
+
 function generateAll(){
   GENERATED={};
   const gen={index:genIndex,about:genAbout,rooms:genRooms,dining:genDining,meetings:genMeetings,
     weddings:genWeddings,christmas:genChristmas,gallery:genGallery,contact:genContact,explore:genExplore};
   S.activePages.forEach(id=>{if(gen[id])GENERATED[id]=gen[id]();});
+  S.customPages.forEach(cp=>{if(cp.name)GENERATED[cp.id]=genCustomPage(cp);});
   return GENERATED;
 }
 
@@ -1312,10 +1434,239 @@ function getSlots(){
   }
   S.highlights.filter(h=>h.label).forEach(h=>slots.push(`hl-${sl(h.label)}.jpg`));
   S.thingCards.filter(t=>t.label).forEach((_,i)=>slots.push(`thing-${i+1}.jpg`));
+  S.customPages.filter(cp=>cp.name).forEach(cp=>{
+    slots.push(`${slug(cp.name)}-hero.jpg`);
+    getBlocks(cp.id).filter(b=>b.imgSlot).forEach(b=>slots.push(b.imgSlot+'.jpg'));
+  });
+  getBlocks('index').concat(getBlocks('about'),getBlocks('rooms'),getBlocks('dining'),
+    getBlocks('meetings'),getBlocks('weddings'),getBlocks('christmas'),
+    getBlocks('gallery'),getBlocks('contact'),getBlocks('explore'))
+    .filter(b=>b.imgSlot).forEach(b=>slots.push(b.imgSlot+'.jpg'));
   return[...new Set(slots)];
 }
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
+
+// ── BLOCK TYPE DEFINITIONS ────────────────────────────────────────────────────
+const BLOCK_TYPES=[
+  {id:'text',      icon:'📝', label:'Text Block',      desc:'Heading + body paragraph'},
+  {id:'imgtext',   icon:'🖼️', label:'Image + Text',    desc:'Image beside text content'},
+  {id:'iconcards', icon:'🃏', label:'Icon Cards',       desc:'Row of icon + title + text'},
+  {id:'bullets',   icon:'📋', label:'Bullet List',      desc:'Heading + bulleted list'},
+  {id:'cta',       icon:'🔔', label:'CTA Banner',       desc:'Full-width call-to-action'},
+  {id:'rawhtml',   icon:'</>', label:'Custom HTML',     desc:'Write your own HTML'},
+];
+
+function slug(s=''){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')||'page'}
+
+// Default block data for each type
+function defaultBlock(type){
+  const id='b'+Date.now()+Math.random().toString(36).slice(2,6);
+  const base={id,type,collapsed:false};
+  switch(type){
+    case'text':     return{...base,heading:'',body:''};
+    case'imgtext':  return{...base,heading:'',body:'',ctaLabel:'',ctaLink:'',imgSlot:'',reverse:false};
+    case'iconcards':return{...base,heading:'',cards:[{icon:'fas fa-star',title:'',body:''},{icon:'fas fa-heart',title:'',body:''},{icon:'fas fa-check',title:'',body:''}]};
+    case'bullets':  return{...base,heading:'',bullets:''};
+    case'cta':      return{...base,heading:'',sub:'',btnLabel:'',btnLink:''};
+    case'rawhtml':  return{...base,html:''};
+    default:        return base;
+  }
+}
+
+// Get blocks for a page (predefined or custom)
+function getBlocks(pageId){return(S.customBlocks[pageId]||[]);}
+function setBlocks(pageId,blocks){S.customBlocks[pageId]=blocks;}
+
+function addBlock(pageId,type){
+  const blocks=[...getBlocks(pageId),defaultBlock(type)];
+  setBlocks(pageId,blocks);render();
+}
+function removeBlock(pageId,idx){
+  const blocks=getBlocks(pageId).filter((_,i)=>i!==idx);
+  setBlocks(pageId,blocks);render();
+}
+function moveBlock(pageId,idx,dir){
+  const blocks=[...getBlocks(pageId)];
+  const swap=idx+dir;
+  if(swap<0||swap>=blocks.length)return;
+  [blocks[idx],blocks[swap]]=[blocks[swap],blocks[idx]];
+  setBlocks(pageId,blocks);render();
+}
+function setBlock(pageId,idx,key,val){
+  const blocks=[...getBlocks(pageId)];
+  blocks[idx]={...blocks[idx],[key]:val};
+  setBlocks(pageId,blocks);
+}
+function setBlockCard(pageId,idx,cardIdx,key,val){
+  const blocks=[...getBlocks(pageId)];
+  const cards=[...blocks[idx].cards];
+  cards[cardIdx]={...cards[cardIdx],[key]:val};
+  blocks[idx]={...blocks[idx],cards};
+  setBlocks(pageId,blocks);
+}
+function toggleBlockCollapse(pageId,idx){
+  const blocks=[...getBlocks(pageId)];
+  blocks[idx]={...blocks[idx],collapsed:!blocks[idx].collapsed};
+  setBlocks(pageId,blocks);render();
+}
+
+// ── CUSTOM PAGES ──────────────────────────────────────────────────────────────
+function addCustomPage(){
+  S.customPages.push({
+    id:'cp'+Date.now(),name:'',heroSub:'',overviewH2:'',overviewP:'',ctaH2:'',ctaP:'',ctaBtn:'Learn More'
+  });
+  TAB='custpages';render();
+}
+function removeCustomPage(idx){S.customPages.splice(idx,1);render();}
+function setCP(idx,key,val){S.customPages[idx][key]=val;}
+
+
+
+function tabCustPages(){
+  const pages = S.customPages;
+  return`
+    <div class="ibox" style="margin-bottom:16px">
+      <strong>Custom pages</strong> appear in the navigation and generate their own HTML file when you download. Each page gets a hero, overview section, your custom content blocks, and a CTA at the bottom.
+    </div>
+    ${pages.map((cp,i)=>`
+    <div class="cpage-card">
+      <div class="cpage-card-header">
+        <span class="cpage-title">${esc(cp.name||'Untitled page')} <span style="font-size:10px;color:var(--t3);font-weight:400">${cp.name?slug(cp.name)+'.html':''}</span></span>
+        <button class="bd" onclick="removeCustomPage(${i})">×</button>
+      </div>
+      <div class="fr2">
+        <div class="field"><label>Page name (used in nav & filename)</label><input value="${esc(cp.name)}" oninput="setCP(${i},'name',this.value);render()" placeholder="e.g. Spa & Wellness"></div>
+        <div class="field"><label>Hero subtitle</label><input value="${esc(cp.heroSub)}" oninput="setCP(${i},'heroSub',this.value)" placeholder="Relax, recharge and restore"></div>
+      </div>
+      <div class="field"><label>Overview heading (h2)</label><input value="${esc(cp.overviewH2)}" oninput="setCP(${i},'overviewH2',this.value)" placeholder="Discover Our Spa"></div>
+      <div class="field"><label>Overview paragraph</label><textarea rows="3" oninput="setCP(${i},'overviewP',this.value)">${esc(cp.overviewP||'')}</textarea></div>
+      <div class="fr3">
+        <div class="field"><label>CTA heading</label><input value="${esc(cp.ctaH2)}" oninput="setCP(${i},'ctaH2',this.value)" placeholder="Book a Treatment"></div>
+        <div class="field"><label>CTA subtext</label><input value="${esc(cp.ctaP)}" oninput="setCP(${i},'ctaP',this.value)" placeholder="Contact us to reserve"></div>
+        <div class="field"><label>CTA button label</label><input value="${esc(cp.ctaBtn)}" oninput="setCP(${i},'ctaBtn',this.value)" placeholder="Enquire Now"></div>
+      </div>
+      <div style="border-top:1px solid var(--b);margin-top:10px;padding-top:12px">
+        <div style="font-weight:600;font-size:12px;color:var(--p);margin-bottom:10px">Content blocks on this page</div>
+        ${renderBlockList(cp.id)}
+      </div>
+    </div>`).join('')}
+    <button class="bda" onclick="addCustomPage()">+ Add custom page</button>
+  `;
+}
+
+
+function renderBlockList(pageId){
+  const blocks=getBlocks(pageId);
+  const picker=`
+    <div style="margin-bottom:12px">
+      <div style="font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Add a block</div>
+      <div class="block-type-grid">
+        ${BLOCK_TYPES.map(bt=>`
+        <button class="btype-btn" onclick="addBlock('${pageId}','${bt.id}')">
+          <span class="btype-icon">${bt.icon}</span>
+          <span class="btype-label">${bt.label}</span>
+        </button>`).join('')}
+      </div>
+    </div>`;
+
+  const blockCards=blocks.map((b,idx)=>{
+    const bt=BLOCK_TYPES.find(t=>t.id===b.type)||{icon:'📝',label:'Block'};
+    const moveUp=idx>0?`<button class="block-move" onclick="moveBlock('${pageId}',${idx},-1)" title="Move up">↑</button>`:'';
+    const moveDn=idx<blocks.length-1?`<button class="block-move" onclick="moveBlock('${pageId}',${idx},1)" title="Move down">↓</button>`:'';
+    const bodyHtml=b.collapsed?'':`<div class="block-card-body">${renderBlockForm(pageId,idx,b)}</div>`;
+    return`<div class="block-card">
+      <div class="block-card-header" onclick="toggleBlockCollapse('${pageId}',${idx})">
+        <span style="font-size:16px">${bt.icon}</span>
+        <span class="block-type-tag">${bt.label}</span>
+        <span style="font-size:12px;color:var(--t2);flex:1;margin-left:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(b.heading||b.html||b.ctaH2||b.h2||'')}</span>
+        ${moveUp}${moveDn}
+        <button class="bd" onclick="event.stopPropagation();removeBlock('${pageId}',${idx})">×</button>
+        <span style="font-size:11px;color:var(--t3)">${b.collapsed?'▸':'▾'}</span>
+      </div>
+      ${bodyHtml}
+    </div>`;
+  }).join('');
+
+  return picker+blockCards;
+}
+
+function renderBlockForm(pageId,idx,b){
+  switch(b.type){
+    case'text': return`
+      <div class="field"><label>Heading</label><input value="${esc(b.heading||'')}" oninput="setBlock('${pageId}',${idx},'heading',this.value)" placeholder="Section Heading"></div>
+      <div class="field"><label>Body text</label><textarea rows="4" oninput="setBlock('${pageId}',${idx},'body',this.value)">${esc(b.body||'')}</textarea></div>`;
+
+    case'imgtext': return`
+      <div class="fr2">
+        <div class="field"><label>Heading</label><input value="${esc(b.heading||'')}" oninput="setBlock('${pageId}',${idx},'heading',this.value)" placeholder="Section Heading"></div>
+        <div class="field"><label>Image filename (no ext)</label><input value="${esc(b.imgSlot||'')}" oninput="setBlock('${pageId}',${idx},'imgSlot',this.value)" placeholder="my-image"></div>
+      </div>
+      <div class="field"><label>Body text</label><textarea rows="3" oninput="setBlock('${pageId}',${idx},'body',this.value)">${esc(b.body||'')}</textarea></div>
+      <div class="fr2">
+        <div class="field"><label>CTA button label (optional)</label><input value="${esc(b.ctaLabel||'')}" oninput="setBlock('${pageId}',${idx},'ctaLabel',this.value)" placeholder="Learn More"></div>
+        <div class="field"><label>CTA link</label><input value="${esc(b.ctaLink||'')}" oninput="setBlock('${pageId}',${idx},'ctaLink',this.value)" placeholder="contact.html"></div>
+      </div>
+      <div class="field">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500">
+          <input type="checkbox" ${b.reverse?'checked':''} onchange="setBlock('${pageId}',${idx},'reverse',this.checked)" style="width:auto;padding:0;border:none;background:none;margin:0">
+          Reverse layout (image on right)
+        </label>
+      </div>`;
+
+    case'iconcards': return`
+      <div class="field"><label>Section heading</label><input value="${esc(b.heading||'')}" oninput="setBlock('${pageId}',${idx},'heading',this.value)" placeholder="Why Choose Us"></div>
+      ${(b.cards||[]).map((c,ci)=>`
+      <div class="card" style="margin-bottom:8px">
+        <div class="cl" style="margin-bottom:8px">Card ${ci+1}</div>
+        <div class="fr3">
+          <div class="field"><label>FA icon class</label><input value="${esc(c.icon||'')}" oninput="setBlockCard('${pageId}',${idx},${ci},'icon',this.value)" placeholder="fas fa-star"></div>
+          <div class="field"><label>Title</label><input value="${esc(c.title||'')}" oninput="setBlockCard('${pageId}',${idx},${ci},'title',this.value)" placeholder="Feature"></div>
+          <div class="field"><label>Description</label><input value="${esc(c.body||'')}" oninput="setBlockCard('${pageId}',${idx},${ci},'body',this.value)" placeholder="Short description"></div>
+        </div>
+      </div>`).join('')}
+      <button class="bda" onclick="(()=>{const bl=[...getBlocks('${pageId}')];bl[${idx}]={...bl[${idx}],cards:[...(bl[${idx}].cards||[]),{icon:'fas fa-check',title:'',body:''}]};setBlocks('${pageId}',bl);render()})()">+ Add card</button>`;
+
+    case'bullets': return`
+      <div class="field"><label>Heading</label><input value="${esc(b.heading||'')}" oninput="setBlock('${pageId}',${idx},'heading',this.value)" placeholder="Key Features"></div>
+      <div class="field"><label>Bullet points <span class="hint" style="display:inline">(one per line)</span></label><textarea rows="5" oninput="setBlock('${pageId}',${idx},'bullets',this.value)">${esc(b.bullets||'')}</textarea></div>`;
+
+    case'cta': return`
+      <div class="fr2">
+        <div class="field"><label>Heading</label><input value="${esc(b.ctaH2||b.heading||'')}" oninput="setBlock('${pageId}',${idx},'ctaH2',this.value)" placeholder="Ready to Book?"></div>
+        <div class="field"><label>Subtext</label><input value="${esc(b.sub||'')}" oninput="setBlock('${pageId}',${idx},'sub',this.value)" placeholder="Contact us today"></div>
+      </div>
+      <div class="fr2">
+        <div class="field"><label>Button label</label><input value="${esc(b.btnLabel||'')}" oninput="setBlock('${pageId}',${idx},'btnLabel',this.value)" placeholder="Enquire Now"></div>
+        <div class="field"><label>Button link</label><input value="${esc(b.btnLink||'')}" oninput="setBlock('${pageId}',${idx},'btnLink',this.value)" placeholder="contact.html"></div>
+      </div>`;
+
+    case'rawhtml': return`
+      <div class="field">
+        <label>Custom HTML <span class="hint" style="display:inline">(inserted directly into the page — uses your existing CSS classes)</span></label>
+        <textarea rows="8" style="font-family:monospace;font-size:12px" oninput="setBlock('${pageId}',${idx},'html',this.value)">${esc(b.html||'')}</textarea>
+      </div>`;
+
+    default: return'';
+  }
+}
+
+
+  // Append custom blocks editor to every content sub-panel
+  function withBlockEditor(pageId, html){
+    const blocks = getBlocks(pageId);
+    return html + `
+      <div style="border-top:2px solid var(--b);margin-top:20px;padding-top:16px">
+        <div style="font-weight:600;font-size:13px;color:var(--p);margin-bottom:4px">
+          Additional sections <span class="ctag">custom</span>
+        </div>
+        <div style="font-size:12px;color:var(--t2);margin-bottom:12px;line-height:1.6">
+          Add extra content blocks below the standard sections on this page. They appear in order between the main content and the CTA.
+        </div>
+        ${renderBlockList(pageId)}
+      </div>`;
+  }
+
 function tabGeneral(){return`
   <div class="field"><label>Website type</label>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
@@ -1385,7 +1736,7 @@ function tabContent(){
 function contentPanel(){
   switch(CSUB){
 
-    case"index": return`
+    case"index": return withBlockEditor("index",`
       <div style="font-weight:600;font-size:13px;color:var(--p);margin-bottom:10px">Hero Slider Slides</div>
       ${[[1,"slide1"],[2,"slide2"],[3,"slide3"]].map(([n,k])=>`
       <div class="card">
@@ -1418,9 +1769,9 @@ function contentPanel(){
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
         <div class="field" style="margin:0"><label>Label</label><input value="${esc(t.label)}" oninput="setArr('thingCards',${i},'label',this.value)" placeholder="BOXPARK Croydon"></div>
         <div class="field" style="margin:0"><label>Link (href)</label><input value="${esc(t.href)}" oninput="setArr('thingCards',${i},'href',this.value)" placeholder="#"></div>
-      </div>`).join("")}`;
+      </div>`).join("")}`);
 
-    case"about": return`
+    case"about": return withBlockEditor("about",`
       <div class="fr2">
         <div class="field"><label>Hero h1</label><input value="${esc(S.aboutH1)}" oninput="set('aboutH1',this.value)" placeholder="Aviation Heritage"></div>
         <div class="field"><label>Hero subtitle</label><input value="${esc(S.aboutH1Sub)}" oninput="set('aboutH1Sub',this.value)" placeholder="Since 1928"></div>
@@ -1451,9 +1802,9 @@ function contentPanel(){
           <div class="field"><label>Paragraph</label><input value="${esc(v.p)}" oninput="setArr('valueCards',${i},'p',this.value)" placeholder="Description text"></div>
         </div>
       </div>`).join("")}
-      <button class="bda" onclick="addArr('valueCards',{icon:'fas fa-star',h3:'',p:''})">+ Add value card</button>`;
+      <button class="bda" onclick="addArr('valueCards',{icon:'fas fa-star',h3:'',p:''})">+ Add value card</button>`);
 
-    case"rooms": return`
+    case"rooms": return withBlockEditor("rooms",`
       <div class="fr2">
         <div class="field"><label>Hero subtitle</label><input value="${esc(S.roomsH1Sub)}" oninput="set('roomsH1Sub',this.value)" placeholder="Comfort and Heritage in Historic Croydon"></div>
         <div class="field"><label>Overview h2 <span class="hint" style="display:inline">(e.g. "109 Comfortable Bedrooms")</span></label><input value="${esc(S.roomsOverviewH2)}" oninput="set('roomsOverviewH2',this.value)" placeholder="109 Comfortable Bedrooms"></div>
@@ -1473,9 +1824,9 @@ function contentPanel(){
         </div>
         <div class="field"><label>Description paragraph</label><textarea rows="2" oninput="setArr('roomCards',${i},'p2',this.value)">${esc(r.p2||"")}</textarea></div>
       </div>`).join("")}
-      <button class="bda" onclick="addArr('roomCards',{name:'',p1:'',p2:'',filter:'classic',imgSlot:'rooms-'+(S.roomCards.length+1)})">+ Add room card</button>`;
+      <button class="bda" onclick="addArr('roomCards',{name:'',p1:'',p2:'',filter:'classic',imgSlot:'rooms-'+(S.roomCards.length+1)})">+ Add room card</button>`);
 
-    case"dining": return`
+    case"dining": return withBlockEditor("dining",`
       <div class="fr2">
         <div class="field"><label>Hero h1</label><input value="${esc(S.diningH1)}" oninput="set('diningH1',this.value)" placeholder="Runway Restaurant & Bar"></div>
         <div class="field"><label>Hero subtitle</label><input value="${esc(S.diningH1Sub)}" oninput="set('diningH1Sub',this.value)" placeholder="Variety of Cuisines in Historic Surroundings"></div>
@@ -1497,9 +1848,9 @@ function contentPanel(){
         <div class="field" style="margin:0"><label>Image filename (no ext)</label><input value="${esc(g.imgSlot)}" oninput="setArr('diningGallery',${i},'imgSlot',this.value)" placeholder="dining-gallery-${i+1}"></div>
         <div class="field" style="margin:0"><label>Alt text</label><input value="${esc(g.alt)}" oninput="setArr('diningGallery',${i},'alt',this.value)" placeholder="Restaurant interior"></div>
       </div>`).join("")}
-      <button class="bda" onclick="addArr('diningGallery',{imgSlot:'dining-gallery-'+(S.diningGallery.length+1),alt:''})">+ Add gallery image</button>`;
+      <button class="bda" onclick="addArr('diningGallery',{imgSlot:'dining-gallery-'+(S.diningGallery.length+1),alt:''})">+ Add gallery image</button>`);
 
-    case"meetings": return`
+    case"meetings": return withBlockEditor("meetings",`
       <div class="field"><label>Hero subtitle</label><input value="${esc(S.meetingsH1Sub)}" oninput="set('meetingsH1Sub',this.value)" placeholder="Flexible Spaces in a Historic Setting"></div>
       <div class="field"><label>Overview h2</label><input value="${esc(S.meetingsOverviewH2)}" oninput="set('meetingsOverviewH2',this.value)" placeholder="Historic Venue, Modern Facilities"></div>
       <div class="field"><label>Overview paragraph</label><textarea rows="4" oninput="set('meetingsOverviewP',this.value)">${esc(S.meetingsOverviewP)}</textarea></div>
@@ -1521,9 +1872,9 @@ function contentPanel(){
           <div class="field"><label>Boardroom capacity</label><input value="${esc(m.boardroom)}" oninput="setArr('spaceCards',${i},'boardroom',this.value)" placeholder="18"></div>
         </div>
       </div>`).join("")}
-      <button class="bda" onclick="addArr('spaceCards',{h3:'',p:'',theatre:'',dinner:'',reception:'',boardroom:'',imgSlot:'meeting-'+(S.spaceCards.length+1)})">+ Add event space</button>`;
+      <button class="bda" onclick="addArr('spaceCards',{h3:'',p:'',theatre:'',dinner:'',reception:'',boardroom:'',imgSlot:'meeting-'+(S.spaceCards.length+1)})">+ Add event space</button>`);
 
-    case"weddings": return`
+    case"weddings": return withBlockEditor("weddings",`
       <div class="field"><label>Hero subtitle</label><input value="${esc(S.weddingsH1Sub)}" oninput="set('weddingsH1Sub',this.value)" placeholder="Say 'I Do' in a Historic Art Deco Landmark"></div>
       <div class="field"><label>Overview h2</label><input value="${esc(S.weddingsOverviewH2)}" oninput="set('weddingsOverviewH2',this.value)" placeholder="Celebrate in Historic Surroundings"></div>
       <div class="field"><label>Overview paragraph</label><textarea rows="4" oninput="set('weddingsOverviewP',this.value)">${esc(S.weddingsOverviewP)}</textarea></div>
@@ -1546,9 +1897,9 @@ function contentPanel(){
         <div class="field"><label>Package details <span class="hint" style="display:inline">(one bullet per line)</span></label><textarea rows="4" oninput="setArr('packageCards',${i},'bullets',this.value)">${esc(p.bullets||"")}</textarea></div>
       </div>`).join("")}
       <button class="bda" onclick="addArr('packageCards',{h3:'',intro:'',bullets:'',featured:false})">+ Add package</button>
-      <div class="field" style="margin-top:12px"><label>CTA section subtext</label><textarea rows="2" oninput="set('weddingCTAText',this.value)">${esc(S.weddingCTAText)}</textarea></div>`;
+      <div class="field" style="margin-top:12px"><label>CTA section subtext</label><textarea rows="2" oninput="set('weddingCTAText',this.value)">${esc(S.weddingCTAText)}</textarea></div>`);
 
-    case"christmas": return`
+    case"christmas": return withBlockEditor("christmas",`
       <div class="field"><label>Hero subtitle</label><input value="${esc(S.xmasH1Sub)}" oninput="set('xmasH1Sub',this.value)" placeholder="Festive Gatherings in Historic Surroundings"></div>
       <div class="field"><label>Overview h2</label><input value="${esc(S.xmasOverviewH2)}" oninput="set('xmasOverviewH2',this.value)" placeholder="Christmas at the Hotel"></div>
       <div class="field"><label>Overview paragraph</label><textarea rows="4" oninput="set('xmasOverviewP',this.value)">${esc(S.xmasOverviewP)}</textarea></div>
@@ -1572,9 +1923,9 @@ function contentPanel(){
           <div class="field"><label>Heading h3</label><input value="${esc(h.h3)}" oninput="setArr('xmasHighlights',${i},'h3',this.value)" placeholder="Flexible Event Spaces"></div>
           <div class="field"><label>Subtext</label><input value="${esc(h.p)}" oninput="setArr('xmasHighlights',${i},'p',this.value)" placeholder="Amy Johnson Suite & four additional venues"></div>
         </div>
-      </div>`).join("")}`;
+      </div>`).join("")}`);
 
-    case"gallery": return`
+    case"gallery": return withBlockEditor("gallery",`
       <div class="fr2">
         <div class="field"><label>Hero h1</label><input value="${esc(S.galleryH1)}" oninput="set('galleryH1',this.value)" placeholder="Our Gallery"></div>
         <div class="field"><label>Hero subtitle</label><input value="${esc(S.galleryH1Sub)}" oninput="set('galleryH1Sub',this.value)" placeholder="Discover the Historic Charm and Modern Elegance"></div>
@@ -1600,9 +1951,9 @@ function contentPanel(){
           ${S.galleryFilters.filter(f=>f.filter!=="all").map(f=>`<option value="${esc(f.filter)}"${g.cat===f.filter?" selected":""}>${esc(f.label)}</option>`).join("")}
         </select>
       </div>`).join("")}
-      <button class="bda" onclick="addArr('galleryItems',{imgSlot:'gallery-'+(S.galleryItems.length+1),alt:'',caption:'',cat:'exterior'})">+ Add gallery item</button>`;
+      <button class="bda" onclick="addArr('galleryItems',{imgSlot:'gallery-'+(S.galleryItems.length+1),alt:'',caption:'',cat:'exterior'})">+ Add gallery item</button>`);
 
-    case"contact": return`
+    case"contact": return withBlockEditor("contact",`
       <div class="field"><label>Hero subtitle</label><input value="${esc(S.contactH1Sub)}" oninput="set('contactH1Sub',this.value)" placeholder="Reach out to plan your stay, meeting, event or wedding at the historic hotel"></div>
       <div class="field"><label>Getting Here heading h2</label><input value="${esc(S.contactGettingHereH2)}" oninput="set('contactGettingHereH2',this.value)" placeholder="Travel to the Hotel"></div>
       <div class="ibox" style="margin-top:8px">
@@ -1612,9 +1963,9 @@ function contentPanel(){
         <div class="field"><label>Cognito Forms key (optional)</label><input value="${esc(S.cognitoKey||"")}" oninput="set('cognitoKey',this.value)" placeholder="YOUR_COGNITO_KEY"></div>
         <div class="field"><label>Cognito Form ID (optional)</label><input value="${esc(S.cognitoForm||"")}" oninput="set('cognitoForm',this.value)" placeholder="YOUR_FORM_ID"></div>
       </div>
-      <p style="font-size:12px;color:var(--t3)">Transport fields (By Air, Rail, Road, Parking) are shared from the General Info tab.</p>`;
+      <p style="font-size:12px;color:var(--t3)">Transport fields (By Air, Rail, Road, Parking) are shared from the General Info tab.</p>`);
 
-    case"explore": return`
+    case"explore": return withBlockEditor("explore",`
       <div class="fr2">
         <div class="field"><label>Hero h1</label><input value="${esc(S.exploreH1)}" oninput="set('exploreH1',this.value)" placeholder="Explore Croydon & London"></div>
         <div class="field"><label>Hero subtitle</label><input value="${esc(S.exploreH1Sub)}" oninput="set('exploreH1Sub',this.value)" placeholder="Historic Aviation Heritage Meets Vibrant City Life"></div>
@@ -1631,9 +1982,9 @@ function contentPanel(){
         </div>
         <div class="field"><label>Description paragraph</label><textarea rows="2" oninput="setArr('attractionCards',${i},'p',this.value)">${esc(a.p||"")}</textarea></div>
       </div>`).join("")}
-      <button class="bda" onclick="addArr('attractionCards',{h3:'',p:'',imgSlot:'attraction-'+(S.attractionCards.length+1)})">+ Add attraction</button>`;
+      <button class="bda" onclick="addArr('attractionCards',{h3:'',p:'',imgSlot:'attraction-'+(S.attractionCards.length+1)})">+ Add attraction</button>`);
 
-    default: return`<p style="color:var(--t3)">Select a page above to edit its content.</p>`;
+    default: return'<p style="color:var(--t3)">Select a page above to edit its content.</p>';
   }
 }
 
@@ -1774,12 +2125,10 @@ function remImage(i){S.images.splice(i,1);render();}
 // ── RENDER ────────────────────────────────────────────────────────────────────
 function render(){
   document.getElementById("tabbar").innerHTML=TABS.map(t=>`<button class="tb${TAB===t.id?" act":""}" onclick="TAB='${t.id}';render()">${t.label}</button>`).join("");
-  const m={general:tabGeneral,pages:tabPages,content:tabContent,images:tabImages,seo:tabSEO,trans:tabTrans,output:tabOutput};
+  const m={general:tabGeneral,pages:tabPages,content:tabContent,images:tabImages,seo:tabSEO,trans:tabTrans,custpages:tabCustPages,output:tabOutput};
   document.getElementById("tcon").innerHTML=(m[TAB]||tabGeneral)();
   document.getElementById("tsub").textContent=`${S.type==="de"?"🇩🇪 German (EN+DE)":"🇬🇧 UK (English)"} · ${ap().size} pages · ${S.images.length} image${S.images.length!==1?"s":""}`;
 }
-render();
-
 // ── PREVIEW STATE ─────────────────────────────────────────────────────────────
 let PREV_PAGE = 'index';
 let PREV_VISIBLE = true;
@@ -2001,6 +2350,20 @@ const PREVIEW_CSS = `
   .pbrowser-dot{width:10px;height:10px;border-radius:50%}
   .pbrowser-url{flex:1;background:#3d3d3d;border-radius:4px;padding:4px 10px;font-size:11px;color:#aaa;text-align:center;font-family:monospace}
 `;
+
+
+function renderBlockPreview(b, S){
+  const esc = s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  switch(b.type){
+    case'text': return `<div class="psec psec-center"><div class="slabel" style="font-size:1.2rem;margin-bottom:8px">&nbsp;</div>${b.heading?`<h2>${esc(b.heading)}</h2>`:''}<p>${esc(b.body||'')}</p></div>`;
+    case'imgtext': return `<div class="pmag${b.reverse?' rev':''}"><div class="pmag-img"><div class="pmag-img-ph">🖼️</div></div><div class="pmag-content"><h2>${esc(b.heading||'')}</h2><p>${esc(b.body||'')}</p>${b.ctaLabel?`<a href="#" class="pbtn">${esc(b.ctaLabel)}</a>`:''}</div></div>`;
+    case'iconcards': return `<div class="psec" style="background:#f9f9f9">${b.heading?`<h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:20px">${esc(b.heading)}</h2>`:''}<div class="pvals-grid">${(b.cards||[]).map(c=>`<div class="pval-card"><i class="${esc(c.icon||'fas fa-star')}"></i><h3>${esc(c.title||'')}</h3><p>${esc(c.body||'')}</p></div>`).join('')}</div></div>`;
+    case'bullets': return `<div class="psec psec-center">${b.heading?`<h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;margin-bottom:16px">${esc(b.heading)}</h2>`:''}<ul style="text-align:left;max-width:600px;margin:0 auto;font-family:'Lora',serif;font-size:.9rem;line-height:2.2;list-style:disc;padding-left:20px">${(b.bullets||'').split('\n').filter(l=>l.trim()).map(l=>`<li>${esc(l.trim())}</li>`).join('')}</ul></div>`;
+    case'cta': return ctaSection(b.ctaH2||b.heading||'', b.sub||'', b.btnLabel||'Enquire Now');
+    case'rawhtml': return `<div class="psec psec-center" style="background:#fff7ee;border:1px dashed #d4a373;border-radius:8px;font-family:monospace;font-size:11px;color:#888;padding:16px">Custom HTML block</div>`;
+    default: return '';
+  }
+}
 
 function buildPreview(S, pageId){
   const n = v => (S[v]||'');
@@ -2428,6 +2791,19 @@ function buildPreview(S, pageId){
     },
   };
 
+  // Custom page preview
+  const customPage = S.customPages.find(cp=>cp.id===pageId);
+  if(customPage){
+    const blocks = getBlocks(pageId);
+    const blocksPrev = blocks.map(b=>renderBlockPreview(b,S)).join('');
+    const pageHtml2 = header() +
+      heroStatic(customPage.name, customPage.heroSub, 'Discover More') +
+      overviewSection(customPage.name, customPage.overviewH2, customPage.overviewP) +
+      blocksPrev +
+      ctaSection(customPage.ctaH2||'Get in Touch', customPage.ctaP, customPage.ctaBtn||'Enquire Now') +
+      footer();
+    return `<!doctype html><html><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/><style>${PREVIEW_CSS}</style></head><body>${pageHtml2}</body></html>`;
+  }
   const pageHtml = pages[pageId] ? pages[pageId]() : pages.index();
 
   return `<!doctype html><html><head>
@@ -2461,7 +2837,11 @@ function refreshPreview(){
 function buildPreviewPageTabs(){
   const tabs = document.getElementById('prevPageTabs');
   if(!tabs) return;
-  tabs.innerHTML = PAGES.filter(p=>S.activePages.includes(p.id)).map(p=>
+  const allPreviewPages = [
+    ...PAGES.filter(p=>S.activePages.includes(p.id)),
+    ...S.customPages.filter(cp=>cp.name).map(cp=>({id:cp.id,label:cp.name,icon:'✚',file:slug(cp.name)+'.html'}))
+  ];
+  tabs.innerHTML = allPreviewPages.map(p=>
     `<button class="ptab${PREV_PAGE===p.id?' act':''}" onclick="PREV_PAGE='${p.id}';buildPreviewPageTabs();refreshPreview()">${p.icon} ${p.label}</button>`
   ).join('');
 }
@@ -2471,15 +2851,18 @@ const _origRender = render;
 render = function(){
   _origRender();
   buildPreviewPageTabs();
-  // Debounce preview refresh by 400ms so typing feels instant
   clearTimeout(PREV_DEBOUNCE);
   PREV_DEBOUNCE = setTimeout(refreshPreview, 400);
 };
 
+// Boot: call once after all functions are defined
+render();
 refreshPreview();
 </script>
 
-<!-- ── BULK UPLOAD MODAL ─────────────────────────────────────────────────── -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- BULK UPLOAD MODAL                                           -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="bu-overlay" id="buOverlay" style="display:none" onclick="if(event.target===this)closeBulkModal()">
   <div class="bu-modal">
     <div class="bu-head">
@@ -2487,41 +2870,35 @@ refreshPreview();
       <button class="bu-close" onclick="closeBulkModal()">×</button>
     </div>
     <div class="bu-body">
-      <div class="bu-tabs" id="buTabs">
-        <button class="bu-tab act" onclick="switchBuTab('upload',this)">1. Upload File</button>
-        <button class="bu-tab" onclick="switchBuTab('map',this)">2. Map Columns</button>
-        <button class="bu-tab" onclick="switchBuTab('preview',this)">3. Preview & Import</button>
+      <div class="bu-tabs-row" id="buTabs">
+        <button class="bu-tab act" onclick="switchBuTab('upload',this)">1 · Upload File</button>
+        <button class="bu-tab" onclick="switchBuTab('map',this)">2 · Map Columns</button>
+        <button class="bu-tab" onclick="switchBuTab('preview',this)">3 · Preview & Import</button>
       </div>
-
-      <!-- TAB 1: Upload -->
       <div id="buTabUpload">
-        <div class="bu-drop" id="buDrop" onclick="document.getElementById('bulkFileInput2').click()"
-             ondragover="event.preventDefault();this.classList.add('drag')"
-             ondragleave="this.classList.remove('drag')"
-             ondrop="event.preventDefault();this.classList.remove('drag');handleBulkFile2(event.dataTransfer.files[0])">
-          <div class="bu-drop-icon">📂</div>
-          <p><strong>Click to browse</strong> or drag &amp; drop your file here</p>
-          <small>Supported: .xlsx, .xls, .csv</small>
+        <div class="bu-drop" id="buDrop"
+          onclick="document.getElementById('bulkFileInput2').click()"
+          ondragover="event.preventDefault();this.classList.add('drag')"
+          ondragleave="this.classList.remove('drag')"
+          ondrop="event.preventDefault();this.classList.remove('drag');handleBulkFile2(event.dataTransfer.files[0])">
+          <div style="font-size:36px;margin-bottom:8px">📂</div>
+          <p><strong>Click to browse</strong> or drag &amp; drop</p>
+          <small style="color:var(--t3)">Supported: .xlsx, .xls, .csv — use the template from 📥 Template button</small>
         </div>
         <input type="file" id="bulkFileInput2" accept=".xlsx,.xls,.csv" style="display:none" onchange="handleBulkFile2(this.files[0])">
         <div class="bu-status" id="buStatus"></div>
-        <div class="ibox" style="margin-top:0">
-          <strong>How to use:</strong><br>
-          1. <strong>Download the template</strong> (top bar → 📥 Download Template) to get a pre-filled Excel sheet<br>
-          2. Fill in your hotel data — each row = one field or one card (rooms, spaces, etc.)<br>
-          3. Upload it here and map columns if needed<br>
-          4. Preview and click <strong>Import</strong> to populate all fields instantly
+        <div class="ibox">
+          <strong>How to use the template:</strong><br>
+          1. Click <strong>📥 Template</strong> in the top bar to download a pre-filled Excel with one tab per page section<br>
+          2. Fill in your hotel data in the yellow cells — one tab per page (General, Rooms, Dining…)<br>
+          3. Upload it here — columns auto-map — then confirm and import
         </div>
       </div>
-
-      <!-- TAB 2: Map Columns -->
       <div id="buTabMap" style="display:none">
         <div class="bu-status" id="buMapStatus"></div>
-        <p style="font-size:12px;color:var(--t2);margin-bottom:14px">Match your spreadsheet columns to the fields below. Columns detected automatically if you used the template.</p>
+        <p style="font-size:12px;color:var(--t2);margin-bottom:14px">Match your spreadsheet columns to builder fields. Columns auto-detected if you used the template.</p>
         <div id="buMapFields"></div>
       </div>
-
-      <!-- TAB 3: Preview -->
       <div id="buTabPreview" style="display:none">
         <div class="bu-status" id="buPreviewStatus"></div>
         <div id="buPreviewTable"></div>
@@ -2535,949 +2912,697 @@ refreshPreview();
   </div>
 </div>
 
-<script>
-// ── BULK UPLOAD ENGINE ────────────────────────────────────────────────────────
-
-let BU = { step: 1, rows: [], headers: [], mapping: {}, fileName: '' };
-
-// All importable fields: key → { label, section, arrKey, arrField, type }
-const BU_FIELDS = [
-  // General
-  {k:'name',         label:'Hotel Name',              section:'General'},
-  {k:'tagline',      label:'Tagline',                 section:'General'},
-  {k:'addr',         label:'Address',                 section:'General'},
-  {k:'phone',        label:'Phone',                   section:'General'},
-  {k:'email',        label:'General Email',           section:'General'},
-  {k:'emailS',       label:'Sales/Events Email',      section:'General'},
-  {k:'bookUrl',      label:'Booking URL',             section:'General'},
-  {k:'logoUrl',      label:'Logo Image Path',         section:'General'},
-  {k:'gaId',         label:'Google Analytics ID',     section:'General'},
-  {k:'instagram',    label:'Instagram URL',           section:'General'},
-  {k:'facebook',     label:'Facebook URL',            section:'General'},
-  {k:'mapEmbed',     label:'Google Maps Embed URL',   section:'General'},
-  {k:'byAir',        label:'By Air directions',       section:'General'},
-  {k:'byRail',       label:'By Rail directions',      section:'General'},
-  {k:'byRoad',       label:'By Road directions',      section:'General'},
-  {k:'parking',      label:'Parking info',            section:'General'},
-  // Index
-  {k:'slide1H1',     label:'Slide 1 Headline',        section:'Index'},
-  {k:'slide1Sub',    label:'Slide 1 Subtitle',        section:'Index'},
-  {k:'slide1CTA',    label:'Slide 1 CTA Button',      section:'Index'},
-  {k:'slide1CTALink',label:'Slide 1 CTA Link',        section:'Index'},
-  {k:'slide2H1',     label:'Slide 2 Headline',        section:'Index'},
-  {k:'slide2Sub',    label:'Slide 2 Subtitle',        section:'Index'},
-  {k:'slide3H1',     label:'Slide 3 Headline',        section:'Index'},
-  {k:'slide3Sub',    label:'Slide 3 Subtitle',        section:'Index'},
-  {k:'quoteText',    label:'Transition Quote',        section:'Index'},
-  {k:'indexAboutH2', label:'Index About Heading',     section:'Index'},
-  {k:'indexAboutP',  label:'Index About Paragraph',   section:'Index'},
-  {k:'indexRoomsP',  label:'Index Rooms Paragraph',   section:'Index'},
-  {k:'indexMeetingsP',label:'Index Meetings Paragraph',section:'Index'},
-  {k:'indexWeddingsP',label:'Index Weddings Paragraph',section:'Index'},
-  // About
-  {k:'aboutH1',      label:'About Hero H1',           section:'About'},
-  {k:'aboutH1Sub',   label:'About Hero Subtitle',     section:'About'},
-  {k:'aboutH2',      label:'About History H2',        section:'About'},
-  {k:'locationDesc', label:'Location Description',    section:'About'},
-  {k:'locationBullets',label:'Location Bullets (one per line)',section:'About'},
-  {k:'locationBenefits',label:'Location Benefits (one per line)',section:'About'},
-  // Rooms
-  {k:'roomsH1Sub',   label:'Rooms Hero Subtitle',     section:'Rooms'},
-  {k:'roomsOverviewH2',label:'Rooms Overview H2',     section:'Rooms'},
-  {k:'roomsOverviewP',label:'Rooms Overview Paragraph',section:'Rooms'},
-  // Dining
-  {k:'diningH1',     label:'Dining Hero H1',          section:'Dining'},
-  {k:'diningH1Sub',  label:'Dining Hero Subtitle',    section:'Dining'},
-  {k:'diningRestName',label:'Restaurant Name',        section:'Dining'},
-  {k:'diningOverviewP',label:'Dining Overview Paragraph',section:'Dining'},
-  {k:'breakfastHours',label:'Breakfast Hours',        section:'Dining'},
-  // Meetings
-  {k:'meetingsH1Sub',  label:'Meetings Hero Subtitle', section:'Meetings'},
-  {k:'meetingsOverviewH2',label:'Meetings Overview H2',section:'Meetings'},
-  {k:'meetingsOverviewP', label:'Meetings Overview Paragraph',section:'Meetings'},
-  // Weddings
-  {k:'weddingsH1Sub',  label:'Weddings Hero Subtitle', section:'Weddings'},
-  {k:'weddingsOverviewH2',label:'Weddings Overview H2',section:'Weddings'},
-  {k:'weddingsOverviewP', label:'Weddings Overview Paragraph',section:'Weddings'},
-  {k:'weddingCTAText',label:'Wedding CTA Text',       section:'Weddings'},
-  // Christmas
-  {k:'xmasH1Sub',    label:'Christmas Hero Subtitle', section:'Christmas'},
-  {k:'xmasOverviewH2',label:'Christmas Overview H2',  section:'Christmas'},
-  {k:'xmasOverviewP',label:'Christmas Overview Paragraph',section:'Christmas'},
-  // Contact / Explore
-  {k:'contactH1Sub', label:'Contact Hero Subtitle',   section:'Contact'},
-  {k:'contactGettingHereH2',label:'Contact Getting Here H2',section:'Contact'},
-  {k:'exploreH1',    label:'Explore Hero H1',         section:'Explore'},
-  {k:'exploreH1Sub', label:'Explore Hero Subtitle',   section:'Explore'},
-  {k:'exploreOverviewH2',label:'Explore Overview H2', section:'Explore'},
-  {k:'exploreOverviewP', label:'Explore Overview Paragraph',section:'Explore'},
-  // SEO
-  {k:'seo_index_title',  label:'SEO: Index Title',    section:'SEO'},
-  {k:'seo_index_desc',   label:'SEO: Index Description',section:'SEO'},
-  {k:'seo_index_kw',     label:'SEO: Index Keywords', section:'SEO'},
-  {k:'seo_about_title',  label:'SEO: About Title',    section:'SEO'},
-  {k:'seo_about_desc',   label:'SEO: About Description',section:'SEO'},
-  {k:'seo_rooms_title',  label:'SEO: Rooms Title',    section:'SEO'},
-  {k:'seo_rooms_desc',   label:'SEO: Rooms Description',section:'SEO'},
-  {k:'seo_dining_title', label:'SEO: Dining Title',   section:'SEO'},
-  {k:'seo_dining_desc',  label:'SEO: Dining Description',section:'SEO'},
-  {k:'seo_meetings_title',label:'SEO: Meetings Title',section:'SEO'},
-  {k:'seo_meetings_desc', label:'SEO: Meetings Desc', section:'SEO'},
-  {k:'seo_weddings_title',label:'SEO: Weddings Title',section:'SEO'},
-  {k:'seo_weddings_desc', label:'SEO: Weddings Desc', section:'SEO'},
-  {k:'seo_contact_title', label:'SEO: Contact Title', section:'SEO'},
-  {k:'seo_contact_desc',  label:'SEO: Contact Desc',  section:'SEO'},
-  {k:'seo_explore_title', label:'SEO: Explore Title', section:'SEO'},
-  {k:'seo_explore_desc',  label:'SEO: Explore Desc',  section:'SEO'},
-];
-
-// Array fields handled via separate sheet / row-type detection
-const BU_ARRAYS = {
-  roomCards:       {fields:['name','p1','p2','filter','imgSlot'],         label:'Room Cards',        rowType:'room'},
-  spaceCards:      {fields:['h3','p','theatre','dinner','reception','boardroom','imgSlot'], label:'Meeting Spaces', rowType:'meeting'},
-  venueCards:      {fields:['h3','p'],                                    label:'Dining Venues',     rowType:'venue'},
-  histCards:       {fields:['h3','p','imgSlot'],                          label:'History Cards',     rowType:'history'},
-  valueCards:      {fields:['icon','h3','p'],                             label:'Value Cards',       rowType:'value'},
-  ceremonyCards:   {fields:['h3','bullets'],                              label:'Wedding Ceremony',  rowType:'ceremony'},
-  packageCards:    {fields:['h3','intro','bullets'],                      label:'Wedding Packages',  rowType:'package'},
-  xmasTabs:        {fields:['id','label','h3','p','imgSlot'],             label:'Christmas Tabs',    rowType:'xmas_tab'},
-  xmasHighlights:  {fields:['icon','h3','p'],                             label:'Xmas Highlights',   rowType:'xmas_hl'},
-  attractionCards: {fields:['h3','p','imgSlot'],                          label:'Attractions',       rowType:'attraction'},
-  highlights:      {fields:['label','href'],                              label:'Homepage Highlights',rowType:'highlight'},
-  thingCards:      {fields:['label','href'],                              label:'Things To Do',      rowType:'thing'},
-  galleryItems:    {fields:['imgSlot','alt','caption','cat'],             label:'Gallery Items',     rowType:'gallery'},
-  diningGallery:   {fields:['imgSlot','alt'],                             label:'Dining Gallery',    rowType:'dining_gallery'},
-};
-
-function triggerBulkUpload(){ openBulkModal(); }
-
-function openBulkModal(){
-  BU = { step:1, rows:[], headers:[], mapping:{}, fileName:'' };
-  document.getElementById('buOverlay').style.display='flex';
-  switchBuTab('upload', document.querySelector('.bu-tab'));
-  document.getElementById('buStatus').style.display='none';
-  document.getElementById('buNextBtn').disabled=true;
-  document.getElementById('buImportBtn').style.display='none';
-  document.getElementById('buNextBtn').style.display='';
-  document.getElementById('buNextBtn').textContent='Next →';
-}
-
-function closeBulkModal(){
-  document.getElementById('buOverlay').style.display='none';
-}
-
-function switchBuTab(tab, btn){
-  ['upload','map','preview'].forEach(t=>{
-    document.getElementById('buTab'+t.charAt(0).toUpperCase()+t.slice(1)).style.display=t===tab?'block':'none';
-  });
-  document.querySelectorAll('.bu-tab').forEach(b=>b.classList.remove('act'));
-  if(btn) btn.classList.add('act');
-}
-
-function handleBulkFile(input){ if(input.files[0]) handleBulkFile2(input.files[0]); }
-
-function handleBulkFile2(file){
-  if(!file){ showBuStatus('err','No file selected.'); return; }
-  BU.fileName = file.name;
-  const ext = file.name.split('.').pop().toLowerCase();
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      let wb;
-      if(ext==='csv'){
-        wb = XLSX.read(e.target.result, {type:'string'});
-      } else {
-        wb = XLSX.read(e.target.result, {type:'binary'});
-      }
-      // Try to find the "Data" sheet, otherwise use first sheet
-      const sheetName = wb.SheetNames.includes('Data') ? 'Data' : wb.SheetNames[0];
-      const ws = wb.Sheets[sheetName];
-      const raw = XLSX.utils.sheet_to_json(ws, {header:1, defval:''});
-      if(!raw || raw.length < 2){ showBuStatus('err','File appears empty or has no data rows.'); return; }
-      BU.headers = raw[0].map(h=>String(h).trim());
-      BU.rows = raw.slice(1).filter(r=>r.some(c=>c!==''));
-      BU.wb = wb;
-      showBuStatus('ok', `✅ Loaded <strong>${BU.rows.length} rows</strong> with <strong>${BU.headers.length} columns</strong> from <em>${file.name}</em>`);
-      document.getElementById('buNextBtn').disabled = false;
-      autoMapColumns();
-    } catch(err){
-      showBuStatus('err','Error reading file: '+err.message);
-    }
-  };
-  if(ext==='csv') reader.readAsText(file);
-  else reader.readAsBinaryString(file);
-}
-
-function showBuStatus(type, msg){
-  const el = document.getElementById('buStatus');
-  el.className = 'bu-status '+type;
-  el.innerHTML = msg;
-  el.style.display = 'block';
-}
-
-function autoMapColumns(){
-  // Auto-map based on template column headers
-  const fieldMap = {};
-  BU.headers.forEach((h,i)=>{
-    const key = h.toLowerCase().replace(/[\s_]+/g,'_');
-    // Direct key match
-    const direct = BU_FIELDS.find(f=>f.k.toLowerCase()===key || f.label.toLowerCase()===h.toLowerCase());
-    if(direct) fieldMap[direct.k] = i;
-    // row_type detection column
-    if(key==='row_type'||key==='type') fieldMap['__rowtype__']=i;
-    // Array field patterns like "room.name", "room_name"
-    Object.entries(BU_ARRAYS).forEach(([arr,{rowType,fields}])=>{
-      fields.forEach(f=>{
-        const patterns=[`${rowType}.${f}`,`${rowType}_${f}`,`${arr}.${f}`,`${arr}_${f}`];
-        if(patterns.includes(key)) fieldMap[`${arr}.${f}`]=i;
-      });
-    });
-  });
-  BU.mapping = fieldMap;
-}
-
-function buNext(){
-  if(BU.step===1){
-    if(!BU.rows.length){ showBuStatus('err','Please upload a file first.'); return; }
-    BU.step=2;
-    buildMapUI();
-    switchBuTab('map', document.querySelectorAll('.bu-tab')[1]);
-    document.getElementById('buNextBtn').textContent='Preview →';
-  } else if(BU.step===2){
-    BU.step=3;
-    buildPreviewUI();
-    switchBuTab('preview', document.querySelectorAll('.bu-tab')[2]);
-    document.getElementById('buNextBtn').style.display='none';
-    document.getElementById('buImportBtn').style.display='';
-  }
-}
-
-function buildMapUI(){
-  const cont = document.getElementById('buMapFields');
-  const sections = [...new Set(BU_FIELDS.map(f=>f.section))];
-  let html = '';
-  sections.forEach(sec=>{
-    const fields = BU_FIELDS.filter(f=>f.section===sec);
-    html += `<div class="bu-field-map"><h4>${sec}</h4>`;
-    fields.forEach(f=>{
-      const sel = buildColSelect(f.k, BU.mapping[f.k]);
-      html += `<div class="bu-map-row"><span>${f.label}</span><span class="bu-map-arrow">→</span>${sel}</div>`;
-    });
-    html += `</div>`;
-  });
-  // Array sections
-  html += `<div class="bu-field-map"><h4>Cards & Arrays (matched via row_type column)</h4>`;
-  html += `<p style="font-size:11px;color:var(--t3);margin-bottom:8px">The template uses a <code>row_type</code> column to identify card rows (e.g. "room", "meeting", "attraction"). Columns are auto-detected from your headers.</p>`;
-  Object.entries(BU_ARRAYS).forEach(([arr,{label,rowType,fields}])=>{
-    html += `<div style="margin-bottom:8px"><strong style="font-size:11px">${label}</strong> <span style="font-size:10px;color:var(--t3)">(row_type: <code>${rowType}</code>)</span>`;
-    fields.forEach(f=>{
-      const sel = buildColSelect(`${arr}.${f}`, BU.mapping[`${arr}.${f}`]);
-      html += `<div class="bu-map-row"><span style="padding-left:10px">${f}</span><span class="bu-map-arrow">→</span>${sel}</div>`;
-    });
-    html += `</div>`;
-  });
-  html += `</div>`;
-  cont.innerHTML = html;
-}
-
-function buildColSelect(fieldKey, selectedIdx){
-  let opts = `<option value="">— skip —</option>`;
-  BU.headers.forEach((h,i)=>{
-    const sel = (selectedIdx===i) ? 'selected' : '';
-    opts += `<option value="${i}" ${sel}>${h||'(col '+(i+1)+')'}</option>`;
-  });
-  return `<select onchange="BU.mapping['${fieldKey}']=this.value===''?undefined:parseInt(this.value)">${opts}</select>`;
-}
-
-function buildPreviewUI(){
-  const status = document.getElementById('buPreviewStatus');
-  const table = document.getElementById('buPreviewTable');
-  const parsed = parseBulkData();
-  const sFields = Object.entries(parsed.fields).filter(([,v])=>v!==undefined&&v!=='');
-  const arrSummary = Object.entries(parsed.arrays).map(([k,v])=>`${k}: ${v.length} rows`).join(', ');
-
-  status.className='bu-status ok';
-  status.innerHTML = `Ready to import <strong>${sFields.length}</strong> field values${arrSummary?` and arrays (${arrSummary})`:''}.`;
-  status.style.display='block';
-
-  let html = `<div class="bu-preview"><table><tr><th>Field</th><th>Section</th><th>Value (preview)</th></tr>`;
-  sFields.slice(0,60).forEach(([k,v])=>{
-    const def = BU_FIELDS.find(f=>f.k===k);
-    const label = def ? def.label : k;
-    const sec = def ? def.section : '';
-    const preview = String(v).substring(0,80)+(String(v).length>80?'…':'');
-    html += `<tr><td>${label}</td><td>${sec}</td><td>${preview}</td></tr>`;
-  });
-  if(sFields.length>60) html+=`<tr><td colspan="3" style="text-align:center;color:var(--t3)">…and ${sFields.length-60} more fields</td></tr>`;
-  // Array previews
-  Object.entries(parsed.arrays).forEach(([arr,rows])=>{
-    if(!rows.length) return;
-    const {label} = BU_ARRAYS[arr];
-    html += `<tr><td colspan="3" style="background:var(--ib);font-weight:700;color:var(--p)">${label} (${rows.length} items)</td></tr>`;
-    rows.slice(0,5).forEach(row=>{
-      const summary = Object.entries(row).filter(([,v])=>v).map(([k,v])=>`${k}: ${String(v).substring(0,30)}`).join(' | ');
-      html += `<tr><td colspan="3" style="padding-left:16px;font-size:10px">${summary}</td></tr>`;
-    });
-  });
-  html += `</table></div>`;
-  table.innerHTML = html;
-}
-
-function parseBulkData(){
-  const fields = {};
-  const arrays = {};
-
-  // Helper to read a cell value from a row by column index
-  const cell = (row, colIdx) => colIdx !== undefined && colIdx !== null ? String(row[colIdx]||'').trim() : '';
-
-  // Scalar fields
-  BU_FIELDS.forEach(f=>{
-    const col = BU.mapping[f.k];
-    if(col === undefined) return;
-    // Try to find a row where the first mapped key column has this field's value
-    // Strategy: look for a row in the data where col 0 (or a "field" col) = f.k, value in col 1
-    // OR: if all data is in column layout (field, value pairs)
-    // Check if data is "key-value" layout (col0=key, col1=value) or "single-row" layout
-    if(BU.mapping['__rowtype__']===undefined){
-      // Try key-value layout first
-      const kvRow = BU.rows.find(r=>String(r[0]||'').trim().toLowerCase()===f.k.toLowerCase());
-      if(kvRow){ fields[f.k] = String(kvRow[1]||'').trim(); return; }
-      // Single-row or multi-column layout: use mapped column from first data row
-      const v = cell(BU.rows[0], col);
-      if(v) fields[f.k] = v;
-    } else {
-      // row_type present — use non-array rows for scalar fields
-      BU.rows.forEach(row=>{
-        const rt = cell(row, BU.mapping['__rowtype__']);
-        if(!rt || rt==='general' || rt===f.section.toLowerCase()){
-          const v = cell(row, col);
-          if(v) fields[f.k] = v;
-        }
-      });
-    }
-  });
-
-  // SEO fields
-  BU_FIELDS.filter(f=>f.k.startsWith('seo_')).forEach(f=>{
-    if(fields[f.k]){
-      const parts = f.k.split('_'); // seo_page_prop
-      const pg = parts[1];
-      const prop = parts[2];
-      if(!fields._seoMap) fields._seoMap={};
-      if(!fields._seoMap[pg]) fields._seoMap[pg]={};
-      fields._seoMap[pg][prop] = fields[f.k];
-    }
-  });
-
-  // Array fields
-  Object.entries(BU_ARRAYS).forEach(([arr,{rowType, fields:arrFields}])=>{
-    arrays[arr]=[];
-    BU.rows.forEach(row=>{
-      const rt = BU.mapping['__rowtype__']!==undefined ? cell(row, BU.mapping['__rowtype__']) : '';
-      if(rt && rt!==rowType) return;
-      const obj={};
-      let hasData=false;
-      arrFields.forEach(f=>{
-        const col = BU.mapping[`${arr}.${f}`];
-        if(col!==undefined){
-          const v = cell(row, col);
-          if(v){ obj[f]=v; hasData=true; }
-        }
-      });
-      if(hasData) arrays[arr].push(obj);
-    });
-  });
-
-  return {fields, arrays};
-}
-
-function buImport(){
-  const parsed = parseBulkData();
-  let count = 0;
-
-  // Apply scalar fields
-  BU_FIELDS.forEach(f=>{
-    if(f.k.startsWith('seo_')) return;
-    const v = parsed.fields[f.k];
-    if(v !== undefined && v !== ''){
-      S[f.k] = v;
-      count++;
-    }
-  });
-
-  // Apply SEO fields
-  BU_FIELDS.filter(f=>f.k.startsWith('seo_')).forEach(f=>{
-    const v = parsed.fields[f.k];
-    if(!v) return;
-    const parts = f.k.split('_');
-    const pg = parts[1], prop = parts.slice(2).join('_');
-    if(S.seo[pg]) { S.seo[pg][prop]=v; count++; }
-  });
-
-  // Apply array fields (only replace if non-empty)
-  Object.entries(parsed.arrays).forEach(([arr, rows])=>{
-    if(rows.length > 0){
-      S[arr] = rows;
-      count += rows.length;
-    }
-  });
-
-  closeBulkModal();
-  render();
-  // Show success notification
-  showToast(`✅ Imported ${count} values successfully!`);
-}
-
-function showToast(msg){
-  let t = document.getElementById('buToast');
-  if(!t){
-    t=document.createElement('div');
-    t.id='buToast';
-    t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2e7d32;color:#fff;padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;z-index:600;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:opacity .4s';
-    document.body.appendChild(t);
-  }
-  t.textContent=msg;
-  t.style.opacity='1';
-  clearTimeout(t._to);
-  t._to=setTimeout(()=>t.style.opacity='0',3500);
-}
-
-// ── TEMPLATE GENERATOR ────────────────────────────────────────────────────────
-function downloadBulkTemplate(){
-  if(typeof XLSX==='undefined'){ alert('SheetJS not loaded yet — please wait a moment and try again.'); return; }
-  const wb = XLSX.utils.book_new();
-
-  // ── Sheet 1: INSTRUCTIONS ──
-  const instrData = [
-    ['Sunday Properties — Website Builder Bulk Upload Template'],
-    [''],
-    ['HOW TO USE THIS TEMPLATE:'],
-    ['1. Fill in the "Data" sheet with your hotel information'],
-    ['2. The "Data" sheet uses row_type to separate different data types'],
-    ['3. Upload the completed file using the "📊 Bulk Upload" button in the tool'],
-    ['4. Map columns if needed, then click Import'],
-    [''],
-    ['ROW TYPES (put in the row_type column):'],
-    ['general  →  General info, contact, social links'],
-    ['index    →  Homepage slides, paragraphs'],
-    ['about    →  About page fields'],
-    ['rooms    →  Rooms overview fields'],
-    ['room     →  One row per room card (name, p1, p2, filter, imgSlot)'],
-    ['dining   →  Dining page fields'],
-    ['venue    →  One row per dining venue card'],
-    ['meetings →  Meetings overview fields'],
-    ['meeting  →  One row per event space card'],
-    ['weddings →  Weddings overview fields'],
-    ['ceremony →  One row per wedding ceremony card'],
-    ['package  →  One row per wedding package card'],
-    ['christmas→  Christmas overview fields'],
-    ['xmas_tab →  One row per Christmas tab'],
-    ['xmas_hl  →  One row per Christmas highlight'],
-    ['contact  →  Contact page fields'],
-    ['explore  →  Explore page fields'],
-    ['attraction→ One row per attraction card'],
-    ['highlight→  One row per homepage highlight card'],
-    ['thing    →  One row per "Things To Do" card'],
-    ['seo      →  SEO meta fields'],
-  ];
-  const instrWs = XLSX.utils.aoa_to_sheet(instrData);
-  instrWs['!cols']=[{wch:70}];
-  XLSX.utils.book_append_sheet(wb, instrWs, 'Instructions');
-
-  // ── Sheet 2: DATA (main sheet) ──
-  const allCols = [
-    'row_type',
-    // Scalar keys
-    ...BU_FIELDS.map(f=>f.k),
-    // Array keys
-    ...Object.entries(BU_ARRAYS).flatMap(([arr,{fields}])=>fields.map(f=>`${arr}.${f}`))
-  ];
-
-  // Remove dupes
-  const headers = [...new Set(allCols)];
-
-  // Build example rows
-  const rows = [headers];
-
-  const addRow = (rowType, data) => {
-    const row = headers.map(h => {
-      if(h==='row_type') return rowType;
-      return data[h] || '';
-    });
-    rows.push(row);
-  };
-
-  // General row (pre-filled with current S values)
-  const generalData = {};
-  BU_FIELDS.filter(f=>['General','Index','About','Rooms','Dining','Meetings','Weddings','Christmas','Contact','Explore','SEO'].includes(f.section)).forEach(f=>{
-    if(f.k.startsWith('seo_')){
-      const parts=f.k.split('_'); const pg=parts[1],prop=parts.slice(2).join('_');
-      generalData[f.k]=(S.seo[pg]&&S.seo[pg][prop])||'';
-    } else {
-      generalData[f.k]=S[f.k]||'';
-    }
-  });
-  addRow('general', generalData);
-  addRow('index', generalData);
-  addRow('about', generalData);
-  addRow('rooms', generalData);
-  addRow('dining', generalData);
-  addRow('meetings', generalData);
-  addRow('weddings', generalData);
-  addRow('christmas', generalData);
-  addRow('contact', generalData);
-  addRow('explore', generalData);
-  addRow('seo', generalData);
-
-  // Array rows
-  const addArrayRows = (arr, rowType) => {
-    const {fields} = BU_ARRAYS[arr];
-    const items = S[arr] || [];
-    if(items.length){
-      items.forEach(item=>{
-        const d={'row_type':rowType};
-        fields.forEach(f=>{ d[`${arr}.${f}`]=item[f]||''; });
-        addRow(rowType,d);
-      });
-    } else {
-      // Blank example row
-      const d={'row_type':rowType};
-      fields.forEach(f=>{ d[`${arr}.${f}`]=''; });
-      addRow(rowType,d);
-    }
-  };
-
-  addArrayRows('roomCards','room');
-  addArrayRows('spaceCards','meeting');
-  addArrayRows('venueCards','venue');
-  addArrayRows('histCards','history');
-  addArrayRows('valueCards','value');
-  addArrayRows('ceremonyCards','ceremony');
-  addArrayRows('packageCards','package');
-  addArrayRows('xmasTabs','xmas_tab');
-  addArrayRows('xmasHighlights','xmas_hl');
-  addArrayRows('attractionCards','attraction');
-  addArrayRows('highlights','highlight');
-  addArrayRows('thingCards','thing');
-  addArrayRows('galleryItems','gallery');
-  addArrayRows('diningGallery','dining_gallery');
-
-  const dataWs = XLSX.utils.aoa_to_sheet(rows);
-  // Style header row width
-  dataWs['!cols'] = headers.map(()=>({wch:28}));
-  XLSX.utils.book_append_sheet(wb, dataWs, 'Data');
-
-  // ── Sheet 3: FIELD REFERENCE ──
-  const refHeaders = ['Field Key','Label','Section','Current Value'];
-  const refRows = [refHeaders, ...BU_FIELDS.map(f=>{
-    let val='';
-    if(f.k.startsWith('seo_')){const parts=f.k.split('_');const pg=parts[1],prop=parts.slice(2).join('_');val=(S.seo[pg]&&S.seo[pg][prop])||'';}
-    else val=S[f.k]||'';
-    return [f.k, f.label, f.section, String(val).substring(0,100)];
-  })];
-  const refWs = XLSX.utils.aoa_to_sheet(refRows);
-  refWs['!cols']=[{wch:30},{wch:35},{wch:15},{wch:60}];
-  XLSX.utils.book_append_sheet(wb, refWs, 'Field Reference');
-
-  XLSX.writeFile(wb, (S.name?sl(S.name)+'-':'') + 'sunday-bulk-template.xlsx');
-  showToast('📥 Template downloaded!');
-}
-</script>
-
-<!-- ── SCRAPE / AI EXTRACT MODAL ─────────────────────────────────────────── -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SCRAPE / AI EXTRACT MODAL                                    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="sc-overlay" id="scOverlay" style="display:none" onclick="if(event.target===this)closeScrapeModal()">
   <div class="sc-modal">
     <div class="sc-head">
-      <h2>🌐 Scrape URL — Auto-fill from website or Booking.com</h2>
+      <h2>🌐 Auto-fill from URL — Booking.com or Hotel Website</h2>
       <button class="sc-close" onclick="closeScrapeModal()">×</button>
     </div>
     <div class="sc-body" id="scBody">
-
-      <!-- Step 1: URL input -->
       <div id="scStep1">
         <div class="ibox" style="margin-bottom:16px">
-          Paste any hotel website or <strong>Booking.com / BDC property page</strong> URL. The AI will extract name, address, phone, email, description, rooms, dining, and more — then let you confirm each field before importing.
+          Paste a <strong>Booking.com</strong> property page or any hotel website URL. The AI will search and read the page, then extract name, address, rooms, dining, contact details and more. You confirm every field before it's applied.
         </div>
         <div class="sc-url-bar">
-          <input id="scUrlInput" type="url" placeholder="https://www.booking.com/hotel/gb/... or https://www.myhotel.com" value="">
-          <button class="btn bp" onclick="startScrape()">🔍 Fetch &amp; Extract</button>
+          <input id="scUrlInput" type="url" placeholder="https://www.booking.com/hotel/gb/...  or  https://www.myhotel.com">
+          <button class="btn bp" onclick="startScrape()">🔍 Extract Data</button>
         </div>
-        <div id="scStatus" class="sc-status idle">Enter a URL above and click Fetch &amp; Extract to begin.</div>
+        <div id="scStatus" class="sc-status idle">Enter a URL above and click Extract Data.</div>
         <div class="sc-progress" id="scProgress"><div class="sc-progress-bar" id="scProgressBar"></div></div>
-        <div style="font-size:11px;color:var(--t3);line-height:1.7;margin-top:8px">
-          <strong>Works best with:</strong> Booking.com property pages · hotel official websites · any page with structured hotel information<br>
-          <strong>Note:</strong> Some sites block automated access. If fetch fails, the AI will extract from whatever partial content is available.
+        <div style="font-size:11px;color:var(--t3);line-height:1.8;margin-top:10px">
+          <strong>Works with:</strong> Booking.com · hotel own websites · any public hotel page<br>
+          <strong>How:</strong> Uses Claude AI web search server-side — no browser fetch issues<br>
+          <strong>Takes ~15–20 seconds</strong> — AI reads and extracts in one step
         </div>
       </div>
-
-      <!-- Step 2: Confirm fields -->
       <div id="scStep2" style="display:none">
         <div class="sc-sel-all">
           <input type="checkbox" id="scSelAll" checked onchange="toggleAllScFields(this.checked)">
-          <label for="scSelAll" style="cursor:pointer;font-weight:600">Select / deselect all fields</label>
-          <span id="scSelectedCount" style="margin-left:auto;color:var(--t3)"></span>
+          <label for="scSelAll" style="cursor:pointer;font-weight:600">Select / deselect all</label>
+          <span id="scSelectedCount" style="margin-left:auto;color:var(--t3);font-size:11px"></span>
         </div>
-        <div id="scConfirmGrid" class="sc-confirm-grid"></div>
+        <div id="scConfirmGrid"></div>
       </div>
-
     </div>
     <div class="sc-foot">
-      <div class="sc-foot-left" id="scFootLeft"></div>
+      <div id="scFootLeft" style="font-size:11px;color:var(--t3)"></div>
       <div style="display:flex;gap:8px">
         <button class="btn bo" onclick="closeScrapeModal()">Cancel</button>
         <button class="btn bp" id="scBackBtn" onclick="scBack()" style="display:none">← Back</button>
-        <button class="btn ba" id="scImportBtn" onclick="scImport()" style="display:none">✅ Import Selected Fields</button>
+        <button class="btn ba" id="scImportBtn" onclick="scImport()" style="display:none">✅ Import Selected</button>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-// ── SCRAPE ENGINE ─────────────────────────────────────────────────────────────
+<!-- toast -->
+<div id="buToast" style="display:none;opacity:0"></div>
 
-let SC = { url:'', extracted:{}, source:'' };
+<script>
+// ════════════════════════════════════════════════════════════════
+// SHARED TOAST
+// ════════════════════════════════════════════════════════════════
+function showToast(msg, ok=true){
+  const t=document.getElementById('buToast');
+  t.textContent=msg; t.style.background=ok?'#2e7d32':'#c62828';
+  t.style.display='block'; t.style.opacity='1';
+  clearTimeout(t._to); t._to=setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.style.display='none',400);},3500);
+}
+
+// ════════════════════════════════════════════════════════════════
+// BULK UPLOAD ENGINE
+// ════════════════════════════════════════════════════════════════
+let BU = { step:1, rows:[], headers:[], mapping:{}, fileName:'' };
+
+// All importable scalar fields
+const BU_FIELDS = [
+  {k:'name',label:'Hotel Name',section:'General'},{k:'tagline',label:'Tagline',section:'General'},
+  {k:'addr',label:'Address',section:'General'},{k:'phone',label:'Phone',section:'General'},
+  {k:'email',label:'General Email',section:'General'},{k:'emailS',label:'Sales Email',section:'General'},
+  {k:'bookUrl',label:'Booking URL',section:'General'},{k:'logoUrl',label:'Logo Path',section:'General'},
+  {k:'gaId',label:'GA4 ID',section:'General'},{k:'instagram',label:'Instagram URL',section:'General'},
+  {k:'facebook',label:'Facebook URL',section:'General'},{k:'mapEmbed',label:'Map Embed URL',section:'General'},
+  {k:'byAir',label:'By Air',section:'General'},{k:'byRail',label:'By Rail',section:'General'},
+  {k:'byRoad',label:'By Road',section:'General'},{k:'parking',label:'Parking',section:'General'},
+  {k:'slide1H1',label:'Slide 1 Headline',section:'Homepage'},{k:'slide1Sub',label:'Slide 1 Subtitle',section:'Homepage'},
+  {k:'slide1CTA',label:'Slide 1 CTA',section:'Homepage'},{k:'slide1CTALink',label:'Slide 1 Link',section:'Homepage'},
+  {k:'slide2H1',label:'Slide 2 Headline',section:'Homepage'},{k:'slide2Sub',label:'Slide 2 Subtitle',section:'Homepage'},
+  {k:'slide3H1',label:'Slide 3 Headline',section:'Homepage'},{k:'slide3Sub',label:'Slide 3 Subtitle',section:'Homepage'},
+  {k:'quoteText',label:'Quote Text',section:'Homepage'},{k:'indexAboutH2',label:'About Heading',section:'Homepage'},
+  {k:'indexAboutP',label:'About Paragraph',section:'Homepage'},{k:'indexRoomsP',label:'Rooms Paragraph',section:'Homepage'},
+  {k:'indexMeetingsP',label:'Meetings Paragraph',section:'Homepage'},{k:'indexWeddingsP',label:'Weddings Paragraph',section:'Homepage'},
+  {k:'aboutH1',label:'About H1',section:'About'},{k:'aboutH1Sub',label:'About H1 Sub',section:'About'},
+  {k:'aboutH2',label:'About H2',section:'About'},{k:'locationDesc',label:'Location Desc',section:'About'},
+  {k:'locationBullets',label:'Location Bullets',section:'About'},{k:'locationBenefits',label:'Location Benefits',section:'About'},
+  {k:'roomsH1Sub',label:'Rooms Hero Sub',section:'Rooms'},{k:'roomsOverviewH2',label:'Rooms Overview H2',section:'Rooms'},
+  {k:'roomsOverviewP',label:'Rooms Overview P',section:'Rooms'},
+  {k:'diningH1',label:'Dining H1',section:'Dining'},{k:'diningH1Sub',label:'Dining H1 Sub',section:'Dining'},
+  {k:'diningRestName',label:'Restaurant Name',section:'Dining'},{k:'diningOverviewP',label:'Dining Overview',section:'Dining'},
+  {k:'breakfastHours',label:'Breakfast Hours',section:'Dining'},
+  {k:'meetingsH1Sub',label:'Meetings Sub',section:'Meetings'},{k:'meetingsOverviewH2',label:'Meetings H2',section:'Meetings'},
+  {k:'meetingsOverviewP',label:'Meetings Overview',section:'Meetings'},
+  {k:'weddingsH1Sub',label:'Weddings Sub',section:'Weddings'},{k:'weddingsOverviewH2',label:'Weddings H2',section:'Weddings'},
+  {k:'weddingsOverviewP',label:'Weddings Overview',section:'Weddings'},{k:'weddingCTAText',label:'Wedding CTA',section:'Weddings'},
+  {k:'xmasH1Sub',label:'Christmas Sub',section:'Christmas'},{k:'xmasOverviewH2',label:'Christmas H2',section:'Christmas'},
+  {k:'xmasOverviewP',label:'Christmas Overview',section:'Christmas'},
+  {k:'galleryH1',label:'Gallery H1',section:'Gallery'},{k:'galleryH1Sub',label:'Gallery Sub',section:'Gallery'},
+  {k:'contactH1Sub',label:'Contact Sub',section:'Contact'},{k:'contactGettingHereH2',label:'Getting Here H2',section:'Contact'},
+  {k:'cognitoKey',label:'Cognito Key',section:'Contact'},{k:'cognitoForm',label:'Cognito Form',section:'Contact'},
+  {k:'exploreH1',label:'Explore H1',section:'Explore'},{k:'exploreH1Sub',label:'Explore Sub',section:'Explore'},
+  {k:'exploreOverviewH2',label:'Explore H2',section:'Explore'},{k:'exploreOverviewP',label:'Explore Overview',section:'Explore'},
+  {k:'seo_index_title',label:'SEO Index Title',section:'SEO'},{k:'seo_index_desc',label:'SEO Index Desc',section:'SEO'},
+  {k:'seo_about_title',label:'SEO About Title',section:'SEO'},{k:'seo_about_desc',label:'SEO About Desc',section:'SEO'},
+  {k:'seo_rooms_title',label:'SEO Rooms Title',section:'SEO'},{k:'seo_rooms_desc',label:'SEO Rooms Desc',section:'SEO'},
+  {k:'seo_dining_title',label:'SEO Dining Title',section:'SEO'},{k:'seo_dining_desc',label:'SEO Dining Desc',section:'SEO'},
+  {k:'seo_meetings_title',label:'SEO Meetings Title',section:'SEO'},{k:'seo_meetings_desc',label:'SEO Meetings Desc',section:'SEO'},
+  {k:'seo_weddings_title',label:'SEO Weddings Title',section:'SEO'},{k:'seo_weddings_desc',label:'SEO Weddings Desc',section:'SEO'},
+  {k:'seo_christmas_title',label:'SEO Christmas Title',section:'SEO'},{k:'seo_christmas_desc',label:'SEO Christmas Desc',section:'SEO'},
+  {k:'seo_gallery_title',label:'SEO Gallery Title',section:'SEO'},{k:'seo_gallery_desc',label:'SEO Gallery Desc',section:'SEO'},
+  {k:'seo_contact_title',label:'SEO Contact Title',section:'SEO'},{k:'seo_contact_desc',label:'SEO Contact Desc',section:'SEO'},
+  {k:'seo_explore_title',label:'SEO Explore Title',section:'SEO'},{k:'seo_explore_desc',label:'SEO Explore Desc',section:'SEO'},
+];
+
+const BU_ARRAYS = {
+  roomCards:      {fields:['name','p1','p2','filter','imgSlot'],rowType:'room',label:'Room Cards'},
+  spaceCards:     {fields:['h3','p','theatre','dinner','reception','boardroom','imgSlot'],rowType:'meeting',label:'Meeting Spaces'},
+  venueCards:     {fields:['h3','p'],rowType:'venue',label:'Dining Venues'},
+  histCards:      {fields:['h3','p','imgSlot'],rowType:'history',label:'History Cards'},
+  valueCards:     {fields:['icon','h3','p'],rowType:'value',label:'Value Cards'},
+  ceremonyCards:  {fields:['h3','bullets'],rowType:'ceremony',label:'Ceremony Spaces'},
+  packageCards:   {fields:['h3','intro','bullets'],rowType:'package',label:'Wedding Packages'},
+  xmasTabs:       {fields:['id','label','h3','p','imgSlot'],rowType:'xmas_tab',label:'Christmas Tabs'},
+  xmasHighlights: {fields:['icon','h3','p'],rowType:'xmas_hl',label:'Xmas Highlights'},
+  attractionCards:{fields:['h3','p','imgSlot'],rowType:'attraction',label:'Attractions'},
+  highlights:     {fields:['label','href'],rowType:'highlight',label:'Homepage Highlights'},
+  thingCards:     {fields:['label','href'],rowType:'thing',label:'Things To Do'},
+  diningGallery:  {fields:['imgSlot','alt'],rowType:'dining_gallery',label:'Dining Gallery'},
+  galleryItems:   {fields:['imgSlot','alt','caption','cat'],rowType:'gallery',label:'Gallery Items'},
+};
+
+function openBulkModal(){
+  BU={step:1,rows:[],headers:[],mapping:{},fileName:''};
+  document.getElementById('buOverlay').style.display='flex';
+  switchBuTab('upload',document.querySelector('.bu-tab'));
+  const ns=document.getElementById('buStatus'); ns.style.display='none';
+  document.getElementById('buNextBtn').disabled=true;
+  document.getElementById('buNextBtn').style.display='';
+  document.getElementById('buNextBtn').textContent='Next →';
+  document.getElementById('buImportBtn').style.display='none';
+}
+function closeBulkModal(){document.getElementById('buOverlay').style.display='none';}
+function switchBuTab(tab,btn){
+  ['Upload','Map','Preview'].forEach(t=>{
+    const el=document.getElementById('buTab'+t);
+    if(el)el.style.display=(t.toLowerCase()===tab)?'block':'none';
+  });
+  document.querySelectorAll('.bu-tab').forEach(b=>b.classList.remove('act'));
+  if(btn)btn.classList.add('act');
+}
+function handleBulkFile2(file){
+  if(!file)return;
+  BU.fileName=file.name;
+  const ext=file.name.split('.').pop().toLowerCase();
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      let wb;
+      if(ext==='csv') wb=XLSX.read(e.target.result,{type:'string'});
+      else wb=XLSX.read(e.target.result,{type:'binary'});
+      // Try 'Data' sheet first, otherwise first sheet
+      const shName=wb.SheetNames.includes('Data')?'Data':wb.SheetNames[0];
+      const ws=wb.Sheets[shName];
+      const raw=XLSX.utils.sheet_to_json(ws,{header:1,defval:''});
+      if(!raw||raw.length<2){showBuStatusMsg('err','File appears empty.');return;}
+      BU.headers=raw[0].map(h=>String(h).trim());
+      BU.rows=raw.slice(1).filter(r=>r.some(c=>c!==''));
+      // Also check page-wise sheets for array data
+      BU._wb=wb;
+      showBuStatusMsg('ok',`✅ Loaded <strong>${BU.rows.length} rows</strong> · <strong>${BU.headers.length} columns</strong> from <em>${file.name}</em>`);
+      document.getElementById('buNextBtn').disabled=false;
+      autoMapBuColumns();
+    }catch(err){showBuStatusMsg('err','Error reading file: '+err.message);}
+  };
+  if(ext==='csv')reader.readAsText(file);
+  else reader.readAsBinaryString(file);
+}
+function showBuStatusMsg(type,msg){
+  const el=document.getElementById('buStatus');
+  el.className='bu-status '+type; el.innerHTML=msg; el.style.display='block';
+}
+function autoMapBuColumns(){
+  BU.mapping={};
+  BU.headers.forEach((h,i)=>{
+    const key=h.toLowerCase().replace(/[\s\-]+/g,'_');
+    if(key==='row_type'||key==='type') BU.mapping['__rowtype__']=i;
+    const direct=BU_FIELDS.find(f=>f.k.toLowerCase()===key||f.label.toLowerCase()===h.toLowerCase());
+    if(direct) BU.mapping[direct.k]=i;
+    Object.entries(BU_ARRAYS).forEach(([arr,{rowType,fields}])=>{
+      fields.forEach(f=>{
+        if([`${arr}.${f}`,`${rowType}_${f}`,`${rowType}.${f}`].includes(key))
+          BU.mapping[`${arr}.${f}`]=i;
+      });
+    });
+  });
+  // Also scan page-wise sheets
+  if(BU._wb){
+    const pageSheetMap={
+      'room':'roomCards','meeting':'spaceCards','venue':'venueCards',
+      'history':'histCards','value':'valueCards','ceremony':'ceremonyCards',
+      'package':'packageCards','xmas_tab':'xmasTabs','xmas_hl':'xmasHighlights',
+      'attraction':'attractionCards','highlight':'highlights','thing':'thingCards',
+      'dining_gallery':'diningGallery','gallery':'galleryItems',
+    };
+    // Pre-load array data from page tabs
+    BU._pageArrayData={};
+    Object.entries(pageSheetMap).forEach(([rt,arr])=>{
+      const shName=BU._wb.SheetNames.find(n=>n.toLowerCase().includes(arr.toLowerCase().slice(0,6)));
+      if(shName){
+        const ws=BU._wb.Sheets[shName];
+        const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
+        if(rows.length) BU._pageArrayData[arr]=rows;
+      }
+    });
+  }
+}
+function buNext(){
+  if(BU.step===1){
+    if(!BU.rows.length){showBuStatusMsg('err','Upload a file first.');return;}
+    BU.step=2; buildBuMapUI();
+    switchBuTab('map',document.querySelectorAll('.bu-tab')[1]);
+    document.getElementById('buNextBtn').textContent='Preview →';
+  } else if(BU.step===2){
+    BU.step=3; buildBuPreviewUI();
+    switchBuTab('preview',document.querySelectorAll('.bu-tab')[2]);
+    document.getElementById('buNextBtn').style.display='none';
+    document.getElementById('buImportBtn').style.display='';
+  }
+}
+function buildBuMapUI(){
+  const cont=document.getElementById('buMapFields');
+  const secs=[...new Set(BU_FIELDS.map(f=>f.section))];
+  let html='';
+  secs.forEach(sec=>{
+    html+=`<div class="bu-field-map"><h4>${sec}</h4>`;
+    BU_FIELDS.filter(f=>f.section===sec).forEach(f=>{
+      html+=`<div class="bu-map-row"><span>${f.label}</span><span style="text-align:center;color:var(--t3)">→</span>${buildBuColSelect(f.k,BU.mapping[f.k])}</div>`;
+    });
+    html+=`</div>`;
+  });
+  html+=`<div class="bu-field-map"><h4>Array / Card Fields (matched via row_type column)</h4>`;
+  html+=`<p style="font-size:11px;color:var(--t3);margin-bottom:8px">Uses <code>row_type</code> column to identify repeating card rows.</p>`;
+  Object.entries(BU_ARRAYS).forEach(([arr,{label,rowType,fields}])=>{
+    html+=`<div style="margin-bottom:10px"><strong style="font-size:11px">${label}</strong> <span style="font-size:10px;color:var(--t3)">(row_type=<code>${rowType}</code>)</span>`;
+    fields.forEach(f=>{
+      html+=`<div class="bu-map-row"><span style="padding-left:10px">.${f}</span><span style="text-align:center;color:var(--t3)">→</span>${buildBuColSelect(`${arr}.${f}`,BU.mapping[`${arr}.${f}`])}</div>`;
+    });
+    html+=`</div>`;
+  });
+  html+=`</div>`;
+  cont.innerHTML=html;
+}
+function buildBuColSelect(key,sel){
+  let opts=`<option value="">— skip —</option>`;
+  BU.headers.forEach((h,i)=>opts+=`<option value="${i}"${sel===i?' selected':''}>${h||(&#39;col &#39;+(i+1))}</option>`);
+  return `<select onchange="BU.mapping['${key}']=this.value===''?undefined:parseInt(this.value)">${opts}</select>`;
+}
+function buildBuPreviewUI(){
+  const parsed=parseBuData();
+  const sc=Object.entries(parsed.fields).filter(([,v])=>v!=='').length;
+  const ac=Object.entries(parsed.arrays).filter(([,v])=>v.length>0).length;
+  const st=document.getElementById('buPreviewStatus');
+  st.className='bu-status ok'; st.innerHTML=`Ready to import <strong>${sc}</strong> field values and <strong>${ac}</strong> array types.`; st.style.display='block';
+  let html=`<div class="bu-preview"><table><tr><th>Field</th><th>Section</th><th>Value preview</th></tr>`;
+  Object.entries(parsed.fields).filter(([,v])=>v!=='').slice(0,50).forEach(([k,v])=>{
+    const def=BU_FIELDS.find(f=>f.k===k);
+    html+=`<tr><td>${def?def.label:k}</td><td>${def?def.section:''}</td><td>${String(v).substring(0,80)}</td></tr>`;
+  });
+  Object.entries(parsed.arrays).forEach(([arr,rows])=>{
+    if(!rows.length)return;
+    html+=`<tr><td colspan="3" style="background:var(--ib);font-weight:700;color:var(--p)">${BU_ARRAYS[arr]?.label||arr} (${rows.length} items)</td></tr>`;
+    rows.slice(0,3).forEach(row=>{
+      const s=Object.entries(row).filter(([,v])=>v).map(([k,v])=>`${k}:${String(v).substring(0,25)}`).join(' | ');
+      html+=`<tr><td colspan="3" style="padding-left:16px;font-size:10px;color:var(--t2)">${s}</td></tr>`;
+    });
+  });
+  // Custom pages
+  if(parsed.customPages.length){
+    html+=`<tr><td colspan="3" style="background:var(--ib);font-weight:700;color:var(--a)">Custom Pages (${parsed.customPages.length} pages)</td></tr>`;
+    parsed.customPages.forEach(cp=>html+=`<tr><td colspan="3" style="padding-left:16px;font-size:10px">${cp.name}: ${cp.overviewH2||''}</td></tr>`);
+  }
+  // Custom blocks
+  if(parsed.customBlocksData && Object.keys(parsed.customBlocksData).length){
+    const total=Object.values(parsed.customBlocksData).flat().length;
+    html+=`<tr><td colspan="3" style="background:#fff7ee;font-weight:700;color:var(--a)">Custom Blocks (${total} blocks across pages)</td></tr>`;
+  }
+  html+=`</table></div>`;
+  document.getElementById('buPreviewTable').innerHTML=html;
+}
+function parseBuData(){
+  const fields={}, arrays={}, customPages=[], customBlocksData={};
+  const cell=(row,col)=>col!==undefined&&col!==null?String(row[col]||'').trim():'';
+  // Scalar fields
+  BU_FIELDS.forEach(f=>{
+    if(f.k.startsWith('seo_'))return;
+    const col=BU.mapping[f.k]; if(col===undefined)return;
+    const kvRow=BU.rows.find(r=>String(r[0]||'').trim().toLowerCase()===f.k.toLowerCase());
+    if(kvRow){fields[f.k]=String(kvRow[1]||'').trim();return;}
+    const v=cell(BU.rows[0],col); if(v)fields[f.k]=v;
+    // Also scan all rows for matches
+    BU.rows.forEach(row=>{
+      const rt=BU.mapping['__rowtype__']!==undefined?cell(row,BU.mapping['__rowtype__']):'';
+      if(!rt||rt==='general'||rt===f.section.toLowerCase()){
+        const v2=cell(row,col); if(v2)fields[f.k]=v2;
+      }
+    });
+  });
+  // SEO fields
+  BU_FIELDS.filter(f=>f.k.startsWith('seo_')).forEach(f=>{
+    const col=BU.mapping[f.k]; if(col===undefined)return;
+    BU.rows.forEach(row=>{
+      const v=cell(row,col); if(v)fields[f.k]=v;
+    });
+  });
+  // Array fields
+  Object.entries(BU_ARRAYS).forEach(([arr,{rowType,fields:arrFields}])=>{
+    arrays[arr]=[];
+    // Check pre-loaded page sheet data
+    if(BU._pageArrayData&&BU._pageArrayData[arr]){
+      BU._pageArrayData[arr].forEach(row=>{
+        const obj={};let hasData=false;
+        arrFields.forEach(f=>{if(row[f]!==undefined&&row[f]!==''){obj[f]=String(row[f]);hasData=true;}});
+        if(hasData)arrays[arr].push(obj);
+      });
+    }
+    // Also scan main data sheet by row_type
+    BU.rows.forEach(row=>{
+      const rt=BU.mapping['__rowtype__']!==undefined?cell(row,BU.mapping['__rowtype__']):'';
+      if(rt!==rowType&&rt!=='')return;
+      const obj={};let hasData=false;
+      arrFields.forEach(f=>{
+        const col=BU.mapping[`${arr}.${f}`];
+        if(col!==undefined){const v=cell(row,col);if(v){obj[f]=v;hasData=true;}}
+      });
+      if(hasData&&!arrays[arr].find(x=>JSON.stringify(x)===JSON.stringify(obj)))arrays[arr].push(obj);
+    });
+  });
+  // Custom pages and blocks from the template
+  if(BU._wb){
+    const cpSheet=BU._wb.SheetNames.find(n=>/custom.*page/i.test(n));
+    if(cpSheet){
+      const ws=BU._wb.Sheets[cpSheet];
+      const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
+      rows.forEach(row=>{
+        if(row['customPage.name']||row.name){
+          const cp={
+            id:'cp_bu_'+Date.now()+Math.random().toString(36).slice(2,5),
+            name:row['customPage.name']||row.name||'',
+            heroSub:row['customPage.heroSub']||row.heroSub||'',
+            overviewH2:row['customPage.overviewH2']||row.overviewH2||'',
+            overviewP:row['customPage.overviewP']||row.overviewP||'',
+            ctaH2:row['customPage.ctaH2']||row.ctaH2||'',
+            ctaP:row['customPage.ctaP']||row.ctaP||'',
+            ctaBtn:row['customPage.ctaBtn']||row.ctaBtn||'Enquire Now',
+          };
+          if(cp.name)customPages.push(cp);
+        }
+        // Custom blocks in same sheet
+        if(row['block.type']||row.block_type){
+          const pageId=row['block.page_id']||row.page_id||'index';
+          const btype=row['block.type']||row.block_type||'text';
+          const block={id:'b_bu_'+Date.now()+Math.random().toString(36).slice(2,5),type:btype,collapsed:false};
+          if(btype==='text'||btype==='imgtext'||btype==='bullets'){
+            block.heading=row['block.heading']||row.heading||'';
+            block.body=row['block.body']||row.body||'';
+            if(btype==='imgtext'){
+              block.imgSlot=row['block.imgSlot']||'';
+              block.ctaLabel=row['block.ctaLabel']||'';
+              block.ctaLink=row['block.ctaLink']||'';
+              block.reverse=false;
+            }
+            if(btype==='bullets') block.bullets=row['block.bullets']||'';
+          } else if(btype==='cta'){
+            block.ctaH2=row['block.heading']||'';
+            block.sub=row['block.body']||'';
+            block.btnLabel=row['block.ctaLabel']||'';
+            block.btnLink=row['block.ctaLink']||'';
+          } else if(btype==='iconcards'){
+            block.heading=row['block.heading']||'';
+            try{block.cards=JSON.parse(row['block.cards_json']||'[]');}
+            catch(e){block.cards=[{icon:'fas fa-star',title:'',body:''}];}
+          } else if(btype==='rawhtml'){
+            block.html=row['block.body']||'';
+          }
+          if(!customBlocksData[pageId])customBlocksData[pageId]=[];
+          customBlocksData[pageId].push(block);
+        }
+      });
+    }
+  }
+  return{fields,arrays,customPages,customBlocksData};
+}
+function buImport(){
+  const parsed=parseBuData();
+  let count=0;
+  // Scalar fields
+  BU_FIELDS.forEach(f=>{
+    if(f.k.startsWith('seo_'))return;
+    const v=parsed.fields[f.k];
+    if(v!==undefined&&v!==''){S[f.k]=v;count++;}
+  });
+  // SEO
+  BU_FIELDS.filter(f=>f.k.startsWith('seo_')).forEach(f=>{
+    const v=parsed.fields[f.k]; if(!v)return;
+    const parts=f.k.split('_');const pg=parts[1];const prop=parts.slice(2).join('_');
+    if(!S.seo[pg])S.seo[pg]={title:'',desc:'',kw:''};
+    S.seo[pg][prop]=v; count++;
+  });
+  // Arrays
+  Object.entries(parsed.arrays).forEach(([arr,rows])=>{
+    if(rows.length>0){S[arr]=rows;count+=rows.length;}
+  });
+  // Custom pages
+  if(parsed.customPages.length){
+    parsed.customPages.forEach(cp=>{
+      if(!S.customPages.find(e=>e.name===cp.name))S.customPages.push(cp);
+    });
+    count+=parsed.customPages.length;
+  }
+  // Custom blocks
+  Object.entries(parsed.customBlocksData).forEach(([pageId,blocks])=>{
+    if(!S.customBlocks[pageId])S.customBlocks[pageId]=[];
+    S.customBlocks[pageId]=[...S.customBlocks[pageId],...blocks];
+    count+=blocks.length;
+  });
+  closeBulkModal(); render();
+  showToast(`✅ Imported ${count} values successfully!`);
+}
+
+// ── Template download ──────────────────────────────────────────────────────────
+function downloadBulkTemplate(){
+  if(typeof XLSX==='undefined'){showToast('SheetJS loading — try again.',false);return;}
+  // Delegate to the existing downloadBulkTemplate function (defined below or reuse)
+  _downloadTemplate();
+}
+function _downloadTemplate(){
+  const wb=XLSX.utils.book_new();
+  function makeSheet(name,headers,rows,exampleRows){
+    const data=[headers,...(exampleRows||[])];
+    const ws=XLSX.utils.aoa_to_sheet(data);
+    ws['!cols']=headers.map(h=>({wch:Math.max(String(h).length+4,24)}));
+    XLSX.utils.book_append_sheet(wb,ws,name);
+  }
+  // General
+  makeSheet('📋 General',['Field Key','Value ← fill here','Notes / Example'],[],
+    BU_FIELDS.filter(f=>f.section==='General').map(f=>[f.k,'',f.label])
+    .concat([['--- HOMEPAGE ---','',''],
+      ...BU_FIELDS.filter(f=>f.section==='Homepage').map(f=>[f.k,'',f.label])])
+  );
+  // Page sheets
+  const pageSections=['About','Rooms','Dining','Meetings','Weddings','Christmas','Gallery','Contact','Explore'];
+  pageSections.forEach(sec=>{
+    const fields=BU_FIELDS.filter(f=>f.section===sec);
+    const icons={About:'📖',Rooms:'🛏️',Dining:'🍽️',Meetings:'📊',Weddings:'💍',Christmas:'🎄',Gallery:'🖼️',Contact:'📞',Explore:'📍'};
+    makeSheet((icons[sec]||'')+'  '+sec,['Field Key','Value ← fill here','Notes'],[],
+      fields.map(f=>[f.k,'',f.label])
+    );
+  });
+  // Array sheets
+  const arrSheets=[
+    ['🛏️ Room Cards',       'roomCards',       ['name','p1','p2','filter','imgSlot'],
+      [['Classic Double','1 Double Bed • Sleeps 2','Cosy room with garden views','classic','rooms-classic-double']]],
+    ['📊 Meeting Spaces',   'spaceCards',      ['h3','p','theatre','dinner','reception','boardroom','imgSlot'],
+      [['Main Hall','Large event space','200','150','250','','meeting-main']]],
+    ['🍽️ Dining Venues',    'venueCards',      ['h3','p'],     [['The Restaurant','Our main dining room']]],
+    ['📖 History Cards',    'histCards',       ['h3','p','imgSlot'],  [['1928: Founded','Our story began...','about-history-1']]],
+    ['🏅 Value Cards',      'valueCards',      ['icon','h3','p'],     [['fas fa-star','Heritage','Our history']]],
+    ['💍 Ceremony Spaces',  'ceremonyCards',   ['h3','bullets'],      [['The Ballroom','Licensed for ceremonies\nGarden access']]],
+    ['💍 Wedding Packages', 'packageCards',    ['h3','intro','bullets'],[['Classic Package','Perfect for 80 guests','3-course dinner\nWelcome drinks']]],
+    ['🎄 Xmas Tabs',        'xmasTabs',        ['id','label','h3','p','imgSlot'],[['festive-parties','Festive Parties','Christmas Party Nights','Join us for festive evenings','xmas-1']]],
+    ['🎄 Xmas Highlights',  'xmasHighlights',  ['icon','h3','p'],     [['fas fa-glass-cheers','Festive Parties','Live entertainment']]],
+    ['📍 Attractions',      'attractionCards', ['h3','p','imgSlot'],  [['Roman Baths','0.4 miles away','attraction-baths']]],
+    ['🏠 HL Grid',          'highlights',      ['label','href'],      [['Dining','dining.html'],['Weddings','weddings.html']]],
+    ['🏠 Things To Do',     'thingCards',      ['label','href'],      [['Local Park','#']]],
+    ['🍽️ Dining Gallery',   'diningGallery',   ['imgSlot','alt'],     [['dining-gallery-1','Restaurant interior']]],
+    ['🖼️ Gallery Items',    'galleryItems',    ['imgSlot','alt','caption','cat'], [['gallery-exterior-1','Hotel façade','At dusk','exterior']]],
+  ];
+  arrSheets.forEach(([sheetName,arr,fields,examples])=>{
+    const currentItems=S[arr]||[];
+    const dataRows=currentItems.length?currentItems.map(item=>fields.map(f=>item[f]||'')):examples;
+    makeSheet(sheetName,fields,[],dataRows);
+  });
+  // SEO sheet
+  makeSheet('🔍 SEO',['Page','seo_X_title (key)','Title ← fill','Description ← fill','Keywords'],[],
+    ['index','about','rooms','dining','meetings','weddings','christmas','gallery','contact','explore'].map(pg=>{
+      const s=S.seo[pg]||{};
+      return[pg,`seo_${pg}_title / seo_${pg}_desc`,s.title||'',s.desc||'',s.kw||''];
+    })
+  );
+  // Custom pages + blocks
+  const cpRows=S.customPages.map(cp=>[cp.name,cp.heroSub||'',cp.overviewH2||'',cp.overviewP||'',cp.ctaH2||'',cp.ctaP||'',cp.ctaBtn||'']);
+  if(!cpRows.length)cpRows.push(['Spa & Wellness','Relax and restore','Our Spa','Award-winning treatments...','Book a Treatment','Contact us','Enquire Now']);
+  makeSheet('✚ Custom Pages',
+    ['customPage.name','customPage.heroSub','customPage.overviewH2','customPage.overviewP','customPage.ctaH2','customPage.ctaP','customPage.ctaBtn'],
+    [],cpRows
+  );
+  // Custom blocks
+  makeSheet('✚ Custom Blocks',
+    ['block.page_id','block.type','block.heading','block.body','block.imgSlot','block.ctaLabel','block.ctaLink','block.bullets','block.cards_json'],
+    [],
+    [
+      ['about','text','About Our Heritage','We have been welcoming guests since 1932...','','','','',''],
+      ['about','imgtext','Our Spa','Relax and unwind...','spa-pool','Book Now','contact.html','',''],
+      ['rooms','bullets','Room Amenities','','','','','Free WiFi\nAir conditioning\nMinibar',''],
+      ['meetings','cta','Plan Your Event','Contact us today','','Enquire Now','contact.html','',''],
+    ]
+  );
+  // Instructions sheet
+  makeSheet('📖 Instructions',['Topic','Details'],[],
+    [
+      ['HOW TO USE','Fill in the yellow cells in each tab, then upload via 📊 Bulk Upload in the builder'],
+      ['Tab per page','Each tab covers one page section — General, About, Rooms, Dining etc.'],
+      ['Array tabs','Tabs like Room Cards, Meeting Spaces contain one row per item'],
+      ['Custom Pages','Use ✚ Custom Pages tab to add extra pages like Spa, Packages etc.'],
+      ['Custom Blocks','Use ✚ Custom Blocks tab to add extra sections to any page'],
+      ['row_type column','Not needed for page-wise tabs — only needed if using a single flat Data sheet'],
+      ['Save format','Save as .xlsx and upload via 📊 Bulk Upload button'],
+    ]
+  );
+  XLSX.writeFile(wb,(sl(S.name)||'hotel')+'-bulk-template.xlsx');
+  showToast('📥 Template downloaded!');
+}
+
+// ════════════════════════════════════════════════════════════════
+// SCRAPE / AI EXTRACT ENGINE
+// ════════════════════════════════════════════════════════════════
+let SC={url:'',extracted:{},source:''};
 
 function openScrapeModal(){
-  SC = { url:'', extracted:{}, source:'' };
+  SC={url:'',extracted:{},source:''};
   document.getElementById('scOverlay').style.display='flex';
   document.getElementById('scStep1').style.display='block';
   document.getElementById('scStep2').style.display='none';
   document.getElementById('scBackBtn').style.display='none';
   document.getElementById('scImportBtn').style.display='none';
   document.getElementById('scUrlInput').value='';
-  setScStatus('idle','Enter a URL above and click Fetch & Extract to begin.');
-  setScProgress(0);
-  document.getElementById('scProgress').style.display='none';
+  setScStatus('idle','Enter a URL above and click Extract Data.');
+  setScProg(0); document.getElementById('scProgress').style.display='none';
   document.getElementById('scFootLeft').innerHTML='';
 }
-
-function closeScrapeModal(){ document.getElementById('scOverlay').style.display='none'; }
-
-function setScStatus(type, msg){
-  const el=document.getElementById('scStatus');
-  el.className='sc-status '+type;
-  el.innerHTML=msg;
-}
-
-function setScProgress(pct){
-  document.getElementById('scProgress').style.display=pct>0?'block':'none';
-  document.getElementById('scProgressBar').style.width=pct+'%';
-}
+function closeScrapeModal(){document.getElementById('scOverlay').style.display='none';}
+function setScStatus(type,msg){const el=document.getElementById('scStatus');el.className='sc-status '+type;el.innerHTML=msg;}
+function setScProg(pct){document.getElementById('scProgress').style.display=pct>0?'block':'none';document.getElementById('scProgressBar').style.width=pct+'%';}
 
 async function startScrape(){
-  const url = document.getElementById('scUrlInput').value.trim();
-  if(!url){ setScStatus('err','Please enter a URL.'); return; }
-  if(!/^https?:\/\//i.test(url)){ setScStatus('err','URL must start with http:// or https://'); return; }
+  const url=document.getElementById('scUrlInput').value.trim();
+  if(!url){setScStatus('err','Please enter a URL.');return;}
+  if(!/^https?:\/\//i.test(url)){setScStatus('err','URL must start with https://');return;}
+  SC.url=url;
+  const isBooking=url.includes('booking.com');
+  SC.source=isBooking?'Booking.com':'Hotel Website';
+  setScStatus('loading','🤖 AI is searching and reading the page — takes ~15–20 seconds…');
+  setScProg(20); document.getElementById('scProgress').style.display='block';
 
-  SC.url = url;
-  setScStatus('loading','⏳ Fetching page content…');
-  setScProgress(15);
-  document.getElementById('scProgress').style.display='block';
+  const prompt=`Use the web_search tool to look up this hotel URL and extract its details: ${url}
 
-  // Use a CORS proxy to fetch the page HTML
-  let pageText = '';
-  const proxies = [
-    `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
-    `https://corsproxy.io/?${encodeURIComponent(url)}`
-  ];
+Search for the hotel at that URL, visit it, and extract all available information. Return ONLY a valid JSON object (no markdown, no backticks, no explanation) with these keys where data is found:
 
-  for(const proxy of proxies){
-    try {
-      const resp = await fetch(proxy, {signal: AbortSignal.timeout(12000)});
-      if(!resp.ok) continue;
-      const data = await resp.json().catch(()=>null);
-      if(data && data.contents){
-        pageText = data.contents;
-        break;
-      }
-      // corsproxy returns raw text
-      const text = await resp.text().catch(()=>'');
-      if(text.length > 200){ pageText = text; break; }
-    } catch(e){ continue; }
-  }
+{"name":"Full hotel name","tagline":"Short tagline","addr":"Full address","phone":"Phone number","email":"Email","emailS":"Sales email","bookUrl":"Booking URL","instagram":"Instagram URL","facebook":"Facebook URL","byAir":"Airport directions","byRail":"Train station directions","byRoad":"Road directions","parking":"Parking info","slide1H1":"Hero headline","slide1Sub":"Hero subtitle","indexAboutH2":"About heading","indexAboutP":"About paragraph 2-3 sentences","aboutH1":"About page H1","aboutH1Sub":"About subtitle","locationDesc":"Location description","roomsOverviewH2":"Rooms heading","roomsOverviewP":"Rooms paragraph","diningH1":"Dining heading","diningRestName":"Restaurant name","diningOverviewP":"Dining paragraph","breakfastHours":"Breakfast times","meetingsH1Sub":"Meetings subtitle","meetingsOverviewP":"Meetings paragraph","weddingsH1Sub":"Weddings subtitle","weddingsOverviewP":"Weddings paragraph","xmasOverviewP":"Christmas paragraph","exploreH1":"Explore heading","exploreOverviewP":"Local area paragraph","contactH1Sub":"Contact subtitle","seo_index_title":"SEO title 50-60 chars","seo_index_desc":"SEO description 150-160 chars","roomCards":[{"name":"Room type","p1":"Bed and capacity","p2":"Description","filter":"classic"}],"venueCards":[{"h3":"Venue name","p":"Description"}],"spaceCards":[{"h3":"Meeting room","p":"Description","theatre":"","dinner":"","reception":"","boardroom":""}],"attractionCards":[{"h3":"Attraction","p":"Distance and info"}]}
 
-  setScProgress(40);
+Return ONLY the raw JSON. No markdown, no backticks, no explanation.`;
 
-  if(!pageText || pageText.length < 100){
-    setScStatus('err','⚠️ Could not fetch the page (the site may block external access). You can still try — the AI will do its best with the URL alone.');
-    // Fall through with empty content — AI will use URL context
-  } else {
-    setScStatus('loading','🤖 AI is extracting hotel data…');
-  }
-
-  // Strip HTML down to readable text (keep structure)
-  let cleanText = '';
-  if(pageText){
-    const tmp = document.createElement('div');
-    tmp.innerHTML = pageText;
-    // Remove scripts/styles/nav/header noise
-    tmp.querySelectorAll('script,style,nav,footer,iframe,noscript').forEach(el=>el.remove());
-    cleanText = tmp.innerText || tmp.textContent || '';
-    // Trim to ~6000 chars for API
-    cleanText = cleanText.replace(/\s+/g,' ').trim().substring(0,6000);
-  }
-
-  setScProgress(55);
-
-  // Detect source type
-  const isBooking = url.includes('booking.com');
-  const sourceLabel = isBooking ? 'Booking.com' : 'Hotel Website';
-  SC.source = sourceLabel;
-
-  // Build the AI prompt
-  const prompt = `You are extracting hotel data from a ${sourceLabel} page to populate a hotel website builder.
-
-URL: ${url}
-
-PAGE CONTENT (truncated):
-${cleanText || '[Page content could not be fetched — use the URL context to infer what you can]'}
-
-Extract as many of these fields as possible from the content. Return ONLY a valid JSON object with these exact keys (omit keys where data is not found):
-
-{
-  "name": "Full hotel name",
-  "tagline": "Short tagline or slogan",
-  "addr": "Full address on one line",
-  "phone": "Phone number",
-  "email": "Reservations email",
-  "emailS": "Sales/events email if different",
-  "bookUrl": "Direct booking URL if found",
-  "instagram": "Instagram URL if found",
-  "facebook": "Facebook URL if found",
-  "byAir": "Directions by air / nearest airport",
-  "byRail": "Directions by rail / nearest station",
-  "byRoad": "Directions by road",
-  "parking": "Parking information",
-  "slide1H1": "Main hero headline (hotel name or tagline)",
-  "slide1Sub": "Hero subtitle",
-  "indexAboutH2": "Short about heading",
-  "indexAboutP": "About paragraph (2-4 sentences)",
-  "aboutH1": "About page h1 (e.g. 'Our Story')",
-  "aboutH1Sub": "About page subtitle",
-  "locationDesc": "Location description paragraph",
-  "roomsOverviewH2": "Rooms section heading",
-  "roomsOverviewP": "Rooms overview paragraph",
-  "diningH1": "Dining page title",
-  "diningRestName": "Restaurant name",
-  "diningOverviewP": "Dining overview paragraph",
-  "meetingsH1Sub": "Meetings hero subtitle",
-  "meetingsOverviewP": "Meetings overview paragraph",
-  "weddingsH1Sub": "Weddings hero subtitle",
-  "weddingsOverviewP": "Weddings overview paragraph",
-  "exploreH1": "Explore page h1",
-  "exploreOverviewP": "Explore overview paragraph",
-  "contactH1Sub": "Contact page subtitle",
-  "seo_index_title": "SEO title for homepage",
-  "seo_index_desc": "SEO meta description for homepage (150-160 chars)",
-  "roomCards": [{"name":"Room type name","p1":"Brief spec e.g. 1 King Bed • Sleeps 2","p2":"Description","filter":"classic"}],
-  "venueCards": [{"h3":"Venue name","p":"Description"}],
-  "attractionCards": [{"h3":"Attraction name","p":"Description"}]
-}
-
-Return ONLY the JSON, no explanation, no markdown.`;
-
-  try {
-    const apiResp = await fetch('https://api.anthropic.com/v1/messages', {
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-6',
-        max_tokens:1000,
+        model:'claude-sonnet-4-6',max_tokens:2000,
+        tools:[{"type":"web_search_20250305","name":"web_search"}],
         messages:[{role:'user',content:prompt}]
       })
     });
-
-    setScProgress(80);
-
-    if(!apiResp.ok){
-      const err = await apiResp.json().catch(()=>({}));
-      throw new Error(err.error?.message || 'API error '+apiResp.status);
-    }
-
-    const apiData = await apiResp.json();
-    const raw = apiData.content?.find(c=>c.type==='text')?.text || '';
-    
-    // Parse JSON from response
-    let extracted = {};
-    const jsonMatch = raw.match(/\{[\s\S]*\}/);
-    if(jsonMatch){
-      try { extracted = JSON.parse(jsonMatch[0]); }
-      catch(e){ throw new Error('Could not parse AI response as JSON.'); }
-    } else {
-      throw new Error('AI did not return valid JSON.');
-    }
-
-    SC.extracted = extracted;
-    setScProgress(100);
-    setScStatus('ok', `✅ Extracted data from <strong>${sourceLabel}</strong>. Review and confirm fields below before importing.`);
-    
+    setScProg(70);
+    if(!resp.ok){const e=await resp.json().catch(()=>({}));throw new Error(e.error?.message||'API error '+resp.status);}
+    const data=await resp.json();
+    const textBlocks=(data.content||[]).filter(c=>c.type==='text').map(c=>c.text);
+    const raw=textBlocks[textBlocks.length-1]||'';
+    const cleaned=raw.replace(/```(?:json)?/gi,'').trim();
+    const jm=cleaned.match(/\{[\s\S]*\}/);
+    if(!jm)throw new Error('AI did not return JSON. Got: '+raw.substring(0,200));
+    let extracted;
+    try{extracted=JSON.parse(jm[0]);}
+    catch(e){throw new Error('JSON parse error: '+e.message);}
+    SC.extracted=extracted;
+    setScProg(100);
+    setScStatus('ok',`✅ Extracted from <strong>${SC.source}</strong>. Review and edit fields below before importing.`);
     setTimeout(()=>{
-      buildConfirmGrid(extracted, sourceLabel);
+      buildScConfirmGrid(extracted);
       document.getElementById('scStep1').style.display='none';
       document.getElementById('scStep2').style.display='block';
       document.getElementById('scBackBtn').style.display='';
       document.getElementById('scImportBtn').style.display='';
       document.getElementById('scProgress').style.display='none';
-      document.getElementById('scFootLeft').innerHTML=`<span class="sc-source-chip">🌐 ${sourceLabel}</span> ${Object.keys(extracted).length} fields extracted`;
+      const cnt=Object.keys(extracted).length;
+      document.getElementById('scFootLeft').innerHTML=`<span class="sc-source-chip">🌐 ${SC.source}</span> &nbsp;${cnt} fields found`;
       updateScCount();
-    }, 400);
-
-  } catch(err){
-    setScProgress(0);
-    document.getElementById('scProgress').style.display='none';
-    setScStatus('err','❌ Extraction failed: '+err.message+'<br><small>Try a different URL, or use the Bulk Upload (Excel) method instead.</small>');
+    },400);
+  }catch(err){
+    setScProg(0); document.getElementById('scProgress').style.display='none';
+    setScStatus('err','❌ '+err.message+'<br><small>Try a different URL or use 📊 Bulk Upload with the Excel template.</small>');
   }
 }
 
-// Field labels for display
-const SC_LABELS = {
-  name:'Hotel Name', tagline:'Tagline', addr:'Address', phone:'Phone',
-  email:'General Email', emailS:'Sales/Events Email', bookUrl:'Booking URL',
-  instagram:'Instagram', facebook:'Facebook',
-  byAir:'By Air', byRail:'By Rail', byRoad:'By Road', parking:'Parking',
-  slide1H1:'Hero Headline', slide1Sub:'Hero Subtitle',
-  indexAboutH2:'About Heading (Homepage)', indexAboutP:'About Paragraph (Homepage)',
-  aboutH1:'About Page H1', aboutH1Sub:'About Subtitle',
-  locationDesc:'Location Description',
-  roomsOverviewH2:'Rooms Heading', roomsOverviewP:'Rooms Paragraph',
-  diningH1:'Dining H1', diningRestName:'Restaurant Name', diningOverviewP:'Dining Paragraph',
-  meetingsH1Sub:'Meetings Subtitle', meetingsOverviewP:'Meetings Paragraph',
-  weddingsH1Sub:'Weddings Subtitle', weddingsOverviewP:'Weddings Paragraph',
-  exploreH1:'Explore H1', exploreOverviewP:'Explore Paragraph',
-  contactH1Sub:'Contact Subtitle',
-  seo_index_title:'SEO Title (Homepage)', seo_index_desc:'SEO Description',
-  roomCards:'Room Cards', venueCards:'Dining Venue Cards', attractionCards:'Attraction Cards'
+const SC_META={
+  name:{label:'Hotel Name',section:'General'},tagline:{label:'Tagline',section:'General'},
+  addr:{label:'Address',section:'General'},phone:{label:'Phone',section:'General'},
+  email:{label:'Email',section:'General'},emailS:{label:'Sales Email',section:'General'},
+  bookUrl:{label:'Booking URL',section:'General'},instagram:{label:'Instagram',section:'General'},
+  facebook:{label:'Facebook',section:'General'},byAir:{label:'By Air',section:'Travel'},
+  byRail:{label:'By Rail',section:'Travel'},byRoad:{label:'By Road',section:'Travel'},
+  parking:{label:'Parking',section:'Travel'},slide1H1:{label:'Hero Headline',section:'Homepage'},
+  slide1Sub:{label:'Hero Subtitle',section:'Homepage'},indexAboutH2:{label:'About Heading',section:'Homepage'},
+  indexAboutP:{label:'About Paragraph',section:'Homepage'},aboutH1:{label:'About H1',section:'About'},
+  aboutH1Sub:{label:'About Subtitle',section:'About'},locationDesc:{label:'Location Desc',section:'About'},
+  roomsOverviewH2:{label:'Rooms Heading',section:'Rooms'},roomsOverviewP:{label:'Rooms Paragraph',section:'Rooms'},
+  diningH1:{label:'Dining H1',section:'Dining'},diningRestName:{label:'Restaurant Name',section:'Dining'},
+  diningOverviewP:{label:'Dining Paragraph',section:'Dining'},breakfastHours:{label:'Breakfast Hours',section:'Dining'},
+  meetingsH1Sub:{label:'Meetings Subtitle',section:'Meetings'},meetingsOverviewP:{label:'Meetings Para',section:'Meetings'},
+  weddingsH1Sub:{label:'Weddings Subtitle',section:'Weddings'},weddingsOverviewP:{label:'Weddings Para',section:'Weddings'},
+  xmasOverviewP:{label:'Christmas Para',section:'Christmas'},exploreH1:{label:'Explore H1',section:'Explore'},
+  exploreOverviewP:{label:'Explore Para',section:'Explore'},contactH1Sub:{label:'Contact Subtitle',section:'Contact'},
+  seo_index_title:{label:'SEO Title',section:'SEO'},seo_index_desc:{label:'SEO Description',section:'SEO'},
+  roomCards:{label:'Room Cards',section:'Arrays'},venueCards:{label:'Dining Venues',section:'Arrays'},
+  spaceCards:{label:'Meeting Spaces',section:'Arrays'},attractionCards:{label:'Attractions',section:'Arrays'},
 };
 
-const SC_SECTIONS = {
-  name:'General', tagline:'General', addr:'General', phone:'General',
-  email:'General', emailS:'General', bookUrl:'General', instagram:'General', facebook:'General',
-  byAir:'Travel Info', byRail:'Travel Info', byRoad:'Travel Info', parking:'Travel Info',
-  slide1H1:'Homepage', slide1Sub:'Homepage', indexAboutH2:'Homepage', indexAboutP:'Homepage',
-  aboutH1:'About', aboutH1Sub:'About', locationDesc:'About',
-  roomsOverviewH2:'Rooms', roomsOverviewP:'Rooms',
-  diningH1:'Dining', diningRestName:'Dining', diningOverviewP:'Dining',
-  meetingsH1Sub:'Meetings', meetingsOverviewP:'Meetings',
-  weddingsH1Sub:'Weddings', weddingsOverviewP:'Weddings',
-  exploreH1:'Explore', exploreOverviewP:'Explore',
-  contactH1Sub:'Contact',
-  seo_index_title:'SEO', seo_index_desc:'SEO',
-  roomCards:'Cards', venueCards:'Cards', attractionCards:'Cards'
-};
-
-function buildConfirmGrid(data, source){
-  const grid = document.getElementById('scConfirmGrid');
-  const sections = {};
-
+function buildScConfirmGrid(data){
+  const grid=document.getElementById('scConfirmGrid');
+  const sections={};
   Object.entries(data).forEach(([k,v])=>{
-    const sec = SC_SECTIONS[k] || 'Other';
-    if(!sections[sec]) sections[sec]=[];
-    sections[sec].push([k,v]);
+    const meta=SC_META[k]||{label:k,section:'Other'};
+    if(!sections[meta.section])sections[meta.section]=[];
+    sections[meta.section].push([k,v,meta.label]);
   });
-
-  let html = '';
-  Object.entries(sections).forEach(([sec, fields])=>{
-    html += `<div class="sc-group-head"><span>📁 ${sec}</span><span style="font-size:10px;opacity:.7">${fields.length} field${fields.length>1?'s':''}</span></div>`;
-
-    // Header row for this section
-    html += `
-      <div style="background:var(--bg);padding:6px 14px;font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--b);display:flex;align-items:center;gap:8px"><span style="width:30px;text-align:center">✓</span><span style="flex:0 0 180px">Field</span><span>Extracted Value (editable)</span></div>`;
-
-    fields.forEach(([k,v])=>{
-      const isArr = Array.isArray(v);
-      const label = SC_LABELS[k] || k;
-      const existing = SC_SECTIONS[k] ? (S[k]||'') : '';
-      const hasExisting = existing && String(existing).trim();
-
+  let html='';
+  Object.entries(sections).forEach(([sec,fields])=>{
+    html+=`<div class="sc-group-head"><span>📁 ${sec}</span><span style="font-size:10px;opacity:.7">${fields.length} field${fields.length>1?'s':''}</span></div>`;
+    html+=`<div style="border:1px solid var(--b);border-top:none;border-radius:0 0 6px 6px;margin-bottom:4px">`;
+    fields.forEach(([k,v,label])=>{
+      const isArr=Array.isArray(v);
+      const existing=S[k]?String(S[k]).substring(0,50):'';
       if(isArr){
-        const arrSummary = v.map((item,i)=>`${i+1}. `+Object.entries(item).map(([fk,fv])=>`${fk}: ${fv}`).join(' | ')).join('\n');
-        html += `
-          <div style="display:flex;align-items:flex-start;border-bottom:1px solid var(--b)">
-            <div class="sc-check-col"><input type="checkbox" checked data-key="${k}" onchange="updateScCount()"></div>
-            <div class="sc-confirm-label" style="flex:0 0 180px;background:#f0f4ff;color:var(--p)">${label}</div>
-            <div class="sc-confirm-val" style="flex:1;background:#f8f9ff">
-              <textarea rows="${Math.min(v.length*2,6)}" data-key="${k}" data-arr="1" style="width:100%;border:1px solid transparent;background:transparent;padding:0;font-size:11px;font-family:monospace;resize:vertical">${arrSummary}</textarea>
-              <div style="font-size:10px;color:var(--t3);margin-top:3px">${v.length} item${v.length>1?'s':''} — editing not applied to array import; uncheck to skip</div>
-            </div>
-          </div>`;
+        const summary=v.map((item,i)=>`${i+1}. `+Object.entries(item).map(([fk,fv])=>`${fk}:${fv}`).join(' | ')).join('\n');
+        html+=`<div class="sc-field-row"><div class="sc-check-col"><input type="checkbox" checked data-key="${k}" onchange="updateScCount()"></div><div class="sc-label-col">${label}</div><div class="sc-val-col"><textarea data-key="${k}" data-arr="1" rows="${Math.min(v.length+1,4)}" style="width:100%;font-size:10px;font-family:monospace;resize:none;border:none;background:transparent;outline:none">${summary}</textarea><div style="font-size:9px;color:var(--t3)">${v.length} items — uncheck to skip</div></div></div>`;
       } else {
-        const isLong = String(v).length > 80;
-        const currentHtml = hasExisting ? `<div style="font-size:10px;color:var(--t3);margin-top:3px">Current: <em>${String(existing).substring(0,60)}${String(existing).length>60?'…':''}</em></div>` : '';
-        html += `
-          <div style="display:flex;align-items:${isLong?'flex-start':'center'};border-bottom:1px solid var(--b)">
-            <div class="sc-check-col"><input type="checkbox" checked data-key="${k}" onchange="updateScCount()"></div>
-            <div class="sc-confirm-label" style="flex:0 0 180px">${label}</div>
-            <div class="sc-confirm-val" style="flex:1">
-              ${isLong
-                ? `<textarea rows="3" data-key="${k}" style="width:100%;border:1px solid transparent;background:transparent;padding:0;font-size:12px;font-family:inherit;resize:vertical">${String(v)}</textarea>`
-                : `<input type="text" data-key="${k}" value="${String(v).replace(/"/g,'&quot;')}" style="width:100%;border:1px solid transparent;background:transparent;padding:0;font-size:12px">`
-              }
-              ${currentHtml}
-            </div>
-          </div>`;
+        const isLong=String(v).length>60;
+        html+=`<div class="sc-field-row"><div class="sc-check-col"><input type="checkbox" checked data-key="${k}" onchange="updateScCount()"></div><div class="sc-label-col">${label}${existing?`<div style="font-size:9px;color:var(--t3);margin-top:2px">Now: ${existing}</div>`:''}</div><div class="sc-val-col">${isLong?`<textarea data-key="${k}" rows="2" style="width:100%;font-size:11px;font-family:inherit;resize:vertical;border:none;background:transparent;outline:none">${String(v)}</textarea>`:`<input data-key="${k}" value="${String(v).replace(/"/g,'&quot;')}" style="width:100%;font-size:11px;border:none;background:transparent;outline:none">`}</div></div>`;
       }
     });
+    html+=`</div>`;
   });
-
-  grid.innerHTML = html;
+  grid.innerHTML=html;
 }
 
 function toggleAllScFields(checked){
   document.querySelectorAll('#scConfirmGrid input[type=checkbox]').forEach(cb=>cb.checked=checked);
   updateScCount();
 }
-
 function updateScCount(){
-  const all = document.querySelectorAll('#scConfirmGrid input[type=checkbox]').length;
-  const checked = document.querySelectorAll('#scConfirmGrid input[type=checkbox]:checked').length;
-  document.getElementById('scSelectedCount').textContent = `${checked} of ${all} fields selected`;
-  const selAll = document.getElementById('scSelAll');
-  if(selAll) selAll.checked = checked === all;
+  const all=document.querySelectorAll('#scConfirmGrid input[type=checkbox]').length;
+  const checked=document.querySelectorAll('#scConfirmGrid input[type=checkbox]:checked').length;
+  document.getElementById('scSelectedCount').textContent=`${checked}/${all} selected`;
+  const sa=document.getElementById('scSelAll');if(sa)sa.checked=checked===all;
 }
-
 function scBack(){
   document.getElementById('scStep2').style.display='none';
   document.getElementById('scStep1').style.display='block';
   document.getElementById('scBackBtn').style.display='none';
   document.getElementById('scImportBtn').style.display='none';
   document.getElementById('scFootLeft').innerHTML='';
-  setScStatus('idle','Enter a URL above and click Fetch & Extract to begin.');
+  setScStatus('idle','Enter a URL above and click Extract Data.');
 }
-
 function scImport(){
-  let count = 0;
-  const checkboxes = document.querySelectorAll('#scConfirmGrid input[type=checkbox]:checked');
-
-  checkboxes.forEach(cb=>{
-    const k = cb.getAttribute('data-key');
-    const isArr = cb.closest('[style*="flex"]')?.querySelector('[data-arr="1"]');
-    
+  let count=0;
+  document.querySelectorAll('#scConfirmGrid input[type=checkbox]:checked').forEach(cb=>{
+    const k=cb.getAttribute('data-key');
+    const isArr=document.querySelector(`#scConfirmGrid [data-key="${k}"][data-arr="1"]`);
     if(isArr){
-      // For arrays, use the original extracted data (user confirmed by keeping it checked)
-      const arrData = SC.extracted[k];
-      if(Array.isArray(arrData) && arrData.length > 0){
-        S[k] = arrData;
-        count += arrData.length;
-      }
+      const arrData=SC.extracted[k];
+      if(Array.isArray(arrData)&&arrData.length>0){S[k]=arrData;count+=arrData.length;}
     } else {
-      // Read the potentially-edited value from input/textarea
-      const input = document.querySelector(`#scConfirmGrid [data-key="${k}"]:not([type=checkbox])`);
-      const val = input ? (input.value || input.textContent || '').trim() : '';
-      if(!val) return;
-
-      // Handle SEO fields
+      const inp=document.querySelector(`#scConfirmGrid [data-key="${k}"]:not([type=checkbox])`);
+      const val=inp?(inp.value||inp.textContent||'').trim():'';
+      if(!val)return;
       if(k.startsWith('seo_')){
-        const parts = k.split('_'); const pg=parts[1], prop=parts.slice(2).join('_');
-        if(S.seo[pg]) { S.seo[pg][prop]=val; count++; }
-      } else if(S.hasOwnProperty(k) || BU_FIELDS.find(f=>f.k===k)){
-        S[k] = val;
-        count++;
-      }
+        const parts=k.split('_');const pg=parts[1];const prop=parts.slice(2).join('_');
+        if(!S.seo[pg])S.seo[pg]={title:'',desc:'',kw:''};
+        S.seo[pg][prop]=val;count++;
+      } else {S[k]=val;count++;}
     }
   });
-
-  closeScrapeModal();
-  render();
+  closeScrapeModal(); render();
   showToast(`✅ Imported ${count} values from ${SC.source}!`);
 }
 </script>
