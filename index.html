@@ -1,0 +1,3485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sunday Properties — Website Builder v4</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:14px;color:#1a1a1a;background:#f0f2f5}
+:root{--p:#2b4e72;--pd:#1a2e3a;--a:#d4a373;--b:#e0e0e0;--bg:#f9f9f9;--bg2:#f0f2f5;--t:#1a1a1a;--t2:#555;--t3:#888;--ib:#e8f0fb;--it:#1a4a8a;--r:8px}
+input,textarea,select{font-family:inherit;font-size:13px;color:var(--t);background:#fff;border:1px solid var(--b);border-radius:var(--r);padding:8px 10px;width:100%;outline:none}
+input:focus,textarea:focus{border-color:var(--p)}
+textarea{resize:vertical;line-height:1.5}
+label{font-size:12px;font-weight:600;color:var(--t2);display:block;margin-bottom:4px}
+.hint{font-size:11px;color:var(--t3);margin-bottom:4px;display:block}
+code{font-family:monospace;font-size:11px;background:#f0f0f0;padding:1px 5px;border-radius:3px}
+.topbar{background:var(--pd);color:#fff;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;gap:12px}
+.tlogo{width:32px;height:32px;background:var(--a);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;flex-shrink:0}
+.btn{font-family:inherit;cursor:pointer;border-radius:var(--r);padding:8px 14px;font-size:12px;font-weight:600;border:none}
+.bp{background:var(--p);color:#fff}
+.ba{background:var(--a);color:#fff}
+.bo{background:#fff;border:1px solid var(--b);color:var(--t)}
+.bg_{background:rgba(255,255,255,.12);color:#fff;border:none}
+.bd{background:none;border:none;color:#c62828;padding:2px 6px;cursor:pointer;font-size:17px;line-height:1;font-family:inherit}
+.bda{background:#fff;border:1px dashed var(--p);color:var(--p);border-radius:var(--r);padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;width:100%;text-align:center;margin-top:6px}
+.bda:hover{background:var(--ib)}
+.tabs{background:#fff;border-bottom:1px solid var(--b);display:flex;overflow-x:auto;flex-shrink:0}
+.tb{background:none;border:none;border-bottom:2px solid transparent;padding:11px 15px;font-size:12px;font-weight:600;color:var(--t3);cursor:pointer;white-space:nowrap;font-family:inherit}
+.tb.act{color:var(--p);border-bottom-color:var(--p)}
+.stabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--b)}
+.st{background:var(--bg);border:1px solid var(--b);border-radius:20px;padding:5px 13px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--t2)}
+.st.act{background:var(--p);color:#fff;border-color:var(--p)}
+.tc{overflow-y:auto;padding:20px;background:var(--bg2);flex:1;height:0}
+.field{margin-bottom:12px}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px}
+.card{background:#fff;border:1px solid var(--b);border-radius:var(--r);padding:14px 16px;margin-bottom:10px}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cl{font-size:12px;font-weight:600;color:var(--p)}
+.sgl{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--t3);margin:14px 0 8px}
+.tr{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:var(--r);border:1px solid var(--b);background:#fff;margin-bottom:6px;cursor:pointer;user-select:none}
+.tr.on{border-color:var(--p);background:var(--ib)}
+.tr.lk{cursor:default;opacity:.7}
+.ti{font-size:18px;width:24px;text-align:center;flex-shrink:0}
+.tn{font-size:13px;font-weight:500}
+.tr.on .tn{color:var(--p)}
+.tog{width:38px;height:22px;border-radius:11px;background:#ccc;position:relative;flex-shrink:0}
+.tog.on{background:var(--p)}
+.togk{width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;top:2px;left:2px;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tog.on .togk{left:18px}
+.itable{border:1px solid var(--b);border-radius:var(--r);overflow:hidden;width:100%}
+.ith{display:grid;grid-template-columns:1fr 1fr 44px;background:var(--bg);padding:8px 12px;font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--b)}
+.itr{display:grid;grid-template-columns:1fr 1fr 44px;align-items:center;padding:8px 12px;border-bottom:1px solid var(--b);background:#fff;gap:8px}
+.itr:last-child{border-bottom:none}
+.dz{border:2px dashed var(--b);border-radius:10px;padding:28px 20px;text-align:center;background:#fff;cursor:pointer;margin-bottom:16px}
+.dz:hover{border-color:var(--p)}
+.met{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.mcard{background:#fff;border:1px solid var(--b);border-radius:var(--r);padding:12px;text-align:center}
+.mv{font-size:22px;font-weight:600;color:var(--p)}
+.ml{font-size:11px;color:var(--t3);margin-top:2px}
+.cbox{background:#1a1a1a;color:#d4d4d4;padding:14px;border-radius:var(--r);font-family:monospace;font-size:11px;line-height:1.7;overflow:auto;max-height:300px;white-space:pre-wrap;word-break:break-all}
+.oa{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.oa .btn{padding:12px;font-size:13px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:16px}
+.pcard{background:#fff;border:1px solid var(--b);border-radius:10px;padding:14px;cursor:pointer;text-align:center}
+.pcard.sel{border-color:var(--p);background:var(--ib)}
+.pcard.gen{border-color:#2e7d32;background:#e8f5e9}
+.picon{font-size:26px;margin-bottom:5px}
+.pname{font-size:12px;font-weight:600}
+.pcard.sel .pname{color:var(--p)}
+.pcard.gen .pname{color:#2e7d32}
+.pfile{font-size:10px;color:var(--t3);margin-top:2px;font-family:monospace}
+.ibox{background:var(--ib);border:1px solid #b3c8e8;border-radius:var(--r);padding:12px 14px;font-size:12px;color:var(--it);line-height:1.7;margin-bottom:12px}
+.chip{display:inline-block;background:#fff;border:1px solid var(--b);border-radius:4px;padding:2px 7px;font-family:monospace;font-size:11px;margin:2px 3px 2px 0}
+.dlall{background:#fff;border:1px solid var(--b);border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+
+/* ── BULK UPLOAD MODAL ──────────────────────────────────────── */
+.bu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
+.bu-modal{background:#fff;border-radius:12px;width:100%;max-width:680px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.bu-head{background:var(--pd);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+.bu-head h2{font-size:15px;font-weight:700;margin:0}
+.bu-close{background:none;border:none;color:#fff;font-size:20px;cursor:pointer;padding:0 4px;line-height:1;opacity:.8}
+.bu-close:hover{opacity:1}
+.bu-body{padding:20px;overflow-y:auto;flex:1}
+.bu-drop{border:2px dashed var(--b);border-radius:10px;padding:36px 20px;text-align:center;background:var(--bg);cursor:pointer;margin-bottom:16px;transition:border-color .2s,background .2s}
+.bu-drop:hover,.bu-drop.drag{border-color:var(--p);background:var(--ib)}
+.bu-drop-icon{font-size:36px;margin-bottom:8px}
+.bu-drop p{font-size:13px;color:var(--t2);margin:4px 0}
+.bu-drop small{font-size:11px;color:var(--t3)}
+.bu-preview{background:#f8f9fa;border:1px solid var(--b);border-radius:var(--r);padding:14px;margin-bottom:14px;font-size:12px;max-height:260px;overflow-y:auto}
+.bu-preview table{width:100%;border-collapse:collapse;font-size:11px}
+.bu-preview th{background:var(--pd);color:#fff;padding:5px 8px;text-align:left;position:sticky;top:0;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+.bu-preview td{padding:5px 8px;border-bottom:1px solid #eee;vertical-align:top}
+.bu-preview tr:last-child td{border-bottom:none}
+.bu-preview tr:nth-child(even) td{background:#f5f5f5}
+.bu-status{padding:10px 14px;border-radius:var(--r);font-size:12px;margin-bottom:12px;display:none}
+.bu-status.ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7;display:block}
+.bu-status.err{background:#ffebee;color:#c62828;border:1px solid #ef9a9a;display:block}
+.bu-status.warn{background:#fff8e1;color:#f57f17;border:1px solid #ffe082;display:block}
+.bu-foot{padding:14px 20px;border-top:1px solid var(--b);display:flex;gap:10px;justify-content:flex-end;flex-shrink:0;background:#fafafa}
+.bu-field-map{background:#fff;border:1px solid var(--b);border-radius:var(--r);padding:12px;margin-bottom:12px}
+.bu-field-map h4{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.bu-map-row{display:grid;grid-template-columns:1fr 20px 1fr;align-items:center;gap:6px;margin-bottom:4px;font-size:11px}
+.bu-map-row select{font-size:11px;padding:4px 6px}
+.bu-map-arrow{text-align:center;color:var(--t3)}
+.bu-tabs{display:flex;gap:6px;margin-bottom:16px;border-bottom:1px solid var(--b);padding-bottom:12px;flex-wrap:wrap}
+.bu-tab{background:var(--bg);border:1px solid var(--b);border-radius:20px;padding:4px 12px;font-size:11px;cursor:pointer;font-family:inherit;color:var(--t2)}
+.bu-tab.act{background:var(--p);color:#fff;border-color:var(--p)}
+
+/* ── SCRAPE MODAL ───────────────────────────────────────────── */
+.sc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px}
+.sc-modal{background:#fff;border-radius:14px;width:100%;max-width:780px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.sc-head{background:var(--pd);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;gap:12px}
+.sc-head h2{font-size:15px;font-weight:700;margin:0}
+.sc-close{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:0 4px;line-height:1;opacity:.8}
+.sc-close:hover{opacity:1}
+.sc-body{padding:22px;overflow-y:auto;flex:1}
+.sc-url-bar{display:flex;gap:8px;margin-bottom:16px}
+.sc-url-bar input{flex:1;font-size:13px;padding:10px 14px;border:2px solid var(--b);border-radius:var(--r)}
+.sc-url-bar input:focus{border-color:var(--p);outline:none}
+.sc-url-bar button{flex-shrink:0}
+.sc-status{padding:10px 14px;border-radius:var(--r);font-size:12px;margin-bottom:14px;line-height:1.6}
+.sc-status.idle{background:var(--ib);color:var(--it);border:1px solid #b3c8e8}
+.sc-status.loading{background:#fff8e1;color:#f57f17;border:1px solid #ffe082}
+.sc-status.ok{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+.sc-status.err{background:#ffebee;color:#c62828;border:1px solid #ef9a9a}
+.sc-progress{height:4px;background:var(--b);border-radius:2px;margin-bottom:16px;overflow:hidden;display:none}
+.sc-progress-bar{height:100%;background:var(--p);border-radius:2px;transition:width .4s;width:0%}
+.sc-confirm-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;margin-bottom:14px;font-size:12px}
+.sc-confirm-head{background:var(--pd);color:#fff;padding:8px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.sc-confirm-row{display:contents}
+.sc-confirm-row:not(:last-child) > div{border-bottom:1px solid var(--b)}
+.sc-confirm-label{padding:9px 14px;background:var(--bg);font-weight:600;color:var(--t2);border-right:1px solid var(--b)}
+.sc-confirm-val{padding:9px 14px;background:#fff;position:relative}
+.sc-confirm-val input,.sc-confirm-val textarea{width:100%;border:1px solid transparent;background:transparent;padding:0;font-size:12px;color:var(--t);font-family:inherit;outline:none;resize:none}
+.sc-confirm-val input:focus,.sc-confirm-val textarea:focus{border-color:var(--p);background:#fff;padding:3px 6px;border-radius:4px}
+.sc-confirm-row.arr-row .sc-confirm-label{background:#f0f4ff;color:var(--p)}
+.sc-confirm-row.arr-row .sc-confirm-val{background:#f8f9ff}
+.sc-sel-all{display:flex;gap:8px;align-items:center;margin-bottom:10px;font-size:12px}
+.sc-sel-all input[type=checkbox]{width:14px;height:14px;accent-color:var(--p)}
+.sc-group-head{background:linear-gradient(90deg,var(--pd),var(--p));color:#fff;padding:9px 14px;font-size:12px;font-weight:700;letter-spacing:.4px;grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+.sc-check-col{width:30px;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--b);background:var(--bg)}
+.sc-check-col input{accent-color:var(--p);width:14px;height:14px}
+.sc-foot{padding:14px 22px;border-top:1px solid var(--b);display:flex;gap:10px;justify-content:space-between;align-items:center;flex-shrink:0;background:#fafafa}
+.sc-foot-left{font-size:11px;color:var(--t3)}
+.sc-source-chip{display:inline-flex;align-items:center;gap:5px;background:#e8f0fb;border:1px solid #b3c8e8;border-radius:20px;padding:3px 10px;font-size:10px;color:var(--it);font-weight:600}
+
+
+
+    .app-wrap{display:flex;flex:1;overflow:hidden;height:calc(100vh - 84px)}
+    .form-side{flex:0 0 480px;min-width:320px;display:flex;flex-direction:column;border-right:1px solid var(--b);overflow:hidden}
+    .preview-side{flex:1;display:flex;flex-direction:column;background:#e8eaed;overflow:hidden}
+    .preview-side.hidden{display:none}
+    .form-side.full{flex:1}
+    .preview-topbar{background:var(--pd);padding:8px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0}
+    .preview-page-tabs{display:flex;gap:4px;overflow-x:auto;flex:1}
+    .ptab{background:rgba(255,255,255,.1);border:none;border-radius:4px;padding:5px 10px;font-size:11px;font-weight:500;color:rgba(255,255,255,.7);cursor:pointer;white-space:nowrap;font-family:inherit}
+    .ptab.act{background:rgba(255,255,255,.25);color:#fff}
+    .preview-frame-wrap{flex:1;overflow:hidden;padding:12px;display:flex;flex-direction:column;gap:0}
+    .preview-browser-bar{background:#2d2d2d;padding:8px 12px;border-radius:10px 10px 0 0;display:flex;align-items:center;gap:8px;flex-shrink:0}
+    .preview-browser-dots{display:flex;gap:5px}
+    .preview-browser-dot{width:10px;height:10px;border-radius:50%}
+    .preview-browser-url{flex:1;background:#3d3d3d;border-radius:4px;padding:4px 10px;font-size:11px;color:#aaa;text-align:center;font-family:monospace}
+    .preview-iframe{width:100%;flex:1;border:none;border-radius:0 0 8px 8px;background:#fff;display:block}
+    .preview-scale-note{font-size:10px;color:#999;text-align:center;padding:4px;flex-shrink:0}
+
+</style>
+</head>
+<body>
+<div style="display:flex;flex-direction:column;min-height:100vh">
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="tlogo">S</div>
+    <div>
+      <div style="font-weight:600;font-size:13px">Sunday Properties — Website Builder v4</div>
+      <div style="font-size:10px;opacity:.6;margin-top:1px" id="tsub">Multi-page generator</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px">
+    <button class="btn bg_" onclick="togglePreview()" id="prevToggleBtn">👁 Hide Preview</button>
+    <button class="btn bg_" onclick="openScrapeModal()" title="Scrape data from a hotel or Booking.com URL">🌐 Scrape URL</button>
+    <button class="btn bg_" onclick="triggerBulkUpload()" title="Import all data from Excel or CSV">📊 Bulk Upload</button>
+    <input type="file" id="bulkFileInput" accept=".xlsx,.xls,.csv" style="display:none" onchange="handleBulkFile(this)">
+    <button class="btn bg_" onclick="downloadBulkTemplate()">📥 Download Template</button>
+    <button class="btn bg_" onclick="copyPage()" id="copybtn">📋 Copy page HTML</button>
+    <button class="btn ba" onclick="downloadZip()">⬇ Download all pages (.zip)</button>
+  </div>
+</div>
+<div class="tabs" id="tabbar"></div>
+<div class="app-wrap">
+  <div class="form-side" id="formside">
+    <div class="tc" id="tcon"></div>
+  </div>
+  <div class="preview-side" id="prevside">
+    <div class="preview-topbar">
+      <span style="font-size:11px;font-weight:600;color:#fff;flex-shrink:0">👁 Preview</span>
+      <div class="preview-page-tabs" id="prevPageTabs"></div>
+      <button onclick="refreshPreview()" style="background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:4px;padding:4px 8px;font-size:10px;cursor:pointer;font-family:inherit;flex-shrink:0">↻ Refresh</button>
+    </div>
+    <div class="preview-frame-wrap">
+      <div class="preview-browser-bar">
+        <div class="preview-browser-dots">
+          <div class="preview-browser-dot" style="background:#ff5f57"></div>
+          <div class="preview-browser-dot" style="background:#febc2e"></div>
+          <div class="preview-browser-dot" style="background:#28c840"></div>
+        </div>
+        <div class="preview-browser-url" id="prevUrl">hotel.booksundays.com</div>
+      </div>
+      <iframe id="previewFrame" class="preview-iframe"></iframe>
+    </div>
+    <div class="preview-scale-note">Live preview — updates as you type · Images shown as placeholders</div>
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+// ── STATE ─────────────────────────────────────────────────────────────────────
+const S={
+  type:"uk",
+  name:"",addr:"",phone:"",email:"",emailS:"",bookUrl:"",logoUrl:"images/logo.png",
+  mapEmbed:"",gaId:"",tagline:"",instagram:"#",facebook:"#",
+  // Index
+  slide1H1:"",slide1Sub:"",slide1CTA:"Book Now",slide1CTALink:"",
+  slide2H1:"",slide2Sub:"",slide2CTA:"Plan Your Event",slide2CTALink:"meetings.html",
+  slide3H1:"",slide3Sub:"",slide3CTA:"Explore Dining",slide3CTALink:"dining.html",
+  quoteText:"",
+  highlights:[
+    {label:"Dining",href:"dining.html"},{label:"Weddings",href:"weddings.html"},
+    {label:"Rooms & Suites",href:"rooms.html"},{label:"Events",href:"meetings.html"},
+    {label:"Explore",href:"explore.html"},{label:"Christmas Events",href:"christmas.html"}
+  ],
+  indexAboutH2:"",indexAboutP:"",
+  indexRoomsP:"",
+  indexMeetingsP:"",
+  indexWeddingsP:"",
+  thingCards:[{label:"",href:"#"},{label:"",href:"#"},{label:"",href:"#"},{label:"",href:"#"}],
+  byAir:"",byRail:"",byRoad:"",parking:"",
+  // About
+  aboutH1:"Aviation Heritage",aboutH1Sub:"Since 1928",
+  aboutH2:"",
+  histCards:[
+    {h3:"",p:"",imgSlot:"about-history-1"},
+    {h3:"",p:"",imgSlot:"about-history-2"}
+  ],
+  locationDesc:"",locationBullets:"",locationBenefits:"",
+  valueCards:[{icon:"fas fa-plane",h3:"",p:""},{icon:"fas fa-users",h3:"",p:""},{icon:"fas fa-car",h3:"",p:""}],
+  // Rooms
+  roomsH1Sub:"Comfort and Heritage",roomsOverviewH2:"",roomsOverviewP:"",
+  roomCards:[
+    {name:"",p1:"",p2:"",filter:"classic",imgSlot:"rooms-1"},
+  ],
+  // Dining
+  diningH1:"",diningH1Sub:"",diningRestName:"",diningOverviewP:"",
+  venueCards:[{h3:"",p:""},{h3:"",p:""},{h3:"",p:""}],
+  breakfastHours:"",
+  diningGallery:[
+    {imgSlot:"dining-gallery-1",alt:""},
+    {imgSlot:"dining-gallery-2",alt:""},
+    {imgSlot:"dining-gallery-3",alt:""},
+    {imgSlot:"dining-gallery-4",alt:""},
+  ],
+  // Meetings
+  meetingsH1Sub:"Flexible Spaces in a Historic Setting",
+  meetingsOverviewH2:"",meetingsOverviewP:"",
+  spaceCards:[
+    {h3:"",p:"",theatre:"",dinner:"",reception:"",boardroom:"",imgSlot:"meeting-1"},
+  ],
+  // Weddings
+  weddingsH1Sub:"Say 'I Do' in a Historic Art Deco Landmark",
+  weddingsOverviewH2:"",weddingsOverviewP:"",
+  ceremonyCards:[
+    {h3:"",bullets:"",large:true},
+    {h3:"",bullets:"",large:false},
+    {h3:"",bullets:"",large:false},
+  ],
+  packageCards:[
+    {h3:"",intro:"",bullets:"",featured:false},
+    {h3:"",intro:"",bullets:"",featured:true},
+  ],
+  weddingCTAText:"Contact our dedicated wedding team to plan your perfect day.",
+  // Christmas
+  xmasH1Sub:"Festive Gatherings in Historic Surroundings",
+  xmasOverviewH2:"",xmasOverviewP:"",
+  xmasTabs:[
+    {id:"festive-parties",label:"Festive Parties",imgSlot:"xmas-1",h3:"",p:""},
+    {id:"private-events",label:"Private Events",imgSlot:"xmas-2",h3:"",p:""},
+    {id:"stays-dining",label:"Stays & Dining",imgSlot:"xmas-3",h3:"",p:""},
+  ],
+  xmasHighlights:[
+    {icon:"fas fa-glass-cheers",h3:"",p:""},
+    {icon:"fas fa-bed",h3:"",p:""},
+    {icon:"fas fa-utensils",h3:"",p:""},
+    {icon:"fas fa-car",h3:"",p:""},
+  ],
+  // Gallery
+  galleryH1:"Our Gallery",galleryH1Sub:"",
+  galleryFilters:[
+    {label:"All",filter:"all"},
+    {label:"Exterior & Heritage",filter:"exterior"},
+    {label:"Rooms & Suites",filter:"rooms"},
+    {label:"Dining & Lounge",filter:"dining"},
+    {label:"Meetings & Events",filter:"events"},
+    {label:"Weddings",filter:"weddings"},
+  ],
+  galleryItems:[
+    {imgSlot:"gallery-exterior-1",alt:"",caption:"",cat:"exterior"},
+    {imgSlot:"gallery-exterior-2",alt:"",caption:"",cat:"exterior"},
+    {imgSlot:"gallery-rooms-1",alt:"",caption:"",cat:"rooms"},
+    {imgSlot:"gallery-rooms-2",alt:"",caption:"",cat:"rooms"},
+    {imgSlot:"gallery-dining-1",alt:"",caption:"",cat:"dining"},
+    {imgSlot:"gallery-dining-2",alt:"",caption:"",cat:"dining"},
+    {imgSlot:"gallery-events-1",alt:"",caption:"",cat:"events"},
+    {imgSlot:"gallery-events-2",alt:"",caption:"",cat:"events"},
+    {imgSlot:"gallery-events-3",alt:"",caption:"",cat:"events"},
+    {imgSlot:"gallery-weddings-1",alt:"",caption:"",cat:"weddings"},
+    {imgSlot:"gallery-weddings-2",alt:"",caption:"",cat:"weddings"},
+  ],
+  // Contact
+  contactH1Sub:"Reach out to plan your stay, meeting, event or wedding",
+  cognitoKey:"",cognitoForm:"",
+  contactGettingHereH2:"",
+  // Explore
+  exploreH1:"",exploreH1Sub:"Historic Aviation Heritage Meets Vibrant City Life",
+  exploreOverviewH2:"",exploreOverviewP:"",
+  attractionCards:[
+    {h3:"",p:"",imgSlot:"attraction-1"},
+  ],
+  // SEO
+  seo:{
+    index:{title:"",desc:"",kw:""},
+    about:{title:"",desc:"",kw:""},
+    rooms:{title:"",desc:"",kw:""},
+    dining:{title:"",desc:"",kw:""},
+    meetings:{title:"",desc:"",kw:""},
+    weddings:{title:"",desc:"",kw:""},
+    christmas:{title:"",desc:"",kw:""},
+    gallery:{title:"",desc:"",kw:""},
+    contact:{title:"",desc:"",kw:""},
+    explore:{title:"",desc:"",kw:""},
+  },
+  activePages:["index","about","rooms","dining","meetings","weddings","christmas","gallery","contact","explore"],
+  images:[],
+  enT:{},deT:{}
+};
+
+const PAGES=[
+  {id:"index",    label:"Homepage",       icon:"🏠",file:"index.html"},
+  {id:"about",    label:"About",          icon:"📖",file:"about.html"},
+  {id:"rooms",    label:"Rooms",          icon:"🛏️",file:"rooms.html"},
+  {id:"dining",   label:"Dining",         icon:"🍽️",file:"dining.html"},
+  {id:"meetings", label:"Meetings",       icon:"📊",file:"meetings.html"},
+  {id:"weddings", label:"Weddings",       icon:"💍",file:"weddings.html"},
+  {id:"christmas",label:"Christmas",      icon:"🎄",file:"christmas.html"},
+  {id:"gallery",  label:"Gallery",        icon:"🖼️",file:"gallery.html"},
+  {id:"contact",  label:"Contact",        icon:"📞",file:"contact.html"},
+  {id:"explore",  label:"Explore",        icon:"📍",file:"explore.html"},
+];
+
+const TABS=[
+  {id:"general",label:"General Info"},
+  {id:"pages",  label:"Pages"},
+  {id:"content",label:"Content"},
+  {id:"images", label:"Images"},
+  {id:"seo",    label:"SEO"},
+  {id:"trans",  label:"Translations"},
+  {id:"output", label:"📄 Output"},
+];
+
+let TAB="general", CSUB="index", GENERATED={};
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function esc(s=""){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function sl(s=""){return s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")||"page"}
+function set(k,v){S[k]=v;render()}
+function setSeo(pg,k,v){S.seo[pg][k]=v}
+function setArr(arr,i,k,v){S[arr][i][k]=v}
+function addArr(arr,obj){S[arr].push(obj);render()}
+function remArr(arr,i){S[arr].splice(i,1);render()}
+function ap(){return new Set(S.activePages)}
+function togglePage(id){
+  if(id==="index"||id==="contact")return;
+  S.activePages=S.activePages.includes(id)?S.activePages.filter(x=>x!==id):[...S.activePages,id];
+  GENERATED={};render();
+}
+
+// ── SHARED HEADER / FOOTER ────────────────────────────────────────────────────
+function sharedHeader(){
+  const isDE=S.type==="de";
+  const bookUrl=esc(S.bookUrl||"#");
+  // Aerodrome-style: About (dropdown) + Stay (dropdown) + flat links
+  const navLinks=PAGES.filter(p=>ap().has(p.id)&&!["index","contact","about","rooms","gallery","explore"].includes(p.id))
+    .map(p=>`<li><a href="${p.file}">${esc(p.label)}</a></li>`).join("\n              ");
+
+  return`  <!-- Preloader -->
+  <div class="preloader"><div class="loader"></div></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="${esc(S.logoUrl||"images/logo.png")}" alt="${esc(S.name)}" loading="lazy"/>
+        </a>
+      </div>
+      <div class="nav-container">
+        <nav class="main-navigation" aria-label="Main Navigation">
+          <ul class="nav-menu">
+            <li class="has-dropdown">
+              <a href="#about" aria-haspopup="true" aria-expanded="false">About</a>
+              <ul class="dropdown-menu">
+                ${ap().has("about")?`<li><a href="about.html">Our Story</a></li>`:""}
+                <li><a href="contact.html">Contact Us</a></li>
+                ${ap().has("gallery")?`<li><a href="gallery.html">Gallery</a></li>`:""}
+                ${ap().has("explore")?`<li><a href="explore.html">Explore</a></li>`:""}
+              </ul>
+            </li>
+            <li class="has-dropdown">
+              <a href="#stay" aria-haspopup="true" aria-expanded="false">Stay</a>
+              <ul class="dropdown-menu">
+                ${ap().has("rooms")?`<li><a href="rooms.html">Rooms &amp; Suites</a></li>`:""}
+              </ul>
+            </li>
+            ${navLinks}
+          </ul>
+        </nav>
+      </div>
+      <div class="nav-book">
+        <a href="${bookUrl}" class="btn-book"${isDE?` data-key="book_now"`:""}>${esc(S.heroCTA||"Book Now")}</a>
+        ${isDE?`<button id="langToggle" class="lang-btn">DE</button>`:""}
+      </div>
+      <div class="mobile-menu-toggle" role="button" aria-label="Toggle navigation" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>`;
+}
+
+function sharedFooter(){
+  const year=new Date().getFullYear();
+  const ql=PAGES.filter(p=>ap().has(p.id)&&!["index","contact","about","rooms","gallery","explore"].includes(p.id))
+    .map(p=>`<li><a href="${p.file}">${esc(p.label)}</a></li>`).join("");
+  const exploreLink=ap().has("explore")?`<li><a href="explore.html">Explore</a></li>`:"";
+  return`  <!-- Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="footer-columns">
+      <div class="footer-column contact-column">
+        <a href="contact.html" class="footer-button">Contact Us</a>
+        <address>
+          ${esc(S.name)}<br/>
+          ${esc(S.addr)}<br/>
+          ${S.phone?`<a href="tel:${S.phone.replace(/\s/g,"")}">${esc(S.phone)}</a><br/>`:""}
+          ${S.email?`<a href="mailto:${esc(S.email)}">${esc(S.email)}</a><br/>`:""}
+          ${S.emailS?`<a href="mailto:${esc(S.emailS)}">${esc(S.emailS)}</a> (Meeting &amp; Events)`:""}
+        </address>
+      </div>
+      <div class="footer-column quick-links-column">
+        <h4>Quick Links</h4>
+        <ul>${ql}${exploreLink}</ul>
+      </div>
+      <div class="footer-column newsletter">
+        <h4>Newsletter</h4>
+        <form action="https://formsubmit.co/${esc(S.emailS||S.email||"email@hotel.com")}" method="POST" class="newsletter-form">
+          <input type="email" name="email" placeholder="Your email address" required aria-label="Your Email"/>
+          <button type="submit">Subscribe</button>
+          <input type="hidden" name="_captcha" value="false"/>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; ${year} ${esc(S.name)}. All rights reserved.</p>
+      <ul class="footer-legal">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="sitemap.xml">Sitemap</a></li>
+      </ul>
+    </div>
+  </footer>`;
+}
+
+function pageShell(pg,title,desc,kw,extraCss,body,extraJs){
+  const isDE=S.type==="de";
+  const ga=esc(S.gaId||"G-XXXXXXXXXX");
+  const cssFile=isDE?"style":"styles";
+  const langSc=isDE?`
+  <script>
+    const LANG={en:${JSON.stringify(S.enT||{})},de:${JSON.stringify(S.deT||{})}};
+    let cur=localStorage.getItem('lang')||'en';
+    function applyLang(l){cur=l;localStorage.setItem('lang',l);document.getElementById('langToggle').textContent=l==='en'?'DE':'EN';const t=LANG[l]||{};document.querySelectorAll('[data-key]').forEach(el=>{const k=el.getAttribute('data-key');if(t[k])el.textContent=t[k];});}
+    document.addEventListener('DOMContentLoaded',()=>{document.getElementById('langToggle')?.addEventListener('click',()=>applyLang(cur==='en'?'de':'en'));applyLang(cur);});
+  <\/script>`:"";
+  return`<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="${esc(desc)}"/>
+  <meta name="keywords" content="${esc(kw)}"/>
+  <meta name="author" content="${esc(S.name)}"/>
+  <meta name="robots" content="index, follow"/>
+  <title>${esc(title)}</title>
+  <link rel="stylesheet" href="${cssFile}.css"/>
+  ${extraCss?`<link rel="stylesheet" href="${extraCss}"/>`:""}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@600&family=Lora:wght@400;500&display=swap" rel="stylesheet"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${ga}"><\/script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${ga}');<\/script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Hotel","name":"${esc(S.name)}","address":{"@type":"PostalAddress","streetAddress":"${esc(S.addr)}","addressCountry":"${isDE?"DE":"UK"}"},"telephone":"${esc(S.phone)}","email":"${esc(S.email)}"}<\/script>
+</head>
+<body>
+${sharedHeader()}
+${body}
+${sharedFooter()}
+  <script src="script.js"><\/script>
+  ${extraJs?`<script src="${extraJs}"><\/script>`:""}
+  ${langSc}
+</body>
+</html>`;
+}
+
+// ── TRANSPORT ACCORDION (reused on index + about) ─────────────────────────────
+function transportAccordion(){
+  const items=[["By Air",S.byAir],["By Rail",S.byRail],["By Road",S.byRoad],["Parking",S.parking]].filter(([,v])=>v);
+  if(!items.length)return"";
+  return`
+    <!-- Transportation -->
+    <section class="transportation-section" id="find-us">
+      <div class="section-label">Getting Here</div>
+      <h2>Arrive Easily</h2>
+      <div class="transport-accordion">
+        ${items.map(([k,v])=>`
+        <div class="accordion-item">
+          <button class="accordion-toggle" aria-expanded="false">${esc(k)}</button>
+          <div class="accordion-content"><p>${esc(v)}</p></div>
+        </div>`).join("")}
+      </div>
+    </section>`;
+}
+
+function mapSection(){
+  return S.mapEmbed?`
+    <!-- Map -->
+    <section class="map-container">
+      <iframe src="${esc(S.mapEmbed)}" width="600" height="450" style="border:0" allowfullscreen loading="lazy"></iframe>
+    </section>`:"";
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PAGE GENERATORS — exact section order from source code
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ── INDEX ─────────────────────────────────────────────────────────────────────
+function genIndex(){
+  const bk=esc(S.bookUrl||"#");
+  const slides=[
+    {h1:S.slide1H1||S.name,sub:S.slide1Sub,cta:S.slide1CTA||"Book Now",href:S.slide1CTALink||bk,img:"images/hero-slide-1.jpg"},
+    {h1:S.slide2H1,sub:S.slide2Sub,cta:S.slide2CTA||"Plan Your Event",href:S.slide2CTALink||"meetings.html",img:"images/hero-slide-2.jpg"},
+    {h1:S.slide3H1,sub:S.slide3Sub,cta:S.slide3CTA||"Explore Dining",href:S.slide3CTALink||"dining.html",img:"images/hero-slide-3.jpg"},
+  ].filter(sl=>sl.h1);
+
+  const slidesHTML=slides.map((sl,i)=>`
+        <div class="slide${i===0?" active":""}" data-zoom${i===0?`="active"`:""}>
+          <img src="${sl.img}" alt="${esc(sl.h1)}" loading="${i===0?"eager":"lazy"}"/>
+          <div class="slide-content">
+            <h1>${esc(sl.h1)}</h1>
+            <p>${esc(sl.sub||"")}</p>
+            <a href="${esc(sl.href)}" class="btn-primary">${esc(sl.cta)}</a>
+          </div>
+        </div>`).join("");
+
+  const hlCards=S.highlights.filter(h=>h.label).map(h=>`
+        <a href="${esc(h.href||"#")}" class="highlight-card">
+          <img src="images/hl-${sl(h.label)}.jpg" alt="${esc(h.label)}" loading="lazy"/>
+          <div class="highlight-overlay"><h3 class="highlight-title">${esc(h.label)}</h3></div>
+        </a>`).join("");
+
+  const thingCards=S.thingCards.filter(t=>t.label).map((t,i)=>`
+        <div class="thing-card">
+          <img src="images/thing-${i+1}.jpg" alt="${esc(t.label)}" loading="lazy"/>
+          <div class="thing-info"><a href="${esc(t.href||"#")}" target="_blank">${esc(t.label)}</a></div>
+        </div>`).join("");
+
+  const body=`
+    <!-- Hero Slider -->
+    <section id="home" class="hero-slider">
+      <div class="slider-container">${slidesHTML}</div>
+      <div class="slider-controls">
+        <button class="prev-slide" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+        <button class="next-slide" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="slider-dots"></div>
+    </section>
+
+    <!-- Transition Quote -->
+    <section class="section-transition-quote">
+      <div class="quote-box">
+        <p class="quote-text">${esc(S.quoteText||S.tagline||"")}</p>
+      </div>
+    </section>
+
+    <!-- Highlights -->
+    <section id="explore" class="highlights-showcase">
+      <div class="section-label">Highlights</div>
+      <div class="highlight-grid">${hlCards}</div>
+    </section>
+
+    <!-- About -->
+    <section class="magazine-section" id="about">
+      <div class="single-banner">
+        <img src="images/about-banner.jpg" alt="${esc(S.name)}" loading="lazy"/>
+      </div>
+      <div class="magazine-content">
+        <div class="section-label">Discover</div>
+        <h2>${esc(S.indexAboutH2||"A Historic Aviation Landmark")}</h2>
+        <p>${esc(S.indexAboutP||"")}</p>
+        <a href="about.html" class="btn-primary">Learn More</a>
+      </div>
+    </section>
+
+    <!-- Rooms -->
+    <section class="magazine-section reverse" id="rooms">
+      <div class="single-banner">
+        <img src="images/rooms-banner.jpg" alt="Comfortable Hotel Rooms" loading="lazy"/>
+      </div>
+      <div class="magazine-content">
+        <div class="section-label">Rooms &amp; Suites</div>
+        <h2>Relaxed &amp; Practical Stays</h2>
+        <p>${esc(S.indexRoomsP||"")}</p>
+        <a href="rooms.html" class="btn-primary">View Rooms &amp; Suites</a>
+      </div>
+    </section>
+
+    <!-- Meetings & Events -->
+    <section class="magazine-section" id="events">
+      <div class="single-banner">
+        <img src="images/meetings-banner.jpg" alt="Meeting &amp; Event Spaces" loading="lazy"/>
+      </div>
+      <div class="magazine-content">
+        <div class="section-label">Meetings &amp; Events</div>
+        <h2>Inspire Your Guests</h2>
+        <p>${esc(S.indexMeetingsP||"")}</p>
+        <a href="meetings.html" class="btn-primary">Plan Your Event</a>
+      </div>
+    </section>
+
+    <!-- Weddings -->
+    <section class="wedding-section" id="weddings">
+      <div class="wedding-content">
+        <div class="section-label">Weddings</div>
+        <h2>Celebrate in Historic Surroundings</h2>
+        <p>${esc(S.indexWeddingsP||"")}</p>
+        <a href="weddings.html" class="btn-primary">Enquire About Weddings</a>
+      </div>
+    </section>
+
+    ${thingCards?`
+    <!-- Things To Do -->
+    <section id="things" class="things-section">
+      <div class="section-label">Explore the Area</div>
+      <br/>
+      <div class="things-grid">${thingCards}</div>
+    </section>`:""}
+
+    ${transportAccordion()}
+    ${mapSection()}`;
+
+  const seo=S.seo.index;
+  return pageShell("index",seo.title||S.name,seo.desc||S.tagline,seo.kw,null,body,null);
+}
+
+// ── ABOUT ─────────────────────────────────────────────────────────────────────
+function genAbout(){
+  const histCardsHTML=S.histCards.filter(c=>c.h3).map((c,i)=>`
+        <div class="history-card${i%2===1?" reverse":""}">
+          <img src="images/${esc(c.imgSlot||"about-"+(i+1))}.jpg" alt="${esc(c.h3)}" loading="lazy"/>
+          <div class="history-content">
+            <h3>${esc(c.h3)}</h3>
+            <p>${esc(c.p)}</p>
+          </div>
+        </div>`).join("");
+
+  const valueCardsHTML=S.valueCards.filter(v=>v.h3).map(v=>`
+          <div class="value-card" data-animate>
+            <i class="${esc(v.icon)}"></i>
+            <h3>${esc(v.h3)}</h3>
+            <p>${esc(v.p)}</p>
+          </div>`).join("");
+
+  const locBullets=(S.locationBullets||"").split("\n").filter(b=>b.trim()).map(b=>`<li>${esc(b.trim())}</li>`).join("");
+  const locBenefits=(S.locationBenefits||"").split("\n").filter(b=>b.trim()).map(b=>`<li>${esc(b.trim())}</li>`).join("");
+
+  const body=`
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section parallax">
+      <div class="hero-content">
+        <h1>${esc(S.aboutH1||"Aviation Heritage")}</h1>
+        <p>${esc(S.aboutH1Sub||"Since 1928")}</p>
+        <a href="${esc(S.bookUrl||"#")}" class="btn-primary">Book Your Stay</a>
+      </div>
+    </section>
+
+    <!-- Hotel History -->
+    <section class="history-section" id="history">
+      <div class="section-label">Our Story</div>
+      <h2>${esc(S.aboutH2||S.name||"")}</h2>
+      <div class="history-container">${histCardsHTML}</div>
+      <a href="${esc(S.bookUrl||"#")}" class="btn-primary">Book Your Stay</a>
+    </section>
+
+    ${S.locationDesc||locBullets?`
+    <!-- Location Section -->
+    <section class="location-section" id="location">
+      <div class="location-container">
+        <div class="location-sidebar">
+          <div class="section-label">Location</div>
+          <h2>Prime Location</h2>
+          <p>${esc(S.locationDesc||"")}</p>
+          ${locBullets?`<p><strong>📍 Nearby Attractions:</strong></p><ul>${locBullets}</ul>`:""}
+          ${locBenefits?`<p><strong>🌟 Key Benefits</strong></p><ul>${locBenefits}</ul>`:""}
+          <a href="#find-us" class="btn-primary">Getting Here</a>
+        </div>
+        <div class="location-map">
+          ${S.mapEmbed?`<iframe src="${esc(S.mapEmbed)}" width="600" height="450" style="border:0" allowfullscreen loading="lazy"></iframe>`:""}
+        </div>
+      </div>
+    </section>`:""}
+
+    ${valueCardsHTML?`
+    <!-- Values Section -->
+    <section class="values-section">
+      <div class="section-label">Our Values</div>
+      <h2>What Sets Us Apart</h2>
+      <div class="values-container">${valueCardsHTML}</div>
+    </section>`:""}
+
+    ${transportAccordion()}
+    ${mapSection()}`;
+
+  const seo=S.seo.about;
+  return pageShell("about",seo.title||`About ${S.name}`,seo.desc,seo.kw,"about.css",body,"about.js");
+}
+
+// ── ROOMS ─────────────────────────────────────────────────────────────────────
+function genRooms(){
+  const filters=["all",...new Set(S.roomCards.map(r=>r.filter||"classic"))];
+  const filterBtns=filters.map((f,i)=>`<button class="filter-btn${i===0?" active":""}" data-filter="${f}">${f==="all"?"All Rooms":f.charAt(0).toUpperCase()+f.slice(1)}</button>`).join("");
+  const cards=S.roomCards.filter(r=>r.name).map(r=>`
+        <div class="room-card" data-type="${esc(r.filter||"classic")}" data-animate>
+          <img src="images/${esc(r.imgSlot||"room")}.jpg" alt="${esc(r.name)}" loading="lazy"/>
+          <h3>${esc(r.name)}</h3>
+          <p>${esc(r.p1||"")}</p>
+          <p>${esc(r.p2||"")}</p>
+        </div>`).join("");
+
+  const body=`
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section" style="background-image:url('images/rooms-hero.jpg')">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Rooms &amp; Suites</h1>
+        <p>${esc(S.roomsH1Sub||"Comfort and Heritage")}</p>
+        <a href="#rooms" class="btn-primary">Explore Our Rooms</a>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section" id="overview">
+      <div class="section-label">Accommodation</div>
+      <div class="overview-container">
+        <div class="overview-divider"></div>
+        <h2>${esc(S.roomsOverviewH2||"Our Rooms")}</h2>
+        <p data-animate>${esc(S.roomsOverviewP||"")}</p>
+        <div class="overview-divider"></div>
+      </div>
+    </section>
+
+    <!-- Room Types Section -->
+    <section class="rooms-section" id="rooms">
+      <div class="section-label">Room Types</div>
+      <h2>Choose Your Stay</h2>
+      <div class="rooms-filter">${filterBtns}</div>
+      <div class="rooms-container">${cards}</div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-container">
+        <h2>Book Your Comfortable Stay</h2>
+        <p>${esc(S.roomsOverviewP.substring(0,120)||"Experience comfort in a historic setting.")}</p>
+        <a href="${esc(S.bookUrl||"#")}" class="btn-primary">${esc(S.slide1CTA||"Book Now")}</a>
+      </div>
+    </section>`;
+
+  const seo=S.seo.rooms;
+  return pageShell("rooms",seo.title||`Rooms & Suites — ${S.name}`,seo.desc,seo.kw,"rooms.css",body,"rooms.js");
+}
+
+// ── DINING ────────────────────────────────────────────────────────────────────
+function genDining(){
+  const venueCardsHTML=S.venueCards.filter(v=>v.h3).map(v=>`
+          <div class="venue-card">
+            <h3>${esc(v.h3)}</h3>
+            <p>${esc(v.p)}</p>
+          </div>`).join("");
+
+  const galHTML=S.diningGallery.filter(g=>g.imgSlot).map(g=>`
+        <div class="gallery-item" data-animate>
+          <img src="images/${esc(g.imgSlot)}.jpg" alt="${esc(g.alt||S.diningRestName||"Dining")}" loading="lazy"/>
+        </div>`).join("");
+
+  const body=`
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-image" style="background-image:url('images/dining-hero.jpg')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>${esc(S.diningH1||S.diningRestName||"Restaurant & Bar")}</h1>
+        <p>${esc(S.diningH1Sub||"")}</p>
+        <a href="#dining-venues" class="btn-primary">Explore Dining</a>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section" id="overview">
+      <div class="section-label">Culinary Experience</div>
+      <div class="overview-container">
+        <div class="overview-divider"></div>
+        <h2>${esc(S.diningRestName||"Our Restaurant")}</h2>
+        <p data-animate>${esc(S.diningOverviewP||"")}</p>
+        <div class="overview-divider"></div>
+      </div>
+    </section>
+
+    <!-- Dining Venues Section -->
+    <section class="dining-venues-section" id="dining-venues">
+      <div class="section-label">Our Venues</div>
+      <div class="venue-container">${venueCardsHTML}</div>
+      ${S.breakfastHours?`
+      <div class="breakfast-info">
+        <h3>Breakfast Times</h3>
+        <p>${esc(S.breakfastHours)}</p>
+      </div>`:""}
+    </section>
+
+    ${galHTML?`
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+      <div class="section-label">Dining Moments</div>
+      <h2>Experience Our Food &amp; Atmosphere</h2>
+      <div class="gallery-container">${galHTML}</div>
+    </section>`:""}
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-container">
+        <h2>Dine With Us</h2>
+        <p>${esc(S.diningOverviewP.substring(0,120)||"Enjoy great food in a memorable setting.")}</p>
+        <a href="${esc(S.bookUrl||"#")}" class="btn-primary">${esc(S.slide1CTA||"Book Your Stay")}</a>
+      </div>
+    </section>`;
+
+  const seo=S.seo.dining;
+  return pageShell("dining",seo.title||`Dining — ${S.name}`,seo.desc,seo.kw,"dining.css",body,"dining.js");
+}
+
+// ── MEETINGS ──────────────────────────────────────────────────────────────────
+function genMeetings(){
+  const spaceCardsHTML=S.spaceCards.filter(m=>m.h3).map((m,i)=>`
+        <div class="space-card" data-animate>
+          <img src="images/${esc(m.imgSlot||"meeting-"+(i+1))}.jpg" alt="${esc(m.h3)}" loading="lazy"/>
+          <h3>${esc(m.h3)}</h3>
+          <p>${esc(m.p||"")}</p>
+          <div class="room-meta">
+            ${m.theatre?`<span>Theatre: ${esc(m.theatre)}</span>`:""}
+            ${m.dinner?`<span>Dinner: ${esc(m.dinner)}</span>`:""}
+            ${m.reception?`<span>Reception: ${esc(m.reception)}</span>`:""}
+            ${m.boardroom?`<span>Boardroom: ${esc(m.boardroom)}</span>`:""}
+          </div>
+        </div>`).join("");
+
+  const body=`
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-image" style="background-image:url('images/meetings-hero.jpg')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Meetings &amp; Events</h1>
+        <p>${esc(S.meetingsH1Sub||"Flexible Spaces in a Historic Setting")}</p>
+        <a href="#event-spaces" class="btn-primary">Explore Our Venues</a>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section" id="overview">
+      <div class="section-label">Meetings &amp; Events</div>
+      <div class="overview-container">
+        <div class="overview-divider"></div>
+        <h2>${esc(S.meetingsOverviewH2||"Historic Venue, Modern Facilities")}</h2>
+        <p data-animate>${esc(S.meetingsOverviewP||"")}</p>
+        <div class="overview-divider"></div>
+      </div>
+    </section>
+
+    <!-- Event Spaces -->
+    <section class="event-spaces-section" id="event-spaces">
+      <div class="section-label">Our Venues</div>
+      <h2>${S.spaceCards.filter(m=>m.h3).length?`${S.spaceCards.filter(m=>m.h3).length} Flexible Event Spaces`:"Flexible Event Spaces"}</h2>
+      <div class="event-spaces-container">${spaceCardsHTML}</div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-container">
+        <h2>Plan Your Next Event</h2>
+        <p>${esc(S.meetingsOverviewP.substring(0,120)||"Our team is ready to help.")}</p>
+        <a href="contact.html" class="btn-primary">Enquire About Events</a>
+      </div>
+    </section>`;
+
+  const seo=S.seo.meetings;
+  return pageShell("meetings",seo.title||`Meetings & Events — ${S.name}`,seo.desc,seo.kw,"meetings.css",body,"meetings.js");
+}
+
+// ── WEDDINGS ──────────────────────────────────────────────────────────────────
+function genWeddings(){
+  const ceremCards=S.ceremonyCards.filter(c=>c.h3).map(c=>`
+          <div class="ceremony-card${c.large?" large":""}" data-animate>
+            <h3>${esc(c.h3)}</h3>
+            <ul>${(c.bullets||"").split("\n").filter(b=>b.trim()).map(b=>`<li>${esc(b.trim())}</li>`).join("")}</ul>
+          </div>`).join("");
+
+  const pkgCards=S.packageCards.filter(p=>p.h3).map(p=>`
+          <div class="package-card${p.featured?" featured":""}" data-animate>
+            <h3>${esc(p.h3)}</h3>
+            <p class="package-intro">${esc(p.intro||"")}</p>
+            <button class="details-toggle" aria-expanded="false">View Details</button>
+            <div class="package-details">
+              <ul>${(p.bullets||"").split("\n").filter(b=>b.trim()).map(b=>`<li>${esc(b.trim())}</li>`).join("")}</ul>
+            </div>
+          </div>`).join("");
+
+  const body=`
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-image" style="background-image:url('images/weddings-hero.jpg')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Your Dream Wedding</h1>
+        <p>${esc(S.weddingsH1Sub||"Say 'I Do' in a Historic Art Deco Landmark")}</p>
+        <a href="#packages" class="btn-primary">Explore Packages</a>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section" id="overview">
+      <div class="section-label">Weddings</div>
+      <div class="overview-container">
+        <div class="overview-divider"></div>
+        <h2>${esc(S.weddingsOverviewH2||"Celebrate in Historic Surroundings")}</h2>
+        <p data-animate>${esc(S.weddingsOverviewP||"")}</p>
+        <div class="overview-divider"></div>
+      </div>
+    </section>
+
+    <!-- Ceremony & Reception -->
+    <section class="ceremony-section" id="ceremony">
+      <div class="section-label">Your Perfect Day</div>
+      <h2>Wedding Spaces</h2>
+      <div class="ceremony-grid">${ceremCards}</div>
+    </section>
+
+    <!-- Packages -->
+    <section class="packages-section" id="packages">
+      <div class="section-label">Wedding Packages</div>
+      <h2>Make It Yours</h2>
+      <div class="packages-container">${pkgCards}</div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="cta-container">
+        <h2>Start Your Love Story Here</h2>
+        <p>${esc(S.weddingCTAText||"Contact our dedicated wedding team to plan your perfect day.")}</p>
+        <a href="contact.html" class="btn-primary">Enquire About Weddings</a>
+      </div>
+    </section>`;
+
+  const seo=S.seo.weddings;
+  return pageShell("weddings",seo.title||`Weddings — ${S.name}`,seo.desc,seo.kw,"weddings.css",body,"weddings.js");
+}
+
+// ── CHRISTMAS ─────────────────────────────────────────────────────────────────
+function genChristmas(){
+  const tabBtns=S.xmasTabs.filter(t=>t.label).map((t,i)=>`
+        <button class="tab-button${i===0?" active":""}" data-tab="${esc(t.id)}">${esc(t.label)}</button>`).join("");
+
+  const tabContents=S.xmasTabs.filter(t=>t.label).map((t,i)=>`
+        <div class="package-tab${i===0?" active":""}" id="${esc(t.id)}">
+          <img src="images/${esc(t.imgSlot||"xmas-"+(i+1))}.jpg" alt="${esc(t.h3||t.label)}" loading="lazy"/>
+          <h3>${esc(t.h3||t.label)}</h3>
+          <p>${esc(t.p||"")}</p>
+        </div>`).join("");
+
+  const hlCards=S.xmasHighlights.filter(h=>h.h3).map(h=>`
+          <div class="highlight-card" data-animate>
+            <i class="${esc(h.icon)}"></i>
+            <h3>${esc(h.h3)}</h3>
+            <p>${esc(h.p)}</p>
+          </div>`).join("");
+
+  const body=`
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-image" style="background-image:url('images/christmas-hero.jpg')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Celebrate Christmas</h1>
+        <p>${esc(S.xmasH1Sub||"Festive Gatherings in Historic Surroundings")}</p>
+        <a href="#festive-options" class="btn-primary">Explore Festive Options</a>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section" id="overview">
+      <div class="section-label">Festive Celebrations</div>
+      <div class="overview-container">
+        <div class="overview-divider"></div>
+        <h2>${esc(S.xmasOverviewH2||`Christmas at ${S.name||"the Hotel"}`)}</h2>
+        <p data-animate>${esc(S.xmasOverviewP||"")}</p>
+        <div class="overview-divider"></div>
+      </div>
+    </section>
+
+    <!-- Festive Options (tabs) -->
+    <section class="packages-section" id="festive-options">
+      <div class="section-label">Festive Options</div>
+      <h2>Plan Your Celebration</h2>
+      <div class="packages-tabs">${tabBtns}</div>
+      <div class="packages-content">${tabContents}</div>
+    </section>
+
+    <!-- Highlights -->
+    <section class="highlights-section" id="highlights">
+      <div class="section-label">Why Celebrate With Us</div>
+      <h2>Festive Highlights</h2>
+      <div class="highlights-container">${hlCards}</div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="cta-container">
+        <h2>Plan Your Festive Celebration</h2>
+        <p>Contact our team to book your Christmas party, private dinner, or festive stay.</p>
+        <a href="contact.html" class="btn-primary">Enquire Now</a>
+      </div>
+    </section>`;
+
+  const seo=S.seo.christmas;
+  return pageShell("christmas",seo.title||`Christmas — ${S.name}`,seo.desc,seo.kw,"christmas.css",body,"christmas.js");
+}
+
+// ── GALLERY ───────────────────────────────────────────────────────────────────
+function genGallery(){
+  const filterBtns=S.galleryFilters.map((f,i)=>`
+        <button class="filter-btn${i===0?" active":""}" data-filter="${esc(f.filter)}">${esc(f.label)}</button>`).join("");
+
+  const galItems=S.galleryItems.filter(g=>g.imgSlot).map(g=>`
+        <div class="gallery-item" data-category="${esc(g.cat)}" data-animate>
+          <img src="images/${esc(g.imgSlot)}.jpg" alt="${esc(g.alt)}" loading="lazy" data-caption="${esc(g.caption)}"/>
+        </div>`).join("");
+
+  const body=`
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <img src="images/gallery-hero.jpg" alt="${esc(S.name)}" class="hero-image" loading="lazy"/>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>${esc(S.galleryH1||"Our Gallery")}</h1>
+        <p>${esc(S.galleryH1Sub||"")}</p>
+        <a href="#gallery" class="btn-primary">Explore Gallery</a>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+      <div class="section-label">Moments Captured</div>
+      <h2>Explore Our Spaces</h2>
+      <div class="gallery-filter">${filterBtns}</div>
+      <div class="gallery-container">${galItems}</div>
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox" role="dialog" aria-hidden="true">
+        <div class="lightbox-content">
+          <span class="lightbox-close" aria-label="Close lightbox">&times;</span>
+          <img src="" alt="" id="lightboxImage" loading="lazy"/>
+          <p id="lightboxCaption"></p>
+          <button class="lightbox-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+          <button class="lightbox-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="cta-container">
+        <h2>Experience the Heritage</h2>
+        <p>Book your stay at ${esc(S.name||"the hotel")}</p>
+        <a href="${esc(S.bookUrl||"#")}" class="btn-primary">${esc(S.slide1CTA||"Book Now")}</a>
+      </div>
+    </section>`;
+
+  const seo=S.seo.gallery;
+  return pageShell("gallery",seo.title||`Gallery — ${S.name}`,seo.desc,seo.kw,"gallery.css",body,"gallery.js");
+}
+
+// ── CONTACT ───────────────────────────────────────────────────────────────────
+function genContact(){
+  const collapsibles=[["By Air",S.byAir],["By Rail",S.byRail],["By Road",S.byRoad],["Parking",S.parking]].filter(([,v])=>v);
+  const body=`
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section parallax">
+      <div class="hero-content">
+        <h1>Contact Us</h1>
+        <p>${esc(S.contactH1Sub||"Reach out to plan your stay, meeting, event or wedding")}</p>
+        <a href="#contact-form" class="btn-primary">Get in Touch</a>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" id="contact-form">
+      <div class="form-container">
+        <div class="section-label">Get in Touch</div>
+        ${S.cognitoKey&&S.cognitoForm
+          ?`<script src="https://www.cognitoforms.com/f/seamless.js" data-key="${esc(S.cognitoKey)}" data-form="${esc(S.cognitoForm)}"><\/script>`
+          :`<form action="https://formsubmit.co/${esc(S.email||"email@hotel.com")}" method="POST" class="contact-form" style="max-width:700px;margin:30px auto">
+          <input type="text" name="name" placeholder="Your Name" required/>
+          <input type="email" name="email" placeholder="Your Email" required/>
+          <select name="enquiry">
+            <option value="">Type of enquiry</option>
+            <option>Room booking</option>
+            <option>Meetings &amp; Events</option>
+            <option>Weddings</option>
+            <option>General enquiry</option>
+          </select>
+          <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+          <button type="submit" class="btn-primary">Send Message</button>
+          <input type="hidden" name="_captcha" value="false"/>
+        </form>`}
+      </div>
+    </section>
+
+    <!-- Contact Details -->
+    <section class="contact-details-section" id="details">
+      <div class="section-label">Contact Information</div>
+      <h2>Reach Us</h2>
+      <div class="details-container">
+        <div class="details-card">
+          <h3>${esc(S.name)}</h3>
+          <address>
+            ${esc(S.addr)}<br/><br/>
+            ${S.email?`<a href="mailto:${esc(S.email)}">${esc(S.email)}</a><br/>`:""}
+            ${S.emailS?`<a href="mailto:${esc(S.emailS)}">${esc(S.emailS)}</a> (Meetings &amp; Events)<br/>`:""}
+            ${S.phone?`<a href="tel:${S.phone.replace(/\s/g,"")}">${esc(S.phone)}</a>`:""}
+          </address>
+          <div class="social-icons">
+            <a href="${esc(S.instagram||"#")}" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="${esc(S.facebook||"#")}" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+        <div class="details-image">
+          <img src="images/contact-exterior.jpg" alt="${esc(S.name)}" loading="lazy"/>
+        </div>
+      </div>
+    </section>
+
+    <!-- Getting Here -->
+    <section class="getting-here-section" id="getting-here">
+      <div class="section-label">Getting Here</div>
+      <h2>${esc(S.contactGettingHereH2||`Travel to ${S.name||"the Hotel"}`)}</h2>
+      <div class="collapsible-container">
+        ${collapsibles.map(([k,v])=>`
+        <div class="collapsible-item">
+          <button class="collapsible-toggle" aria-expanded="false">${esc(k)}</button>
+          <div class="collapsible-content"><p>${esc(v)}</p></div>
+        </div>`).join("")}
+      </div>
+      ${S.mapEmbed?`<div class="map-container"><iframe src="${esc(S.mapEmbed)}" width="600" height="450" style="border:0" allowfullscreen loading="lazy"></iframe></div>`:""}
+    </section>`;
+
+  const seo=S.seo.contact;
+  return pageShell("contact",seo.title||`Contact — ${S.name}`,seo.desc,seo.kw,"contact.css",body,"contact.js");
+}
+
+// ── EXPLORE ───────────────────────────────────────────────────────────────────
+function genExplore(){
+  const attrCards=S.attractionCards.filter(a=>a.h3).map((a,i)=>`
+        <div class="attraction-card" data-animate>
+          <img src="images/${esc(a.imgSlot||"attraction-"+(i+1))}.jpg" alt="${esc(a.h3)}" loading="lazy"/>
+          <h3>${esc(a.h3)}</h3>
+          <p>${esc(a.p||"")}</p>
+        </div>`).join("");
+
+  const body=`
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section" style="background-image:url('images/explore-hero.jpg')">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>${esc(S.exploreH1||"Explore the Area")}</h1>
+        <p>${esc(S.exploreH1Sub||"Historic Aviation Heritage Meets Vibrant City Life")}</p>
+        <a href="#attractions" class="btn-primary">Discover Attractions</a>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section" id="overview">
+      <div class="section-label">Discover the Area</div>
+      <div class="overview-container">
+        <div class="overview-divider"></div>
+        <h2>${esc(S.exploreOverviewH2||"Your Gateway to the Area &amp; Beyond")}</h2>
+        <p>${esc(S.exploreOverviewP||"")}</p>
+        <div class="overview-divider"></div>
+      </div>
+    </section>
+
+    <!-- Attractions Section -->
+    <section class="attractions-section" id="attractions">
+      <div class="section-label">Local Attractions</div>
+      <h2>Things to Do Near the Hotel</h2>
+      <br/>
+      <div class="attractions-container">${attrCards}</div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="book-now">
+      <div class="cta-container">
+        <h2>Ready to Explore?</h2>
+        <p>Stay at ${esc(S.name||"the hotel")} and make the most of your time in the area.</p>
+        <a href="${esc(S.bookUrl||"#")}" class="btn-primary">${esc(S.slide1CTA||"Book Your Stay")}</a>
+      </div>
+    </section>`;
+
+  const seo=S.seo.explore;
+  return pageShell("explore",seo.title||`Explore — ${S.name}`,seo.desc,seo.kw,"explore.css",body,"explore.js");
+}
+
+// ── GENERATE ALL ──────────────────────────────────────────────────────────────
+function generateAll(){
+  GENERATED={};
+  const gen={index:genIndex,about:genAbout,rooms:genRooms,dining:genDining,meetings:genMeetings,
+    weddings:genWeddings,christmas:genChristmas,gallery:genGallery,contact:genContact,explore:genExplore};
+  S.activePages.forEach(id=>{if(gen[id])GENERATED[id]=gen[id]();});
+  return GENERATED;
+}
+
+function generatePage(id){
+  const gen={index:genIndex,about:genAbout,rooms:genRooms,dining:genDining,meetings:genMeetings,
+    weddings:genWeddings,christmas:genChristmas,gallery:genGallery,contact:genContact,explore:genExplore};
+  return gen[id]?gen[id]():"";
+}
+
+// ── DOWNLOAD ZIP ──────────────────────────────────────────────────────────────
+async function downloadZip(){
+  const pages=generateAll();
+  const zip=new JSZip();
+  Object.entries(pages).forEach(([id,html])=>{
+    const pg=PAGES.find(p=>p.id===id);
+    zip.file(pg?pg.file:`${id}.html`,html);
+  });
+  zip.file("_image-slots.txt","Place these files in your images/ folder:\n\n"+getSlots().join("\n"));
+  const blob=await zip.generateAsync({type:"blob"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download=(sl(S.name)||"hotel")+"-website.zip";
+  document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(url);
+  render();
+}
+
+function getSlots(){
+  const slots=["logo.png"];
+  slots.push("hero-slide-1.jpg","hero-slide-2.jpg","hero-slide-3.jpg");
+  slots.push("about-banner.jpg","rooms-banner.jpg","meetings-banner.jpg");
+  if(ap().has("about")){
+    S.histCards.forEach((c,i)=>slots.push((c.imgSlot||`about-history-${i+1}`)+".jpg"));
+  }
+  if(ap().has("rooms")){
+    slots.push("rooms-hero.jpg");
+    S.roomCards.filter(r=>r.name).forEach(r=>slots.push((r.imgSlot||"room")+".jpg"));
+  }
+  if(ap().has("dining")){
+    slots.push("dining-hero.jpg");
+    S.diningGallery.forEach(g=>{if(g.imgSlot)slots.push(g.imgSlot+".jpg");});
+  }
+  if(ap().has("meetings")){
+    slots.push("meetings-hero.jpg");
+    S.spaceCards.forEach((m,i)=>slots.push((m.imgSlot||`meeting-${i+1}`)+".jpg"));
+  }
+  if(ap().has("weddings")) slots.push("weddings-hero.jpg");
+  if(ap().has("christmas")){
+    slots.push("christmas-hero.jpg");
+    S.xmasTabs.forEach((t,i)=>slots.push((t.imgSlot||`xmas-${i+1}`)+".jpg"));
+  }
+  if(ap().has("gallery")){
+    slots.push("gallery-hero.jpg");
+    S.galleryItems.forEach(g=>{if(g.imgSlot)slots.push(g.imgSlot+".jpg");});
+  }
+  if(ap().has("contact")) slots.push("contact-exterior.jpg");
+  if(ap().has("explore")){
+    slots.push("explore-hero.jpg");
+    S.attractionCards.forEach((a,i)=>slots.push((a.imgSlot||`attraction-${i+1}`)+".jpg"));
+  }
+  S.highlights.filter(h=>h.label).forEach(h=>slots.push(`hl-${sl(h.label)}.jpg`));
+  S.thingCards.filter(t=>t.label).forEach((_,i)=>slots.push(`thing-${i+1}.jpg`));
+  return[...new Set(slots)];
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────────────
+function tabGeneral(){return`
+  <div class="field"><label>Website type</label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+      ${[["uk","🇬🇧 UK Property","English only — Aerodrome style"],["de","🇩🇪 German Property","English + German toggle — Frankfurt style"]].map(([v,n,d])=>`
+      <div style="border:2px solid ${S.type===v?"var(--p)":"var(--b)"};border-radius:var(--r);padding:12px;cursor:pointer;background:${S.type===v?"var(--ib)":"#fff"}" onclick="set('type','${v}')">
+        <div style="font-size:22px;margin-bottom:4px">${v==="uk"?"🇬🇧":"🇩🇪"}</div>
+        <div style="font-size:13px;font-weight:600;color:${S.type===v?"var(--p)":"var(--t)"}">${n}</div>
+        <div style="font-size:11px;color:var(--t3);margin-top:2px">${d}</div>
+      </div>`).join("")}
+    </div>
+  </div>
+  <div class="field"><label>Hotel full name *</label><input value="${esc(S.name)}" oninput="set('name',this.value)" placeholder="Sunday London Croydon Aerodrome Hotel"></div>
+  <div class="field"><label>Short tagline</label><input value="${esc(S.tagline)}" oninput="set('tagline',this.value)" placeholder="Historic Art Deco hotel in Croydon since 1928"></div>
+  <div class="field"><label>Full address *</label><input value="${esc(S.addr)}" oninput="set('addr',this.value)" placeholder="680 Purley Way, Croydon, CR9 4LT"></div>
+  <div class="fr2">
+    <div class="field"><label>Phone</label><input value="${esc(S.phone||"")}" oninput="set('phone',this.value)" placeholder="+44 020 8680 0000"></div>
+    <div class="field"><label>General email</label><input value="${esc(S.email||"")}" oninput="set('email',this.value)" placeholder="reservations@hotel.com"></div>
+  </div>
+  <div class="field"><label>Sales / Events email <span class="hint" style="display:inline">(shown as "Meeting & Events" in footer)</span></label><input value="${esc(S.emailS||"")}" oninput="set('emailS',this.value)" placeholder="sales@hotel.com"></div>
+  <div class="field"><label>Booking engine URL *</label><input value="${esc(S.bookUrl||"")}" oninput="set('bookUrl',this.value)" placeholder="https://booking.emea.hkclients.com/..."></div>
+  <div class="fr2">
+    <div class="field"><label>Logo image path</label><input value="${esc(S.logoUrl)}" oninput="set('logoUrl',this.value)" placeholder="images/logo.png"></div>
+    <div class="field"><label>Google Analytics ID</label><input value="${esc(S.gaId||"")}" oninput="set('gaId',this.value)" placeholder="G-XXXXXXXXXX"></div>
+  </div>
+  <div class="fr2">
+    <div class="field"><label>Instagram URL</label><input value="${esc(S.instagram||"")}" oninput="set('instagram',this.value)" placeholder="https://instagram.com/..."></div>
+    <div class="field"><label>Facebook URL</label><input value="${esc(S.facebook||"")}" oninput="set('facebook',this.value)" placeholder="https://facebook.com/..."></div>
+  </div>
+  <div class="field"><label>Google Maps embed URL <span class="hint" style="display:inline">(Google Maps → Share → Embed a map → copy the src="..." value)</span></label>
+    <textarea rows="2" oninput="set('mapEmbed',this.value)">${esc(S.mapEmbed||"")}</textarea></div>
+  <div style="font-weight:600;font-size:13px;color:var(--p);margin:16px 0 8px">Transport (used on Index, About & Contact pages)</div>
+  <div class="fr2">
+    <div class="field"><label>By air</label><textarea rows="2" oninput="set('byAir',this.value)">${esc(S.byAir||"")}</textarea></div>
+    <div class="field"><label>By rail</label><textarea rows="2" oninput="set('byRail',this.value)">${esc(S.byRail||"")}</textarea></div>
+  </div>
+  <div class="fr2">
+    <div class="field"><label>By road</label><textarea rows="2" oninput="set('byRoad',this.value)">${esc(S.byRoad||"")}</textarea></div>
+    <div class="field"><label>Parking</label><input value="${esc(S.parking||"")}" oninput="set('parking',this.value)" placeholder="75 parking spaces available on site"></div>
+  </div>
+`;}
+
+function tabPages(){
+  const gen=Object.keys(GENERATED);
+  return`
+  <p style="font-size:12px;color:var(--t2);margin-bottom:14px;line-height:1.6">Toggle which pages to generate. Homepage and Contact are always included.</p>
+  <div class="pgrid">
+    ${PAGES.map(p=>{
+      const on=ap().has(p.id);
+      const isGen=gen.includes(p.id);
+      const locked=p.id==="index"||p.id==="contact";
+      return`<div class="pcard${isGen?" gen":on?" sel":""}" onclick="togglePage('${p.id}')">
+        <div class="picon">${p.icon}</div>
+        <div class="pname">${p.label}</div>
+        <div class="pfile">${p.file}</div>
+        <div style="font-size:10px;color:${isGen?"#2e7d32":on?"var(--p)":"var(--t3)"};margin-top:4px">${isGen?"✓ Generated":locked?"Always included":on?"Active":"Off"}</div>
+      </div>`;
+    }).join("")}
+  </div>`;
+}
+
+function tabContent(){
+  const subs=PAGES.filter(p=>ap().has(p.id));
+  const subBar=subs.map(p=>`<button class="st${CSUB===p.id?" act":""}" onclick="CSUB='${p.id}';render()">${p.icon} ${p.label}</button>`).join("");
+  return`<div class="stabs">${subBar}</div>${contentPanel()}`;
+}
+
+function contentPanel(){
+  switch(CSUB){
+
+    case"index": return`
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin-bottom:10px">Hero Slider Slides</div>
+      ${[[1,"slide1"],[2,"slide2"],[3,"slide3"]].map(([n,k])=>`
+      <div class="card">
+        <div class="cl" style="margin-bottom:8px">Slide ${n}</div>
+        <div class="fr2">
+          <div class="field"><label>Headline (h1)</label><input value="${esc(S[k+"H1"])}" oninput="set('${k}H1',this.value)" placeholder="${n===1?esc(S.name):"Flexible Event Spaces"}"></div>
+          <div class="field"><label>Subtitle</label><input value="${esc(S[k+"Sub"])}" oninput="set('${k}Sub',this.value)" placeholder="Subtitle text"></div>
+        </div>
+        <div class="fr2">
+          <div class="field"><label>CTA button label</label><input value="${esc(S[k+"CTA"])}" oninput="set('${k}CTA',this.value)" placeholder="Book Now"></div>
+          <div class="field"><label>CTA link</label><input value="${esc(S[k+"CTALink"])}" oninput="set('${k}CTALink',this.value)" placeholder="${n===1?esc(S.bookUrl||"#"):n===2?"meetings.html":"dining.html"}"></div>
+        </div>
+      </div>`).join("")}
+      <div class="field" style="margin-top:4px"><label>Transition quote (below hero slider)</label><input value="${esc(S.quoteText)}" oninput="set('quoteText',this.value)" placeholder="A historic landmark blending Art Deco elegance with contemporary comfort."></div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Highlights grid (6 cards with images & links)</div>
+      ${S.highlights.map((h,i)=>`
+      <div style="display:grid;grid-template-columns:1fr 1fr 32px;gap:8px;align-items:end;margin-bottom:8px">
+        <div class="field" style="margin:0"><label>Label</label><input value="${esc(h.label)}" oninput="setArr('highlights',${i},'label',this.value)" placeholder="Dining"></div>
+        <div class="field" style="margin:0"><label>Link</label><input value="${esc(h.href)}" oninput="setArr('highlights',${i},'href',this.value)" placeholder="dining.html"></div>
+        <div></div>
+      </div>`).join("")}
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Magazine sections (About / Rooms / Meetings / Weddings snippets)</div>
+      <div class="field"><label>About paragraph (homepage teaser)</label><textarea rows="3" oninput="set('indexAboutH2',this.value)">${esc(S.indexAboutH2)}</textarea></div>
+      <div class="field"><label>About body text</label><textarea rows="4" oninput="set('indexAboutP',this.value)">${esc(S.indexAboutP)}</textarea></div>
+      <div class="field"><label>Rooms paragraph</label><textarea rows="3" oninput="set('indexRoomsP',this.value)">${esc(S.indexRoomsP)}</textarea></div>
+      <div class="field"><label>Meetings paragraph</label><textarea rows="3" oninput="set('indexMeetingsP',this.value)">${esc(S.indexMeetingsP)}</textarea></div>
+      <div class="field"><label>Weddings paragraph</label><textarea rows="3" oninput="set('indexWeddingsP',this.value)">${esc(S.indexWeddingsP)}</textarea></div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Things To Do cards (4 cards with images)</div>
+      ${S.thingCards.map((t,i)=>`
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+        <div class="field" style="margin:0"><label>Label</label><input value="${esc(t.label)}" oninput="setArr('thingCards',${i},'label',this.value)" placeholder="BOXPARK Croydon"></div>
+        <div class="field" style="margin:0"><label>Link (href)</label><input value="${esc(t.href)}" oninput="setArr('thingCards',${i},'href',this.value)" placeholder="#"></div>
+      </div>`).join("")}`;
+
+    case"about": return`
+      <div class="fr2">
+        <div class="field"><label>Hero h1</label><input value="${esc(S.aboutH1)}" oninput="set('aboutH1',this.value)" placeholder="Aviation Heritage"></div>
+        <div class="field"><label>Hero subtitle</label><input value="${esc(S.aboutH1Sub)}" oninput="set('aboutH1Sub',this.value)" placeholder="Since 1928"></div>
+      </div>
+      <div class="field"><label>History section h2 (hotel name)</label><input value="${esc(S.aboutH2)}" oninput="set('aboutH2',this.value)" placeholder="${esc(S.name||"Hotel Name")}"></div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">History cards (alternating image + text)</div>
+      ${S.histCards.map((c,i)=>`
+      <div class="card">
+        <div class="ch"><span class="cl">History card ${i+1}${i%2===1?" (reverse layout)":""}</span></div>
+        <div class="fr2">
+          <div class="field"><label>Heading h3</label><input value="${esc(c.h3)}" oninput="setArr('histCards',${i},'h3',this.value)" placeholder="1928: A Landmark is Born"></div>
+          <div class="field"><label>Image filename (no ext)</label><input value="${esc(c.imgSlot)}" oninput="setArr('histCards',${i},'imgSlot',this.value)" placeholder="about-history-${i+1}"></div>
+        </div>
+        <div class="field"><label>Paragraph</label><textarea rows="3" oninput="setArr('histCards',${i},'p',this.value)">${esc(c.p||"")}</textarea></div>
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('histCards',{h3:'',p:'',imgSlot:'about-history-'+(S.histCards.length+1)})">+ Add history card</button>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Location section (sidebar + map)</div>
+      <div class="field"><label>Location description</label><textarea rows="3" oninput="set('locationDesc',this.value)">${esc(S.locationDesc)}</textarea></div>
+      <div class="field"><label>Nearby attractions list <span class="hint" style="display:inline">(one per line, e.g. "BOXPARK Croydon – 2 miles")</span></label><textarea rows="4" oninput="set('locationBullets',this.value)">${esc(S.locationBullets)}</textarea></div>
+      <div class="field"><label>Key benefits list <span class="hint" style="display:inline">(one per line, e.g. "✅ Direct access to A23")</span></label><textarea rows="4" oninput="set('locationBenefits',this.value)">${esc(S.locationBenefits)}</textarea></div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Value cards (icon + h3 + p)</div>
+      ${S.valueCards.map((v,i)=>`
+      <div class="card">
+        <div class="ch"><span class="cl">Value card ${i+1}</span>${S.valueCards.length>1?`<button class="bd" onclick="remArr('valueCards',${i})">×</button>`:""}</div>
+        <div class="fr3">
+          <div class="field"><label>Font Awesome icon class</label><input value="${esc(v.icon)}" oninput="setArr('valueCards',${i},'icon',this.value)" placeholder="fas fa-plane"></div>
+          <div class="field"><label>Heading h3</label><input value="${esc(v.h3)}" oninput="setArr('valueCards',${i},'h3',this.value)" placeholder="Aviation Heritage"></div>
+          <div class="field"><label>Paragraph</label><input value="${esc(v.p)}" oninput="setArr('valueCards',${i},'p',this.value)" placeholder="Description text"></div>
+        </div>
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('valueCards',{icon:'fas fa-star',h3:'',p:''})">+ Add value card</button>`;
+
+    case"rooms": return`
+      <div class="fr2">
+        <div class="field"><label>Hero subtitle</label><input value="${esc(S.roomsH1Sub)}" oninput="set('roomsH1Sub',this.value)" placeholder="Comfort and Heritage in Historic Croydon"></div>
+        <div class="field"><label>Overview h2 <span class="hint" style="display:inline">(e.g. "109 Comfortable Bedrooms")</span></label><input value="${esc(S.roomsOverviewH2)}" oninput="set('roomsOverviewH2',this.value)" placeholder="109 Comfortable Bedrooms"></div>
+      </div>
+      <div class="field"><label>Overview paragraph</label><textarea rows="4" oninput="set('roomsOverviewP',this.value)">${esc(S.roomsOverviewP)}</textarea></div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Room cards</div>
+      ${S.roomCards.map((r,i)=>`
+      <div class="card">
+        <div class="ch"><span class="cl">Room card ${i+1}</span>${S.roomCards.length>1?`<button class="bd" onclick="remArr('roomCards',${i})">×</button>`:""}</div>
+        <div class="fr2">
+          <div class="field"><label>Room name (h3)</label><input value="${esc(r.name)}" oninput="setArr('roomCards',${i},'name',this.value)" placeholder="Classic Double Room"></div>
+          <div class="field"><label>Image filename (no ext)</label><input value="${esc(r.imgSlot)}" oninput="setArr('roomCards',${i},'imgSlot',this.value)" placeholder="rooms-double"></div>
+        </div>
+        <div class="fr2">
+          <div class="field"><label>First paragraph (e.g. "1 Double Bed • Sleeps 2")</label><input value="${esc(r.p1)}" oninput="setArr('roomCards',${i},'p1',this.value)" placeholder="1 Double Bed • Sleeps 2"></div>
+          <div class="field"><label>Filter tag <span class="hint" style="display:inline">(classic / executive / family / accessible)</span></label><input value="${esc(r.filter)}" oninput="setArr('roomCards',${i},'filter',this.value)" placeholder="classic"></div>
+        </div>
+        <div class="field"><label>Description paragraph</label><textarea rows="2" oninput="setArr('roomCards',${i},'p2',this.value)">${esc(r.p2||"")}</textarea></div>
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('roomCards',{name:'',p1:'',p2:'',filter:'classic',imgSlot:'rooms-'+(S.roomCards.length+1)})">+ Add room card</button>`;
+
+    case"dining": return`
+      <div class="fr2">
+        <div class="field"><label>Hero h1</label><input value="${esc(S.diningH1)}" oninput="set('diningH1',this.value)" placeholder="Runway Restaurant & Bar"></div>
+        <div class="field"><label>Hero subtitle</label><input value="${esc(S.diningH1Sub)}" oninput="set('diningH1Sub',this.value)" placeholder="Variety of Cuisines in Historic Surroundings"></div>
+      </div>
+      <div class="field"><label>Restaurant name (overview h2)</label><input value="${esc(S.diningRestName)}" oninput="set('diningRestName',this.value)" placeholder="Runway Restaurant"></div>
+      <div class="field"><label>Overview paragraph</label><textarea rows="4" oninput="set('diningOverviewP',this.value)">${esc(S.diningOverviewP)}</textarea></div>
+      <div class="field"><label>Breakfast hours</label><input value="${esc(S.breakfastHours)}" oninput="set('breakfastHours',this.value)" placeholder="Monday – Friday: 6:30am – 10:00am&#10;Weekends & Bank Holidays: 7:00am – 10:30am"></div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Venue cards (e.g. Restaurant / Bar / Garden)</div>
+      ${S.venueCards.map((v,i)=>`
+      <div class="card">
+        <div class="ch"><span class="cl">Venue ${i+1}</span>${S.venueCards.length>1?`<button class="bd" onclick="remArr('venueCards',${i})">×</button>`:""}</div>
+        <div class="field"><label>Name (h3)</label><input value="${esc(v.h3)}" oninput="setArr('venueCards',${i},'h3',this.value)" placeholder="Runway Restaurant"></div>
+        <div class="field"><label>Description</label><textarea rows="2" oninput="setArr('venueCards',${i},'p',this.value)">${esc(v.p||"")}</textarea></div>
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('venueCards',{h3:'',p:''})">+ Add venue card</button>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Dining gallery images</div>
+      ${S.diningGallery.map((g,i)=>`
+      <div class="fr2" style="margin-bottom:8px">
+        <div class="field" style="margin:0"><label>Image filename (no ext)</label><input value="${esc(g.imgSlot)}" oninput="setArr('diningGallery',${i},'imgSlot',this.value)" placeholder="dining-gallery-${i+1}"></div>
+        <div class="field" style="margin:0"><label>Alt text</label><input value="${esc(g.alt)}" oninput="setArr('diningGallery',${i},'alt',this.value)" placeholder="Restaurant interior"></div>
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('diningGallery',{imgSlot:'dining-gallery-'+(S.diningGallery.length+1),alt:''})">+ Add gallery image</button>`;
+
+    case"meetings": return`
+      <div class="field"><label>Hero subtitle</label><input value="${esc(S.meetingsH1Sub)}" oninput="set('meetingsH1Sub',this.value)" placeholder="Flexible Spaces in a Historic Setting"></div>
+      <div class="field"><label>Overview h2</label><input value="${esc(S.meetingsOverviewH2)}" oninput="set('meetingsOverviewH2',this.value)" placeholder="Historic Venue, Modern Facilities"></div>
+      <div class="field"><label>Overview paragraph</label><textarea rows="4" oninput="set('meetingsOverviewP',this.value)">${esc(S.meetingsOverviewP)}</textarea></div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Event space cards</div>
+      ${S.spaceCards.map((m,i)=>`
+      <div class="card">
+        <div class="ch"><span class="cl">Space ${i+1}: ${esc(m.h3||"Untitled")}</span>${S.spaceCards.length>1?`<button class="bd" onclick="remArr('spaceCards',${i})">×</button>`:""}</div>
+        <div class="fr2">
+          <div class="field"><label>Name (h3)</label><input value="${esc(m.h3)}" oninput="setArr('spaceCards',${i},'h3',this.value)" placeholder="Amy Johnson Suite"></div>
+          <div class="field"><label>Image filename (no ext)</label><input value="${esc(m.imgSlot)}" oninput="setArr('spaceCards',${i},'imgSlot',this.value)" placeholder="meeting-amy-johnson"></div>
+        </div>
+        <div class="field"><label>Description</label><textarea rows="2" oninput="setArr('spaceCards',${i},'p',this.value)">${esc(m.p||"")}</textarea></div>
+        <div class="fr2" style="margin-bottom:0">
+          <div class="field"><label>Theatre capacity</label><input value="${esc(m.theatre)}" oninput="setArr('spaceCards',${i},'theatre',this.value)" placeholder="170"></div>
+          <div class="field"><label>Dinner capacity</label><input value="${esc(m.dinner)}" oninput="setArr('spaceCards',${i},'dinner',this.value)" placeholder="130"></div>
+        </div>
+        <div class="fr2" style="margin-bottom:0">
+          <div class="field"><label>Reception capacity</label><input value="${esc(m.reception)}" oninput="setArr('spaceCards',${i},'reception',this.value)" placeholder="200"></div>
+          <div class="field"><label>Boardroom capacity</label><input value="${esc(m.boardroom)}" oninput="setArr('spaceCards',${i},'boardroom',this.value)" placeholder="18"></div>
+        </div>
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('spaceCards',{h3:'',p:'',theatre:'',dinner:'',reception:'',boardroom:'',imgSlot:'meeting-'+(S.spaceCards.length+1)})">+ Add event space</button>`;
+
+    case"weddings": return`
+      <div class="field"><label>Hero subtitle</label><input value="${esc(S.weddingsH1Sub)}" oninput="set('weddingsH1Sub',this.value)" placeholder="Say 'I Do' in a Historic Art Deco Landmark"></div>
+      <div class="field"><label>Overview h2</label><input value="${esc(S.weddingsOverviewH2)}" oninput="set('weddingsOverviewH2',this.value)" placeholder="Celebrate in Historic Surroundings"></div>
+      <div class="field"><label>Overview paragraph</label><textarea rows="4" oninput="set('weddingsOverviewP',this.value)">${esc(S.weddingsOverviewP)}</textarea></div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Ceremony cards (bullet lists — first card is "large")</div>
+      ${S.ceremonyCards.map((c,i)=>`
+      <div class="card">
+        <div class="ch"><span class="cl">Card ${i+1}${i===0?" (large featured)":""}</span>${S.ceremonyCards.length>1&&i>0?`<button class="bd" onclick="remArr('ceremonyCards',${i})">×</button>`:""}</div>
+        <div class="field"><label>Heading h3</label><input value="${esc(c.h3)}" oninput="setArr('ceremonyCards',${i},'h3',this.value)" placeholder="Amy Johnson Suite"></div>
+        <div class="field"><label>Bullet points <span class="hint" style="display:inline">(one per line)</span></label><textarea rows="4" oninput="setArr('ceremonyCards',${i},'bullets',this.value)">${esc(c.bullets||"")}</textarea></div>
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('ceremonyCards',{h3:'',bullets:'',large:false})">+ Add ceremony card</button>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Wedding packages (expandable cards — second card has "featured" style)</div>
+      ${S.packageCards.map((p,i)=>`
+      <div class="card">
+        <div class="ch"><span class="cl">Package ${i+1}${p.featured?" (featured)":""}</span>${S.packageCards.length>1?`<button class="bd" onclick="remArr('packageCards',${i})">×</button>`:""}</div>
+        <div class="fr2">
+          <div class="field"><label>Package name (h3)</label><input value="${esc(p.h3)}" oninput="setArr('packageCards',${i},'h3',this.value)" placeholder="Classic Wedding Package"></div>
+          <div class="field"><label>Intro line</label><input value="${esc(p.intro)}" oninput="setArr('packageCards',${i},'intro',this.value)" placeholder="Elegant and timeless celebration"></div>
+        </div>
+        <div class="field"><label>Package details <span class="hint" style="display:inline">(one bullet per line)</span></label><textarea rows="4" oninput="setArr('packageCards',${i},'bullets',this.value)">${esc(p.bullets||"")}</textarea></div>
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('packageCards',{h3:'',intro:'',bullets:'',featured:false})">+ Add package</button>
+      <div class="field" style="margin-top:12px"><label>CTA section subtext</label><textarea rows="2" oninput="set('weddingCTAText',this.value)">${esc(S.weddingCTAText)}</textarea></div>`;
+
+    case"christmas": return`
+      <div class="field"><label>Hero subtitle</label><input value="${esc(S.xmasH1Sub)}" oninput="set('xmasH1Sub',this.value)" placeholder="Festive Gatherings in Historic Surroundings"></div>
+      <div class="field"><label>Overview h2</label><input value="${esc(S.xmasOverviewH2)}" oninput="set('xmasOverviewH2',this.value)" placeholder="Christmas at the Hotel"></div>
+      <div class="field"><label>Overview paragraph</label><textarea rows="4" oninput="set('xmasOverviewP',this.value)">${esc(S.xmasOverviewP)}</textarea></div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Festive options (3 tab panels with image + text)</div>
+      ${S.xmasTabs.map((t,i)=>`
+      <div class="card">
+        <div class="ch"><span class="cl">Tab ${i+1}${i===0?" (active)":""}</span></div>
+        <div class="fr3">
+          <div class="field"><label>Tab label</label><input value="${esc(t.label)}" oninput="setArr('xmasTabs',${i},'label',this.value)" placeholder="Festive Parties"></div>
+          <div class="field"><label>Heading h3</label><input value="${esc(t.h3)}" oninput="setArr('xmasTabs',${i},'h3',this.value)" placeholder="Festive Parties & Corporate Events"></div>
+          <div class="field"><label>Image filename (no ext)</label><input value="${esc(t.imgSlot)}" oninput="setArr('xmasTabs',${i},'imgSlot',this.value)" placeholder="xmas-${i+1}"></div>
+        </div>
+        <div class="field"><label>Paragraph</label><textarea rows="2" oninput="setArr('xmasTabs',${i},'p',this.value)">${esc(t.p||"")}</textarea></div>
+      </div>`).join("")}
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Why Celebrate With Us — highlights grid (icon cards)</div>
+      ${S.xmasHighlights.map((h,i)=>`
+      <div class="card">
+        <div class="ch"><span class="cl">Highlight ${i+1}</span></div>
+        <div class="fr3">
+          <div class="field"><label>FA icon class</label><input value="${esc(h.icon)}" oninput="setArr('xmasHighlights',${i},'icon',this.value)" placeholder="fas fa-glass-cheers"></div>
+          <div class="field"><label>Heading h3</label><input value="${esc(h.h3)}" oninput="setArr('xmasHighlights',${i},'h3',this.value)" placeholder="Flexible Event Spaces"></div>
+          <div class="field"><label>Subtext</label><input value="${esc(h.p)}" oninput="setArr('xmasHighlights',${i},'p',this.value)" placeholder="Amy Johnson Suite & four additional venues"></div>
+        </div>
+      </div>`).join("")}`;
+
+    case"gallery": return`
+      <div class="fr2">
+        <div class="field"><label>Hero h1</label><input value="${esc(S.galleryH1)}" oninput="set('galleryH1',this.value)" placeholder="Our Gallery"></div>
+        <div class="field"><label>Hero subtitle</label><input value="${esc(S.galleryH1Sub)}" oninput="set('galleryH1Sub',this.value)" placeholder="Discover the Historic Charm and Modern Elegance"></div>
+      </div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Gallery filter buttons</div>
+      ${S.galleryFilters.map((f,i)=>`
+      <div style="display:grid;grid-template-columns:1fr 1fr 32px;gap:8px;align-items:end;margin-bottom:8px">
+        <div class="field" style="margin:0"><label>Button label</label><input value="${esc(f.label)}" oninput="setArr('galleryFilters',${i},'label',this.value)" placeholder="Exterior & Heritage"></div>
+        <div class="field" style="margin:0"><label>Filter key (data-filter)</label><input value="${esc(f.filter)}" oninput="setArr('galleryFilters',${i},'filter',this.value)" placeholder="exterior"></div>
+        ${i>0?`<button class="bd" onclick="remArr('galleryFilters',${i})">×</button>`:"<div></div>"}
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('galleryFilters',{label:'',filter:''})">+ Add filter</button>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Gallery items</div>
+      ${S.galleryItems.map((g,i)=>`
+      <div class="fr3" style="margin-bottom:8px;align-items:end">
+        <div class="field" style="margin:0"><label>Image filename (no ext)</label><input value="${esc(g.imgSlot)}" oninput="setArr('galleryItems',${i},'imgSlot',this.value)" placeholder="gallery-exterior-1"></div>
+        <div class="field" style="margin:0"><label>Alt text</label><input value="${esc(g.alt)}" oninput="setArr('galleryItems',${i},'alt',this.value)" placeholder="Historic Art Deco Exterior"></div>
+        <div class="field" style="margin:0"><label>Caption</label><input value="${esc(g.caption)}" oninput="setArr('galleryItems',${i},'caption',this.value)" placeholder="Iconic 1928 Art Deco Facade"></div>
+      </div>
+      <div style="margin-bottom:12px">
+        <label>Category (data-category)</label>
+        <select onchange="setArr('galleryItems',${i},'cat',this.value)">
+          ${S.galleryFilters.filter(f=>f.filter!=="all").map(f=>`<option value="${esc(f.filter)}"${g.cat===f.filter?" selected":""}>${esc(f.label)}</option>`).join("")}
+        </select>
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('galleryItems',{imgSlot:'gallery-'+(S.galleryItems.length+1),alt:'',caption:'',cat:'exterior'})">+ Add gallery item</button>`;
+
+    case"contact": return`
+      <div class="field"><label>Hero subtitle</label><input value="${esc(S.contactH1Sub)}" oninput="set('contactH1Sub',this.value)" placeholder="Reach out to plan your stay, meeting, event or wedding at the historic hotel"></div>
+      <div class="field"><label>Getting Here heading h2</label><input value="${esc(S.contactGettingHereH2)}" oninput="set('contactGettingHereH2',this.value)" placeholder="Travel to the Hotel"></div>
+      <div class="ibox" style="margin-top:8px">
+        <strong>Contact form:</strong> uses the email from General Info (formsubmit.co). To use Cognito Forms instead, enter your keys below.
+      </div>
+      <div class="fr2">
+        <div class="field"><label>Cognito Forms key (optional)</label><input value="${esc(S.cognitoKey||"")}" oninput="set('cognitoKey',this.value)" placeholder="YOUR_COGNITO_KEY"></div>
+        <div class="field"><label>Cognito Form ID (optional)</label><input value="${esc(S.cognitoForm||"")}" oninput="set('cognitoForm',this.value)" placeholder="YOUR_FORM_ID"></div>
+      </div>
+      <p style="font-size:12px;color:var(--t3)">Transport fields (By Air, Rail, Road, Parking) are shared from the General Info tab.</p>`;
+
+    case"explore": return`
+      <div class="fr2">
+        <div class="field"><label>Hero h1</label><input value="${esc(S.exploreH1)}" oninput="set('exploreH1',this.value)" placeholder="Explore Croydon & London"></div>
+        <div class="field"><label>Hero subtitle</label><input value="${esc(S.exploreH1Sub)}" oninput="set('exploreH1Sub',this.value)" placeholder="Historic Aviation Heritage Meets Vibrant City Life"></div>
+      </div>
+      <div class="field"><label>Overview h2</label><input value="${esc(S.exploreOverviewH2)}" oninput="set('exploreOverviewH2',this.value)" placeholder="Your Gateway to London & Beyond"></div>
+      <div class="field"><label>Overview paragraph</label><textarea rows="3" oninput="set('exploreOverviewP',this.value)">${esc(S.exploreOverviewP)}</textarea></div>
+      <div style="font-weight:600;font-size:13px;color:var(--p);margin:14px 0 8px">Attraction cards</div>
+      ${S.attractionCards.map((a,i)=>`
+      <div class="card">
+        <div class="ch"><span class="cl">Attraction ${i+1}</span>${S.attractionCards.length>1?`<button class="bd" onclick="remArr('attractionCards',${i})">×</button>`:""}</div>
+        <div class="fr2">
+          <div class="field"><label>Name (h3)</label><input value="${esc(a.h3)}" oninput="setArr('attractionCards',${i},'h3',this.value)" placeholder="BOXPARK Croydon"></div>
+          <div class="field"><label>Image filename (no ext)</label><input value="${esc(a.imgSlot)}" oninput="setArr('attractionCards',${i},'imgSlot',this.value)" placeholder="attraction-${i+1}"></div>
+        </div>
+        <div class="field"><label>Description paragraph</label><textarea rows="2" oninput="setArr('attractionCards',${i},'p',this.value)">${esc(a.p||"")}</textarea></div>
+      </div>`).join("")}
+      <button class="bda" onclick="addArr('attractionCards',{h3:'',p:'',imgSlot:'attraction-'+(S.attractionCards.length+1)})">+ Add attraction</button>`;
+
+    default: return`<p style="color:var(--t3)">Select a page above to edit its content.</p>`;
+  }
+}
+
+function tabImages(){
+  const slots=getSlots();
+  return`
+  <div class="dz" onclick="document.getElementById('iup').click()">
+    <div style="font-size:32px;margin-bottom:8px">📁</div>
+    <div style="font-weight:600;font-size:14px">Click to upload images</div>
+    <div style="font-size:12px;color:var(--t3);margin-top:4px">JPG · PNG · WebP — select multiple at once</div>
+    <input type="file" id="iup" accept="image/*" multiple style="display:none" onchange="handleUpload(this.files)">
+  </div>
+  ${S.images.length?`
+  <div style="font-weight:600;font-size:13px;margin-bottom:10px;color:var(--p)">${S.images.length} image${S.images.length!==1?"s":""} — copy these files into your <code>images/</code> folder</div>
+  <div class="itable">
+    <div class="ith"><span>Uploaded filename</span><span>Save as in images/</span><span></span></div>
+    ${S.images.map((img,i)=>`
+    <div class="itr">
+      <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--t2);font-size:12px">📷 ${esc(img.orig)}</span>
+      <input value="${esc(img.target)}" oninput="S.images[${i}].target=this.value" style="font-size:12px;padding:5px 8px">
+      <button class="bd" onclick="remImage(${i})">×</button>
+    </div>`).join("")}
+  </div>`:""}
+  <div class="ibox" style="margin-top:16px">
+    <div style="font-weight:700;margin-bottom:8px">📋 Required image slots for all active pages</div>
+    <div>${slots.map(s=>`<span class="chip">${esc(s)}</span>`).join("")}</div>
+    <div style="margin-top:8px;font-size:11px;opacity:.8">The zip download also includes <code>_image-slots.txt</code> with this full list.</div>
+  </div>`;
+}
+
+function tabSEO(){
+  return PAGES.filter(p=>ap().has(p.id)).map(p=>{
+    const s=S.seo[p.id]||{title:"",desc:"",kw:""};
+    const dl=(s.desc||"").length;
+    return`<div class="card">
+      <div class="cl" style="margin-bottom:10px">${p.icon} ${p.label} — <code style="font-weight:400;color:var(--t3)">${p.file}</code></div>
+      <div class="field"><label>Page title</label><input value="${esc(s.title)}" oninput="setSeo('${p.id}','title',this.value)" placeholder="${esc(p.label)} — ${esc(S.name||"Hotel Name")}"></div>
+      <div class="field">
+        <label>Meta description <span class="hint" style="display:inline">(max 160 chars)</span></label>
+        <textarea rows="2" oninput="setSeo('${p.id}','desc',this.value)">${esc(s.desc)}</textarea>
+        <div style="font-size:11px;margin-top:3px;color:${dl>160?"#c62828":"var(--t3)"}">${dl}/160</div>
+      </div>
+      <div class="field"><label>Keywords</label><input value="${esc(s.kw)}" oninput="setSeo('${p.id}','kw',this.value)" placeholder="hotel name, location, features"></div>
+    </div>`;
+  }).join("");
+}
+
+function tabTrans(){
+  if(S.type!=="de")return`<div class="ibox">Translations are only needed for German properties. Switch to "German Property" in General Info to enable this.</div>`;
+  const keys=[["hero_title","Hero headline"],["hero_subtitle","Hero subtitle"],["book_now","Book Now button"],
+    ["nav_rooms","Nav: Rooms"],["nav_dining","Nav: Dining"],["nav_meetings","Nav: Meetings"],
+    ["nav_weddings","Nav: Weddings"],["nav_christmas","Nav: Christmas"]];
+  return`
+  <p style="font-size:12px;color:var(--t2);margin-bottom:14px;line-height:1.6">Provide EN and DE text for each key. These power the language toggle button on all pages.</p>
+  ${keys.map(([k,l])=>`<div class="card">
+    <div class="cl" style="margin-bottom:8px">${l} <code style="font-weight:400;color:var(--t3)">${k}</code></div>
+    <div class="fr2">
+      <div><label>🇬🇧 English</label><input value="${esc((S.enT||{})[k]||"")}" oninput="S.enT['${k}']=this.value" placeholder="English text"></div>
+      <div><label>🇩🇪 German</label><input value="${esc((S.deT||{})[k]||"")}" oninput="S.deT['${k}']=this.value" placeholder="Deutscher Text"></div>
+    </div>
+  </div>`).join("")}`;
+}
+
+function tabOutput(){
+  const all=generateAll();
+  const pageCount=Object.keys(all).length;
+  const totalKB=Math.round(Object.values(all).reduce((a,h)=>a+h.length,0)/1024);
+  const slots=getSlots();
+  const curHtml=all[CSUB]||all["index"]||"";
+  return`
+  <div class="met">
+    <div class="mcard"><div class="mv">${pageCount}</div><div class="ml">Pages</div></div>
+    <div class="mcard"><div class="mv">${totalKB}KB</div><div class="ml">Total size</div></div>
+    <div class="mcard"><div class="mv">${slots.length}</div><div class="ml">Image slots</div></div>
+  </div>
+  <div class="dlall">
+    <div style="flex:1">
+      <div style="font-weight:600;font-size:13px;color:var(--p)">⬇ Download complete website as ZIP</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:3px">${PAGES.filter(p=>ap().has(p.id)).map(p=>p.file).join(", ")} + _image-slots.txt</div>
+    </div>
+    <button class="btn ba" onclick="downloadZip()">Download .zip</button>
+  </div>
+  <div style="font-weight:600;font-size:13px;color:var(--p);margin-bottom:10px">Preview & download individual pages</div>
+  <div class="pgrid" style="margin-bottom:14px">
+    ${PAGES.filter(p=>ap().has(p.id)).map(p=>`
+    <div class="pcard${CSUB===p.id?" sel":""}" onclick="CSUB='${p.id}';render()">
+      <div class="picon">${p.icon}</div>
+      <div class="pname">${p.label}</div>
+      <div class="pfile">${p.file}</div>
+    </div>`).join("")}
+  </div>
+  <div class="oa">
+    <button class="btn bp" onclick="dlPage()">⬇ Download ${PAGES.find(p=>p.id===CSUB)?.file||"page"}</button>
+    <button class="btn bo" onclick="copyPage()" id="copybtn2">📋 Copy HTML</button>
+  </div>
+  ${S.images.length?`<div class="ibox" style="margin-bottom:14px">
+    <div style="font-weight:700;margin-bottom:6px">Images checklist</div>
+    ${S.images.map(img=>`<span class="chip">${esc(img.target)}</span>`).join("")}
+  </div>`:""}
+  <div style="background:#fff;border:1px solid var(--b);border-radius:var(--r);overflow:hidden">
+    <div style="background:var(--bg);padding:8px 12px;font-size:11px;font-weight:600;color:var(--t3);display:flex;justify-content:space-between;border-bottom:1px solid var(--b)">
+      <span>${PAGES.find(p=>p.id===CSUB)?.file||"index.html"} preview</span>
+      <span>${Math.round(curHtml.length/1024)}KB · ${curHtml.split("\n").length} lines</span>
+    </div>
+    <div class="cbox">${esc(curHtml.substring(0,5000))}${curHtml.length>5000?"\n\n... [download for full file]":""}</div>
+  </div>`;
+}
+
+// ── ACTIONS ───────────────────────────────────────────────────────────────────
+function dlPage(){
+  const html=generatePage(CSUB);
+  const pg=PAGES.find(p=>p.id===CSUB);
+  const blob=new Blob([html],{type:"text/html"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");a.href=url;a.download=pg?pg.file:`${CSUB}.html`;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+function copyPage(){
+  const html=generatePage(CSUB)||generatePage("index");
+  navigator.clipboard.writeText(html).then(()=>{
+    ["copybtn","copybtn2"].forEach(id=>{
+      const b=document.getElementById(id);
+      if(b){const o=b.innerHTML;b.innerHTML="✓ Copied!";setTimeout(()=>b.innerHTML=o,2000);}
+    });
+  });
+}
+function handleUpload(files){
+  Array.from(files).forEach(f=>{
+    const orig=f.name,ext=orig.split(".").pop().toLowerCase();
+    const base=orig.replace(/\.[^.]+$/,"").replace(/[^a-z0-9]/gi,"-").toLowerCase();
+    let target=base+"."+ext,n=1;
+    while(S.images.some(i=>i.target===target))target=base+"-"+(++n)+"."+ext;
+    S.images.push({orig,target});
+  });render();
+}
+function remImage(i){S.images.splice(i,1);render();}
+
+// ── RENDER ────────────────────────────────────────────────────────────────────
+function render(){
+  document.getElementById("tabbar").innerHTML=TABS.map(t=>`<button class="tb${TAB===t.id?" act":""}" onclick="TAB='${t.id}';render()">${t.label}</button>`).join("");
+  const m={general:tabGeneral,pages:tabPages,content:tabContent,images:tabImages,seo:tabSEO,trans:tabTrans,output:tabOutput};
+  document.getElementById("tcon").innerHTML=(m[TAB]||tabGeneral)();
+  document.getElementById("tsub").textContent=`${S.type==="de"?"🇩🇪 German (EN+DE)":"🇬🇧 UK (English)"} · ${ap().size} pages · ${S.images.length} image${S.images.length!==1?"s":""}`;
+}
+render();
+
+// ── PREVIEW STATE ─────────────────────────────────────────────────────────────
+let PREV_PAGE = 'index';
+let PREV_VISIBLE = true;
+let PREV_DEBOUNCE = null;
+
+// ── PREVIEW RENDERER ──────────────────────────────────────────────────────────
+// Self-contained: all CSS embedded, matches exact aerodrome design tokens
+const PREVIEW_CSS = `
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+  :root{--p:#2b4e72;--s:#1a2e3a;--a:#d4a373;--l:#f9f9f9;--d:#1a1a1a;--b:#e0e0e0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Montserrat',sans-serif;font-size:14px;color:#1a1a1a;background:#fff;line-height:1.6}
+  a{color:var(--p);text-decoration:none}
+  /* HEADER */
+  .ph{background:var(--l);box-shadow:0 4px 16px rgba(0,0,0,.1);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+  .phlogo{height:30px;display:flex;align-items:center;gap:8px}
+  .phlogo-box{width:24px;height:24px;background:var(--p);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px}
+  .phlogo-name{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:var(--s)}
+  .phnav{display:flex;gap:16px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px}
+  .phnav a{color:var(--d)}
+  .phbook{background:linear-gradient(90deg,var(--p),#4a7ba3);color:#fff;padding:8px 16px;border-radius:20px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+  /* HERO SLIDER */
+  .phero{height:320px;background:linear-gradient(135deg,var(--s),var(--p));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .phero-img{position:absolute;inset:0;background:linear-gradient(160deg,var(--s) 0%,var(--p) 60%,#1a5a8a 100%);opacity:.85}
+  .phero-content{position:relative;z-index:2;text-align:center;padding:20px;color:#fff}
+  .phero-content h1{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+  .phero-content p{font-size:12px;background:rgba(0,0,0,.4);padding:6px 14px;border-radius:8px;margin-bottom:14px;display:inline-block}
+  .pbtn{display:inline-block;background:linear-gradient(90deg,var(--p),#4a7ba3);color:#fff;padding:10px 22px;border-radius:24px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin:0 5px;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+  /* HERO STATIC (inner pages) */
+  .phero-static{height:200px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .phero-static-bg{position:absolute;inset:0;background:linear-gradient(160deg,var(--s),var(--p));opacity:.9}
+  .phero-static-content{position:relative;z-index:2;text-align:center;color:#fff;padding:20px}
+  .phero-static-content h1{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,1.8rem);margin-bottom:8px;text-shadow:0 2px 6px rgba(0,0,0,.5)}
+  .phero-static-content p{font-size:12px;opacity:.9}
+  /* QUOTE */
+  .pquote{padding:36px 20px;background:linear-gradient(120deg,var(--l) 80%,var(--p) 100%);text-align:center}
+  .pquote-box{max-width:700px;margin:0 auto;padding:20px 28px;background:rgba(255,255,255,.95);border-radius:10px;border:2px solid var(--p)}
+  .pquote-box p{font-family:'Playfair Display',serif;font-size:clamp(.9rem,1.5vw,1.1rem);font-style:italic;background:linear-gradient(90deg,var(--p),#4a7ba3);-webkit-background-clip:text;background-clip:text;color:transparent}
+  /* SECTION LABEL */
+  .slabel{font-family:'Playfair Display',serif;font-size:2rem;color:var(--p);text-transform:uppercase;letter-spacing:2px;text-align:center;margin-bottom:12px}
+  /* HIGHLIGHTS */
+  .phl{padding:50px 20px 50px 50px;background:var(--l);position:relative}
+  .phl::before{content:'';position:absolute;top:40px;left:16px;width:20px;height:calc(100% - 80px);background:linear-gradient(180deg,var(--s),var(--p));border-radius:4px}
+  .phl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:1100px;margin:0 auto}
+  .phl-card{border-radius:10px;overflow:hidden;position:relative;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+  .phl-card-img{width:100%;height:180px;object-fit:cover;display:block;background:linear-gradient(135deg,var(--p),#4a7ba3)}
+  .phl-card-ph{width:100%;height:180px;background:linear-gradient(135deg,var(--p),#4a7ba3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px}
+  .phl-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(43,78,114,.6),rgba(0,0,0,.4));display:flex;align-items:center;justify-content:center}
+  .phl-title{font-family:'Playfair Display',serif;font-size:1rem;color:#fff;text-align:center;padding:8px}
+  /* MAGAZINE */
+  .pmag{display:flex;align-items:flex-start;max-width:1100px;margin:40px auto;padding:0 20px;gap:28px}
+  .pmag.rev{flex-direction:row-reverse}
+  .pmag-img{flex:0 0 48%;border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+  .pmag-img-ph{width:100%;height:260px;background:linear-gradient(135deg,var(--p) 0%,#4a7ba3 100%);display:flex;align-items:center;justify-content:center;color:#fff;font-size:40px}
+  .pmag-content{flex:0 0 48%;padding:16px;text-align:center}
+  .pmag-content h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.5vw,1.8rem);color:var(--s);margin-bottom:10px}
+  .pmag-content p{font-family:'Lora',serif;font-size:.9rem;color:var(--d);margin-bottom:14px;line-height:1.7}
+  /* WEDDING */
+  .pwed{padding:70px 20px;background:linear-gradient(180deg,rgba(249,249,249,.92),rgba(249,249,249,.95)),url('') center/cover;text-align:center;border-top:3px solid var(--a);border-bottom:3px solid var(--a)}
+  .pwed-content{max-width:700px;margin:0 auto}
+  .pwed-content h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--s);margin-bottom:16px}
+  .pwed-content p{font-family:'Lora',serif;font-size:1rem;color:var(--d);line-height:1.8;margin-bottom:16px}
+  /* THINGS */
+  .pthings{padding:50px 20px;background:var(--l)}
+  .pthings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;max-width:1100px;margin:0 auto}
+  .pthing-card{border-radius:10px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+  .pthing-img{width:100%;height:140px;background:linear-gradient(135deg,var(--p),#4a7ba3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px}
+  .pthing-info{padding:10px;background:var(--l);text-align:center;font-family:'Lora',serif;font-size:.85rem;color:var(--p);font-weight:500}
+  /* TRANSPORT */
+  .ptrans{padding:50px 20px;text-align:center}
+  .ptrans h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--s);margin-bottom:16px}
+  .ptrans-accordion{max-width:700px;margin:0 auto}
+  .pacc-item{margin-bottom:8px;text-align:left}
+  .pacc-toggle{width:100%;padding:12px 16px;background:#fff;border:1px solid var(--p);font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:500;cursor:default;text-align:left;color:var(--d)}
+  .pacc-body{padding:12px 16px;background:#fff;border:1px solid #ddd;border-top:none;font-family:'Lora',serif;font-size:.85rem;color:var(--d);display:block}
+  /* MAP placeholder */
+  .pmap{max-width:700px;margin:20px auto;height:200px;background:linear-gradient(135deg,#e8f0fb,var(--b));border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--p);font-size:32px;border:1px solid var(--b)}
+  /* FOOTER */
+  .pfooter{background:var(--s);color:var(--l);padding:40px 20px 20px}
+  .pfooter-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;max-width:1100px;margin:0 auto 20px}
+  .pfooter h4{font-family:'Playfair Display',serif;font-size:1rem;color:whitesmoke;margin-bottom:10px}
+  .pfooter address{font-style:normal;font-size:.8rem;line-height:1.8;opacity:.85}
+  .pfooter a{color:var(--l);text-decoration:none;font-size:.8rem}
+  .pfooter ul{list-style:none;font-size:.8rem;line-height:2;opacity:.85}
+  .pfooter-btn{display:inline-block;background:linear-gradient(90deg,var(--p),#4a7ba3);color:#fff;padding:8px 16px;border-radius:16px;font-size:.8rem;margin-bottom:10px}
+  .pfooter-bottom{text-align:center;border-top:1px solid rgba(255,255,255,.15);padding-top:16px;font-size:.75rem;opacity:.6}
+  /* OVERVIEW */
+  .pov{padding:50px 20px;text-align:center}
+  .pov-inner{max-width:700px;margin:0 auto}
+  .pov-div{height:2px;background:linear-gradient(90deg,transparent,var(--p),transparent);margin:16px auto;max-width:300px}
+  .pov h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--s);margin-bottom:12px}
+  .pov p{font-family:'Lora',serif;font-size:.95rem;color:var(--d);line-height:1.8}
+  /* HISTORY CARDS */
+  .phist{padding:40px 20px;max-width:1100px;margin:0 auto}
+  .phist h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--s);text-align:center;margin-bottom:24px}
+  .phist-card{display:flex;align-items:center;gap:24px;margin-bottom:28px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .phist-card.rev{flex-direction:row-reverse}
+  .phist-card-img{flex:0 0 40%;height:200px;background:linear-gradient(135deg,var(--p),#4a7ba3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:36px}
+  .phist-card-text{flex:1;padding:20px}
+  .phist-card-text h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--s);margin-bottom:8px}
+  .phist-card-text p{font-family:'Lora',serif;font-size:.9rem;color:var(--d);line-height:1.7}
+  /* LOCATION */
+  .ploc{padding:40px 20px;background:var(--l)}
+  .ploc-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+  .ploc-sidebar h2{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--s);margin-bottom:10px}
+  .ploc-sidebar p{font-family:'Lora',serif;font-size:.85rem;line-height:1.8;margin-bottom:8px}
+  .ploc-sidebar ul{list-style:none;padding-left:4px;font-size:.82rem;font-family:'Lora',serif;line-height:1.9;color:var(--d)}
+  .ploc-map{height:220px;background:linear-gradient(135deg,#e8f0fb,var(--b));border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--p);font-size:36px;border:1px solid var(--b)}
+  /* VALUES */
+  .pvals{padding:50px 20px;text-align:center;background:var(--l)}
+  .pvals h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--s);margin-bottom:24px}
+  .pvals-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:900px;margin:0 auto}
+  .pval-card{background:#fff;border-radius:10px;padding:24px 16px;box-shadow:0 4px 12px rgba(0,0,0,.08);text-align:center}
+  .pval-card i{font-size:2rem;color:var(--a);margin-bottom:10px;display:block}
+  .pval-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--s);margin-bottom:8px}
+  .pval-card p{font-family:'Lora',serif;font-size:.85rem;color:var(--d)}
+  /* ROOMS */
+  .prooms-filter{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+  .prooms-fbtn{padding:7px 14px;border:1px solid var(--p);background:#fff;font-family:'Montserrat',sans-serif;font-size:.8rem;border-radius:4px;cursor:default}
+  .prooms-fbtn.act{background:var(--p);color:#fff}
+  .prooms-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+  .proom-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .proom-card-img{width:100%;height:160px;background:linear-gradient(135deg,var(--p),#4a7ba3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px}
+  .proom-card-body{padding:16px}
+  .proom-card-body h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--s);margin-bottom:6px}
+  .proom-card-body p{font-family:'Lora',serif;font-size:.82rem;color:var(--d);margin-bottom:4px}
+  /* SPACE CARDS (meetings) */
+  .pspaces{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:1100px;margin:0 auto}
+  .pspace-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .pspace-card-img{width:100%;height:160px;background:linear-gradient(135deg,var(--p),#4a7ba3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px}
+  .pspace-card-body{padding:16px}
+  .pspace-card-body h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--s);margin-bottom:6px}
+  .pspace-card-body p{font-family:'Lora',serif;font-size:.82rem;color:var(--d);margin-bottom:8px}
+  .proom-meta{display:flex;gap:6px;flex-wrap:wrap}
+  .proom-meta span{background:var(--l);border:1px solid var(--b);border-radius:4px;padding:3px 8px;font-size:.75rem;color:var(--d)}
+  /* VENUE CARDS (dining) */
+  .pvenues{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:900px;margin:0 auto 20px}
+  .pvenue-card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08);text-align:center}
+  .pvenue-card h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--s);margin-bottom:8px}
+  .pvenue-card p{font-family:'Lora',serif;font-size:.82rem;color:var(--d);line-height:1.6}
+  .pbreakfast{max-width:600px;margin:20px auto;background:var(--l);border-left:3px solid var(--a);padding:14px 18px}
+  .pbreakfast h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--s);margin-bottom:6px}
+  .pbreakfast p{font-family:'Lora',serif;font-size:.85rem;color:var(--d)}
+  /* DINING GALLERY */
+  .pdining-gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;max-width:900px;margin:0 auto}
+  .pdining-gal-item{height:140px;background:linear-gradient(135deg,var(--p),#4a7ba3);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px}
+  /* CEREMONY CARDS */
+  .pceremony-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:900px;margin:0 auto}
+  .pceremony-card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .pceremony-card.large{border-top:3px solid var(--a)}
+  .pceremony-card h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--s);margin-bottom:10px}
+  .pceremony-card ul{list-style:disc;padding-left:16px;font-family:'Lora',serif;font-size:.82rem;color:var(--d);line-height:2}
+  /* PACKAGES */
+  .ppkgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:800px;margin:0 auto}
+  .ppkg-card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .ppkg-card.feat{border:2px solid var(--a);background:linear-gradient(180deg,#fff,#fdf6ef)}
+  .ppkg-card h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--s);margin-bottom:6px}
+  .ppkg-intro{font-family:'Lora',serif;font-style:italic;font-size:.85rem;color:var(--d);margin-bottom:10px}
+  .ppkg-details{font-family:'Lora',serif;font-size:.82rem;color:var(--d)}
+  .ppkg-details ul{list-style:disc;padding-left:16px;line-height:1.9}
+  /* XMAS TABS */
+  .pxtabs{display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap}
+  .pxtab-btn{padding:8px 16px;border:1px solid var(--p);background:#fff;font-family:'Montserrat',sans-serif;font-size:.8rem;border-radius:4px;cursor:default}
+  .pxtab-btn.act{background:var(--p);color:#fff}
+  .pxtab-content{max-width:700px;margin:0 auto;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .pxtab-img{width:100%;height:180px;background:linear-gradient(135deg,var(--p),#4a7ba3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:40px}
+  .pxtab-body{padding:20px}
+  .pxtab-body h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--s);margin-bottom:8px}
+  .pxtab-body p{font-family:'Lora',serif;font-size:.88rem;color:var(--d);line-height:1.7}
+  /* XMAS HIGHLIGHTS */
+  .pxhl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;max-width:900px;margin:0 auto}
+  .pxhl-card{background:#fff;border-radius:10px;padding:20px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .pxhl-card i{font-size:1.8rem;color:var(--a);display:block;margin-bottom:8px}
+  .pxhl-card h3{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--s);margin-bottom:6px}
+  .pxhl-card p{font-family:'Lora',serif;font-size:.8rem;color:var(--d)}
+  /* GALLERY */
+  .pgal-filter{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+  .pgal-fbtn{padding:7px 14px;border:1px solid var(--p);background:#fff;font-family:'Montserrat',sans-serif;font-size:.8rem;border-radius:4px;cursor:default}
+  .pgal-fbtn.act{background:var(--p);color:#fff}
+  .pgal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;max-width:1100px;margin:0 auto}
+  .pgal-item{height:140px;background:linear-gradient(135deg,var(--p),#4a7ba3);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;overflow:hidden;position:relative}
+  .pgal-item-label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);color:#fff;font-size:.7rem;padding:4px 8px;text-align:center;font-family:'Montserrat',sans-serif}
+  /* CONTACT */
+  .pcontact-form{max-width:600px;margin:0 auto;background:#fff;border-radius:10px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .pcontact-form input,.pcontact-form select,.pcontact-form textarea{width:100%;margin-bottom:10px;padding:10px;border:1px solid var(--b);border-radius:6px;font-family:'Montserrat',sans-serif;font-size:.85rem;background:#fff}
+  .pdetails-container{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto}
+  .pdetails-card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .pdetails-card h3{font-family:'Playfair Display',serif;font-size:1rem;color:var(--s);margin-bottom:10px}
+  .pdetails-card address{font-style:normal;font-family:'Lora',serif;font-size:.85rem;line-height:1.9;color:var(--d)}
+  .pdetails-card a{color:var(--p)}
+  .pdetails-img{height:220px;background:linear-gradient(135deg,var(--p),#4a7ba3);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:48px}
+  .psocial{display:flex;gap:10px;margin-top:12px}
+  .psocial-icon{width:32px;height:32px;background:var(--p);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px}
+  /* COLLAPSIBLE (contact) */
+  .pcollapse{max-width:700px;margin:0 auto}
+  .pcollapse-item{margin-bottom:8px;text-align:left}
+  .pcollapse-toggle{width:100%;padding:12px 16px;background:#fff;border:1px solid var(--p);font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:500;text-align:left;cursor:default;color:var(--d)}
+  .pcollapse-body{padding:12px 16px;background:#fff;border:1px solid #ddd;border-top:none;font-family:'Lora',serif;font-size:.85rem;color:var(--d)}
+  /* ATTRACTIONS */
+  .pattr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:1100px;margin:0 auto}
+  .pattr-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .pattr-card-img{width:100%;height:150px;background:linear-gradient(135deg,var(--p),#4a7ba3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px}
+  .pattr-card-body{padding:14px}
+  .pattr-card-body h3{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--s);margin-bottom:6px}
+  .pattr-card-body p{font-family:'Lora',serif;font-size:.82rem;color:var(--d);line-height:1.6}
+  /* CTA */
+  .pcta{padding:60px 20px;background:linear-gradient(135deg,var(--s),var(--p));text-align:center}
+  .pcta h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.5vw,1.9rem);color:#fff;margin-bottom:10px}
+  .pcta p{font-family:'Lora',serif;font-size:.95rem;color:rgba(255,255,255,.85);margin-bottom:18px}
+  .pbtn-light{display:inline-block;background:#fff;color:var(--p);padding:10px 24px;border-radius:24px;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+  /* SECTION PAD */
+  .psec{padding:50px 20px}
+  .psec-center{text-align:center;max-width:1100px;margin:0 auto}
+  .psec h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--s);margin-bottom:16px}
+  .psec p{font-family:'Lora',serif;font-size:.95rem;color:var(--d);line-height:1.8}
+  /* BROWSER CHROME */
+  .pbrowser-bar{background:#2d2d2d;padding:8px 12px;display:flex;align-items:center;gap:8px;border-radius:10px 10px 0 0}
+  .pbrowser-dots{display:flex;gap:5px}
+  .pbrowser-dot{width:10px;height:10px;border-radius:50%}
+  .pbrowser-url{flex:1;background:#3d3d3d;border-radius:4px;padding:4px 10px;font-size:11px;color:#aaa;text-align:center;font-family:monospace}
+`;
+
+function buildPreview(S, pageId){
+  const n = v => (S[v]||'');
+  const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  function header(){
+    const navItems = ['dining','meetings','weddings','christmas'].filter(id=>S.activePages.includes(id));
+    return `<div class="ph">
+      <div class="phlogo">
+        <div class="phlogo-box">S</div>
+        <div class="phlogo-name">${esc(n('name')||'Hotel Name')}</div>
+      </div>
+      <div class="phnav">
+        <a href="#">About</a><a href="#">Stay</a>
+        ${navItems.map(id=>`<a href="#">${id.charAt(0).toUpperCase()+id.slice(1)}</a>`).join('')}
+      </div>
+      <div class="phbook">${esc(n('slide1CTA')||'Book Now')}</div>
+    </div>`;
+  }
+
+  function footer(){
+    const ql=['dining','meetings','weddings','christmas'].filter(id=>S.activePages.includes(id));
+    return `<div class="pfooter">
+      <div class="pfooter-cols">
+        <div>
+          <div class="pfooter-btn">Contact Us</div>
+          <address>${esc(n('name'))}<br/>${esc(n('addr'))}<br/>${esc(n('phone'))}<br/>${esc(n('email'))}</address>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>${ql.map(id=>`<li><a href="#">${id.charAt(0).toUpperCase()+id.slice(1)}</a></li>`).join('')}</ul>
+        </div>
+        <div>
+          <h4>Newsletter</h4>
+          <input style="width:100%;padding:8px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);border-radius:4px;color:#fff;font-family:Montserrat,sans-serif;font-size:12px" placeholder="Your email address" readonly/>
+        </div>
+      </div>
+      <div class="pfooter-bottom">&copy; ${new Date().getFullYear()} ${esc(n('name')||'Hotel Name')}. All rights reserved.</div>
+    </div>`;
+  }
+
+  function heroStatic(h1, sub, cta='Book Now'){
+    return `<div class="phero-static">
+      <div class="phero-static-bg"></div>
+      <div class="phero-static-content">
+        <h1>${esc(h1||'Page Title')}</h1>
+        <p>${esc(sub||'')}</p>
+        ${cta?`<a href="#" class="pbtn" style="margin-top:10px;display:inline-block">${esc(cta)}</a>`:''}
+      </div>
+    </div>`;
+  }
+
+  function overviewSection(label, h2, p){
+    return `<div class="pov psec">
+      <div class="slabel">${esc(label||'')}</div>
+      <div class="pov-inner">
+        <div class="pov-div"></div>
+        <h2>${esc(h2||'')}</h2>
+        <p>${esc(p||'')}</p>
+        <div class="pov-div"></div>
+      </div>
+    </div>`;
+  }
+
+  function ctaSection(h2, p, btnText){
+    return `<div class="pcta">
+      <h2>${esc(h2||'')}</h2>
+      <p>${esc(p||'')}</p>
+      <a href="#" class="pbtn-light">${esc(btnText||'Book Now')}</a>
+    </div>`;
+  }
+
+  function magSection(reverse, label, h2, p, ctaLabel, icon='🏨'){
+    return `<div class="pmag${reverse?' rev':''}">
+      <div class="pmag-img"><div class="pmag-img-ph">${icon}</div></div>
+      <div class="pmag-content">
+        <div class="slabel" style="font-size:1.2rem;margin-bottom:10px">${esc(label||'')}</div>
+        <h2>${esc(h2||'')}</h2>
+        <p>${esc(p||'')}</p>
+        <a href="#" class="pbtn">${esc(ctaLabel||'Learn More')}</a>
+      </div>
+    </div>`;
+  }
+
+  // ── PAGE BUILDERS ──────────────────────────────────────────────────────────
+  const pages = {
+
+    index(){
+      const slides = [
+        {h1:n('slide1H1')||n('name'),sub:n('slide1Sub'),cta:n('slide1CTA')||'Book Now'},
+        {h1:n('slide2H1'),sub:n('slide2Sub'),cta:n('slide2CTA')},
+        {h1:n('slide3H1'),sub:n('slide3Sub'),cta:n('slide3CTA')},
+      ].filter(s=>s.h1);
+      const sl = slides[0] || {h1:n('name')||'Welcome',sub:n('tagline'),cta:'Book Now'};
+
+      const hlCards = S.highlights.filter(h=>h.label).map(h=>`
+        <div class="phl-card">
+          <div class="phl-card-ph">🏨</div>
+          <div class="phl-overlay"><div class="phl-title">${esc(h.label)}</div></div>
+        </div>`).join('');
+
+      const things = S.thingCards.filter(t=>t.label).map(t=>`
+        <div class="pthing-card">
+          <div class="pthing-img">📍</div>
+          <div class="pthing-info">${esc(t.label)}</div>
+        </div>`).join('');
+
+      const transport = [['By Air',n('byAir')],['By Rail',n('byRail')],['By Road',n('byRoad')],['Parking',n('parking')]].filter(([,v])=>v);
+
+      return `
+        ${header()}
+        <div class="phero">
+          <div class="phero-img"></div>
+          <div class="phero-content">
+            <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;opacity:.8;margin-bottom:8px;font-family:Montserrat,sans-serif">
+              ${slides.length>1?`Slide 1 of ${slides.length}`:'Hero'}
+            </div>
+            <h1>${esc(sl.h1)}</h1>
+            <p>${esc(sl.sub||n('tagline')||'')}</p>
+            <a href="#" class="pbtn">${esc(sl.cta)}</a>
+          </div>
+        </div>
+        ${n('quoteText')?`<div class="pquote"><div class="pquote-box"><p>${esc(n('quoteText'))}</p></div></div>`:''}
+        <div class="phl">
+          <div class="slabel">Highlights</div><br/>
+          <div class="phl-grid">${hlCards||'<p style="color:#888;font-size:12px;text-align:center;width:100%">Add highlight labels in Content → Homepage</p>'}</div>
+        </div>
+        ${magSection(false,'Discover',n('indexAboutH2')||'A Historic Aviation Landmark',n('indexAboutP'),'Learn More','🏛️')}
+        ${magSection(true,'Rooms & Suites','Relaxed & Practical Stays',n('indexRoomsP'),'View Rooms & Suites','🛏️')}
+        ${magSection(false,'Meetings & Events','Inspire Your Guests',n('indexMeetingsP'),'Plan Your Event','📊')}
+        <div class="pwed">
+          <div class="pwed-content">
+            <div class="slabel" style="font-size:1.2rem;margin-bottom:8px">Weddings</div>
+            <h2>Celebrate in Historic Surroundings</h2>
+            <p>${esc(n('indexWeddingsP')||'')}</p>
+            <a href="#" class="pbtn">Enquire About Weddings</a>
+          </div>
+        </div>
+        ${things?`<div class="pthings"><div class="slabel" style="font-size:1.5rem;margin-bottom:12px">Explore the Area</div><div class="pthings-grid">${things}</div></div>`:''}
+        ${transport.length?`<div class="ptrans">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Getting Here</div>
+          <h2>Arrive Easily</h2>
+          <div class="ptrans-accordion">
+            ${transport.map(([k,v])=>`<div class="pacc-item"><div class="pacc-toggle">${esc(k)}</div><div class="pacc-body">${esc(v)}</div></div>`).join('')}
+          </div>
+        </div>`:''}
+        ${n('mapEmbed')?`<div class="pmap">🗺️</div>`:''}
+        ${footer()}`;
+    },
+
+    about(){
+      const histCards = S.histCards.filter(c=>c.h3).map((c,i)=>`
+        <div class="phist-card${i%2===1?' rev':''}">
+          <div class="phist-card-img">🏛️</div>
+          <div class="phist-card-text">
+            <h3>${esc(c.h3)}</h3>
+            <p>${esc(c.p||'')}</p>
+          </div>
+        </div>`).join('');
+      const locBullets = (n('locationBullets')||'').split('\n').filter(b=>b.trim()).map(b=>`<li>${esc(b.trim())}</li>`).join('');
+      const locBenefits = (n('locationBenefits')||'').split('\n').filter(b=>b.trim()).map(b=>`<li>${esc(b.trim())}</li>`).join('');
+      const valCards = S.valueCards.filter(v=>v.h3).map(v=>`
+        <div class="pval-card">
+          <i class="${esc(v.icon||'fas fa-star')}"></i>
+          <h3>${esc(v.h3)}</h3>
+          <p>${esc(v.p||'')}</p>
+        </div>`).join('');
+      const transport = [['By Air',n('byAir')],['By Rail',n('byRail')],['By Road',n('byRoad')],['Parking',n('parking')]].filter(([,v])=>v);
+      return `
+        ${header()}
+        ${heroStatic(n('aboutH1')||'Aviation Heritage', n('aboutH1Sub')||'Since 1928', 'Book Your Stay')}
+        <div class="phist psec">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Our Story</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:20px">${esc(n('aboutH2')||n('name')||'')}</h2>
+          ${histCards||'<p style="text-align:center;color:#888;font-size:12px">Add history cards in Content → About</p>'}
+          <div style="text-align:center;margin-top:16px"><a href="#" class="pbtn">Book Your Stay</a></div>
+        </div>
+        ${n('locationDesc')||locBullets?`<div class="ploc psec" style="background:#f9f9f9">
+          <div class="slabel" style="font-size:1.2rem;margin-bottom:12px">Location</div>
+          <div class="ploc-inner">
+            <div class="ploc-sidebar">
+              <h2>Prime Location</h2>
+              <p>${esc(n('locationDesc')||'')}</p>
+              ${locBullets?`<p><strong>📍 Nearby Attractions:</strong></p><ul>${locBullets}</ul>`:''}
+              ${locBenefits?`<p style="margin-top:8px"><strong>🌟 Key Benefits</strong></p><ul>${locBenefits}</ul>`:''}
+              <div style="margin-top:12px"><a href="#" class="pbtn">Getting Here</a></div>
+            </div>
+            <div class="ploc-map">🗺️</div>
+          </div>
+        </div>`:''}
+        ${valCards?`<div class="pvals psec"><div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Our Values</div><h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:20px">What Sets Us Apart</h2><div class="pvals-grid">${valCards}</div></div>`:''}
+        ${transport.length?`<div class="ptrans psec"><div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Getting Here</div><h2>Arrive Easily</h2><div class="ptrans-accordion">${transport.map(([k,v])=>`<div class="pacc-item"><div class="pacc-toggle">${esc(k)}</div><div class="pacc-body">${esc(v)}</div></div>`).join('')}</div></div>`:''}
+        ${n('mapEmbed')?`<div class="pmap">🗺️</div>`:''}
+        ${footer()}`;
+    },
+
+    rooms(){
+      const filters = ['all',...new Set(S.roomCards.map(r=>r.filter||'classic'))];
+      const filterBtns = filters.map((f,i)=>`<div class="prooms-fbtn${i===0?' act':''}">${f==='all'?'All Rooms':f.charAt(0).toUpperCase()+f.slice(1)}</div>`).join('');
+      const cards = S.roomCards.filter(r=>r.name).map(r=>`
+        <div class="proom-card">
+          <div class="proom-card-img">🛏️</div>
+          <div class="proom-card-body">
+            <h3>${esc(r.name)}</h3>
+            <p>${esc(r.p1||'')}</p>
+            <p>${esc(r.p2||'')}</p>
+          </div>
+        </div>`).join('');
+      return `
+        ${header()}
+        ${heroStatic('Rooms & Suites',n('roomsH1Sub'),'Explore Our Rooms')}
+        ${overviewSection('Accommodation',n('roomsOverviewH2')||'Our Rooms',n('roomsOverviewP'))}
+        <div class="psec">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Room Types</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:16px">Choose Your Stay</h2>
+          <div class="prooms-filter">${filterBtns}</div>
+          <div class="prooms-grid">${cards||'<p style="text-align:center;color:#888;font-size:12px;width:100%">Add room types in Content → Rooms</p>'}</div>
+        </div>
+        ${ctaSection('Book Your Comfortable Stay','Experience comfort in a historic setting.',n('slide1CTA')||'Book Now')}
+        ${footer()}`;
+    },
+
+    dining(){
+      const venueCards = S.venueCards.filter(v=>v.h3).map(v=>`
+        <div class="pvenue-card">
+          <h3>${esc(v.h3)}</h3>
+          <p>${esc(v.p||'')}</p>
+        </div>`).join('');
+      const galItems = S.diningGallery.filter(g=>g.imgSlot).map(()=>`<div class="pdining-gal-item">🍽️</div>`).join('');
+      return `
+        ${header()}
+        ${heroStatic(n('diningH1')||n('diningRestName')||'Restaurant & Bar',n('diningH1Sub'),'Explore Dining')}
+        ${overviewSection('Culinary Experience',n('diningRestName')||'Our Restaurant',n('diningOverviewP'))}
+        <div class="psec">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:12px">Our Venues</div>
+          <div class="pvenues">${venueCards||'<p style="text-align:center;color:#888;font-size:12px">Add venues in Content → Dining</p>'}</div>
+          ${n('breakfastHours')?`<div class="pbreakfast"><h3>Breakfast Times</h3><p>${esc(n('breakfastHours'))}</p></div>`:''}
+        </div>
+        ${galItems?`<div class="psec"><div class="slabel" style="font-size:1.5rem;margin-bottom:12px">Dining Moments</div><h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:16px">Experience Our Food &amp; Atmosphere</h2><div class="pdining-gal">${galItems}</div></div>`:''}
+        ${ctaSection('Dine With Us','Enjoy great food in a memorable setting.','Book Your Stay')}
+        ${footer()}`;
+    },
+
+    meetings(){
+      const spaceCards = S.spaceCards.filter(m=>m.h3).map(m=>`
+        <div class="pspace-card">
+          <div class="pspace-card-img">📊</div>
+          <div class="pspace-card-body">
+            <h3>${esc(m.h3)}</h3>
+            <p>${esc(m.p||'')}</p>
+            <div class="proom-meta">
+              ${m.theatre?`<span>Theatre: ${esc(m.theatre)}</span>`:''}
+              ${m.dinner?`<span>Dinner: ${esc(m.dinner)}</span>`:''}
+              ${m.reception?`<span>Reception: ${esc(m.reception)}</span>`:''}
+              ${m.boardroom?`<span>Boardroom: ${esc(m.boardroom)}</span>`:''}
+            </div>
+          </div>
+        </div>`).join('');
+      return `
+        ${header()}
+        ${heroStatic('Meetings & Events',n('meetingsH1Sub'),'Explore Our Venues')}
+        ${overviewSection('Meetings & Events',n('meetingsOverviewH2')||'Historic Venue, Modern Facilities',n('meetingsOverviewP'))}
+        <div class="psec">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Our Venues</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:20px">${S.spaceCards.filter(m=>m.h3).length} Flexible Event Spaces</h2>
+          <div class="pspaces">${spaceCards||'<p style="text-align:center;color:#888;font-size:12px;width:100%">Add event spaces in Content → Meetings</p>'}</div>
+        </div>
+        ${ctaSection('Plan Your Next Event','Our team is ready to help.','Enquire About Events')}
+        ${footer()}`;
+    },
+
+    weddings(){
+      const ceremCards = S.ceremonyCards.filter(c=>c.h3).map(c=>`
+        <div class="pceremony-card${c.large?' large':''}">
+          <h3>${esc(c.h3)}</h3>
+          <ul>${(c.bullets||'').split('\n').filter(b=>b.trim()).map(b=>`<li>${esc(b.trim())}</li>`).join('')}</ul>
+        </div>`).join('');
+      const pkgCards = S.packageCards.filter(p=>p.h3).map(p=>`
+        <div class="ppkg-card${p.featured?' feat':''}">
+          <h3>${esc(p.h3)}</h3>
+          <p class="ppkg-intro">${esc(p.intro||'')}</p>
+          <div class="ppkg-details"><ul>${(p.bullets||'').split('\n').filter(b=>b.trim()).map(b=>`<li>${esc(b.trim())}</li>`).join('')}</ul></div>
+        </div>`).join('');
+      return `
+        ${header()}
+        ${heroStatic('Your Dream Wedding',n('weddingsH1Sub'),'Explore Packages')}
+        ${overviewSection('Weddings',n('weddingsOverviewH2')||'Celebrate in Historic Surroundings',n('weddingsOverviewP'))}
+        ${ceremCards?`<div class="psec">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Your Perfect Day</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:20px">Wedding Spaces</h2>
+          <div class="pceremony-grid">${ceremCards}</div>
+        </div>`:''}
+        ${pkgCards?`<div class="psec" style="background:#f9f9f9">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Wedding Packages</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:20px">Make It Yours</h2>
+          <div class="ppkgs">${pkgCards}</div>
+        </div>`:''}
+        ${ctaSection('Start Your Love Story Here',n('weddingCTAText')||'Contact our dedicated wedding team.','Enquire About Weddings')}
+        ${footer()}`;
+    },
+
+    christmas(){
+      const firstTab = S.xmasTabs.filter(t=>t.label)[0];
+      const tabBtns = S.xmasTabs.filter(t=>t.label).map((t,i)=>`<div class="pxtab-btn${i===0?' act':''}">${esc(t.label)}</div>`).join('');
+      const hlCards = S.xmasHighlights.filter(h=>h.h3).map(h=>`
+        <div class="pxhl-card">
+          <i class="${esc(h.icon||'fas fa-star')}"></i>
+          <h3>${esc(h.h3)}</h3>
+          <p>${esc(h.p||'')}</p>
+        </div>`).join('');
+      return `
+        ${header()}
+        ${heroStatic('Celebrate Christmas',n('xmasH1Sub'),'Explore Festive Options')}
+        ${overviewSection('Festive Celebrations',n('xmasOverviewH2')||`Christmas at ${n('name')||'the Hotel'}`,n('xmasOverviewP'))}
+        <div class="psec">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Festive Options</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:16px">Plan Your Celebration</h2>
+          <div class="pxtabs">${tabBtns}</div>
+          ${firstTab?`<div class="pxtab-content">
+            <div class="pxtab-img">🎄</div>
+            <div class="pxtab-body">
+              <h3>${esc(firstTab.h3||firstTab.label)}</h3>
+              <p>${esc(firstTab.p||'')}</p>
+            </div>
+          </div>`:'<p style="text-align:center;color:#888;font-size:12px">Add festive options in Content → Christmas</p>'}
+        </div>
+        ${hlCards?`<div class="psec" style="background:#f9f9f9">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Why Celebrate With Us</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:20px">Festive Highlights</h2>
+          <div class="pxhl-grid">${hlCards}</div>
+        </div>`:''}
+        ${ctaSection('Plan Your Festive Celebration','Contact our team to book your Christmas event.','Enquire Now')}
+        ${footer()}`;
+    },
+
+    gallery(){
+      const filterBtns = S.galleryFilters.map((f,i)=>`<div class="pgal-fbtn${i===0?' act':''}">${esc(f.label)}</div>`).join('');
+      const galItems = S.galleryItems.filter(g=>g.imgSlot).map((g,i)=>`
+        <div class="pgal-item">
+          ${'🏨📖🛏️🍽️📊💍🎄📍'.charAt(i%8)||'🖼️'}
+          <div class="pgal-item-label">${esc(g.alt||g.caption||g.cat||'')}</div>
+        </div>`).join('');
+      return `
+        ${header()}
+        ${heroStatic(n('galleryH1')||'Our Gallery',n('galleryH1Sub'),'Explore Gallery')}
+        <div class="psec">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Moments Captured</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:16px">Explore Our Spaces</h2>
+          <div class="pgal-filter">${filterBtns}</div>
+          <div class="pgal-grid">${galItems||'<p style="text-align:center;color:#888;font-size:12px;width:100%">Add gallery items in Content → Gallery</p>'}</div>
+        </div>
+        ${ctaSection('Experience the Heritage',`Book your stay at ${n('name')||'the hotel'}`,n('slide1CTA')||'Book Now')}
+        ${footer()}`;
+    },
+
+    contact(){
+      const collapsibles = [['By Air',n('byAir')],['By Rail',n('byRail')],['By Road',n('byRoad')],['Parking',n('parking')]].filter(([,v])=>v);
+      return `
+        ${header()}
+        ${heroStatic('Contact Us',n('contactH1Sub'),'Get in Touch')}
+        <div class="psec">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:12px">Get in Touch</div>
+          <div class="pcontact-form">
+            <input placeholder="Your Name" readonly/>
+            <input placeholder="Your Email" readonly/>
+            <select style="width:100%;padding:10px;border:1px solid #e0e0e0;border-radius:6px;font-family:Montserrat,sans-serif;font-size:.85rem;background:#fff;margin-bottom:10px">
+              <option>Type of enquiry</option>
+              <option>Room booking</option><option>Meetings & Events</option><option>Weddings</option>
+            </select>
+            <textarea rows="4" placeholder="Your Message" readonly style="resize:none;font-family:Montserrat,sans-serif;font-size:.85rem"></textarea>
+            <a href="#" class="pbtn" style="display:inline-block;margin:0">Send Message</a>
+          </div>
+        </div>
+        <div class="psec" style="background:#f9f9f9">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Contact Information</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:20px">Reach Us</h2>
+          <div class="pdetails-container">
+            <div class="pdetails-card">
+              <h3>${esc(n('name')||'Hotel Name')}</h3>
+              <address>
+                ${esc(n('addr')||'')}<br/><br/>
+                ${n('email')?`<a href="#">${esc(n('email'))}</a><br/>`:''}
+                ${n('emailS')?`<a href="#">${esc(n('emailS'))}</a> (Meetings &amp; Events)<br/>`:''}
+                ${n('phone')?`<a href="#">${esc(n('phone'))}</a>`:''}
+              </address>
+              <div class="psocial">
+                <div class="psocial-icon"><i class="fab fa-instagram"></i></div>
+                <div class="psocial-icon"><i class="fab fa-facebook-f"></i></div>
+              </div>
+            </div>
+            <div class="pdetails-img">🏨</div>
+          </div>
+        </div>
+        ${collapsibles.length?`<div class="psec">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Getting Here</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:16px">${esc(n('contactGettingHereH2')||`Travel to ${n('name')||'the Hotel'}`)}</h2>
+          <div class="pcollapse">
+            ${collapsibles.map(([k,v])=>`<div class="pcollapse-item"><div class="pcollapse-toggle">${esc(k)}</div><div class="pcollapse-body">${esc(v)}</div></div>`).join('')}
+          </div>
+          ${n('mapEmbed')?`<div class="pmap" style="margin-top:20px">🗺️</div>`:''}
+        </div>`:''}
+        ${footer()}`;
+    },
+
+    explore(){
+      const attrCards = S.attractionCards.filter(a=>a.h3).map(a=>`
+        <div class="pattr-card">
+          <div class="pattr-card-img">📍</div>
+          <div class="pattr-card-body">
+            <h3>${esc(a.h3)}</h3>
+            <p>${esc(a.p||'')}</p>
+          </div>
+        </div>`).join('');
+      return `
+        ${header()}
+        ${heroStatic(n('exploreH1')||'Explore the Area',n('exploreH1Sub'),'Discover Attractions')}
+        ${overviewSection('Discover the Area',n('exploreOverviewH2')||'Your Gateway to the Area',n('exploreOverviewP'))}
+        <div class="psec">
+          <div class="slabel" style="font-size:1.5rem;margin-bottom:8px">Local Attractions</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#1a2e3a;text-align:center;margin-bottom:20px">Things to Do Near the Hotel</h2>
+          <div class="pattr-grid">${attrCards||'<p style="text-align:center;color:#888;font-size:12px;width:100%">Add attractions in Content → Explore</p>'}</div>
+        </div>
+        ${ctaSection('Ready to Explore?',`Stay at ${n('name')||'the hotel'} and explore the area.`,n('slide1CTA')||'Book Your Stay')}
+        ${footer()}`;
+    },
+  };
+
+  const pageHtml = pages[pageId] ? pages[pageId]() : pages.index();
+
+  return `<!doctype html><html><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <style>${PREVIEW_CSS}</style>
+  </head><body>${pageHtml}</body></html>`;
+}
+
+
+function togglePreview(){
+  PREV_VISIBLE = !PREV_VISIBLE;
+  document.getElementById('prevside').classList.toggle('hidden', !PREV_VISIBLE);
+  document.getElementById('formside').classList.toggle('full', !PREV_VISIBLE);
+  document.getElementById('prevToggleBtn').textContent = PREV_VISIBLE ? '👁 Hide Preview' : '👁 Show Preview';
+}
+
+function refreshPreview(){
+  const frame = document.getElementById('previewFrame');
+  const html = buildPreview(S, PREV_PAGE);
+  const blob = new Blob([html], {type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  frame.onload = () => URL.revokeObjectURL(url);
+  frame.src = url;
+  const pg = PAGES.find(p=>p.id===PREV_PAGE);
+  const urlBar = document.getElementById('prevUrl');
+  if(urlBar) urlBar.textContent = (S.name ? S.name.toLowerCase().replace(/[^a-z0-9]+/g,'')+'.booksundays.com/' : 'hotel.booksundays.com/') + (pg&&pg.id!=='index'?pg.file:'');
+}
+
+function buildPreviewPageTabs(){
+  const tabs = document.getElementById('prevPageTabs');
+  if(!tabs) return;
+  tabs.innerHTML = PAGES.filter(p=>S.activePages.includes(p.id)).map(p=>
+    `<button class="ptab${PREV_PAGE===p.id?' act':''}" onclick="PREV_PAGE='${p.id}';buildPreviewPageTabs();refreshPreview()">${p.icon} ${p.label}</button>`
+  ).join('');
+}
+
+// Override render to also update preview
+const _origRender = render;
+render = function(){
+  _origRender();
+  buildPreviewPageTabs();
+  // Debounce preview refresh by 400ms so typing feels instant
+  clearTimeout(PREV_DEBOUNCE);
+  PREV_DEBOUNCE = setTimeout(refreshPreview, 400);
+};
+
+refreshPreview();
+</script>
+
+<!-- ── BULK UPLOAD MODAL ─────────────────────────────────────────────────── -->
+<div class="bu-overlay" id="buOverlay" style="display:none" onclick="if(event.target===this)closeBulkModal()">
+  <div class="bu-modal">
+    <div class="bu-head">
+      <h2>📊 Bulk Upload — Import from Excel / CSV</h2>
+      <button class="bu-close" onclick="closeBulkModal()">×</button>
+    </div>
+    <div class="bu-body">
+      <div class="bu-tabs" id="buTabs">
+        <button class="bu-tab act" onclick="switchBuTab('upload',this)">1. Upload File</button>
+        <button class="bu-tab" onclick="switchBuTab('map',this)">2. Map Columns</button>
+        <button class="bu-tab" onclick="switchBuTab('preview',this)">3. Preview & Import</button>
+      </div>
+
+      <!-- TAB 1: Upload -->
+      <div id="buTabUpload">
+        <div class="bu-drop" id="buDrop" onclick="document.getElementById('bulkFileInput2').click()"
+             ondragover="event.preventDefault();this.classList.add('drag')"
+             ondragleave="this.classList.remove('drag')"
+             ondrop="event.preventDefault();this.classList.remove('drag');handleBulkFile2(event.dataTransfer.files[0])">
+          <div class="bu-drop-icon">📂</div>
+          <p><strong>Click to browse</strong> or drag &amp; drop your file here</p>
+          <small>Supported: .xlsx, .xls, .csv</small>
+        </div>
+        <input type="file" id="bulkFileInput2" accept=".xlsx,.xls,.csv" style="display:none" onchange="handleBulkFile2(this.files[0])">
+        <div class="bu-status" id="buStatus"></div>
+        <div class="ibox" style="margin-top:0">
+          <strong>How to use:</strong><br>
+          1. <strong>Download the template</strong> (top bar → 📥 Download Template) to get a pre-filled Excel sheet<br>
+          2. Fill in your hotel data — each row = one field or one card (rooms, spaces, etc.)<br>
+          3. Upload it here and map columns if needed<br>
+          4. Preview and click <strong>Import</strong> to populate all fields instantly
+        </div>
+      </div>
+
+      <!-- TAB 2: Map Columns -->
+      <div id="buTabMap" style="display:none">
+        <div class="bu-status" id="buMapStatus"></div>
+        <p style="font-size:12px;color:var(--t2);margin-bottom:14px">Match your spreadsheet columns to the fields below. Columns detected automatically if you used the template.</p>
+        <div id="buMapFields"></div>
+      </div>
+
+      <!-- TAB 3: Preview -->
+      <div id="buTabPreview" style="display:none">
+        <div class="bu-status" id="buPreviewStatus"></div>
+        <div id="buPreviewTable"></div>
+      </div>
+    </div>
+    <div class="bu-foot">
+      <button class="btn bo" onclick="closeBulkModal()">Cancel</button>
+      <button class="btn bp" id="buNextBtn" onclick="buNext()" disabled>Next →</button>
+      <button class="btn ba" id="buImportBtn" onclick="buImport()" style="display:none">✅ Import All Data</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── BULK UPLOAD ENGINE ────────────────────────────────────────────────────────
+
+let BU = { step: 1, rows: [], headers: [], mapping: {}, fileName: '' };
+
+// All importable fields: key → { label, section, arrKey, arrField, type }
+const BU_FIELDS = [
+  // General
+  {k:'name',         label:'Hotel Name',              section:'General'},
+  {k:'tagline',      label:'Tagline',                 section:'General'},
+  {k:'addr',         label:'Address',                 section:'General'},
+  {k:'phone',        label:'Phone',                   section:'General'},
+  {k:'email',        label:'General Email',           section:'General'},
+  {k:'emailS',       label:'Sales/Events Email',      section:'General'},
+  {k:'bookUrl',      label:'Booking URL',             section:'General'},
+  {k:'logoUrl',      label:'Logo Image Path',         section:'General'},
+  {k:'gaId',         label:'Google Analytics ID',     section:'General'},
+  {k:'instagram',    label:'Instagram URL',           section:'General'},
+  {k:'facebook',     label:'Facebook URL',            section:'General'},
+  {k:'mapEmbed',     label:'Google Maps Embed URL',   section:'General'},
+  {k:'byAir',        label:'By Air directions',       section:'General'},
+  {k:'byRail',       label:'By Rail directions',      section:'General'},
+  {k:'byRoad',       label:'By Road directions',      section:'General'},
+  {k:'parking',      label:'Parking info',            section:'General'},
+  // Index
+  {k:'slide1H1',     label:'Slide 1 Headline',        section:'Index'},
+  {k:'slide1Sub',    label:'Slide 1 Subtitle',        section:'Index'},
+  {k:'slide1CTA',    label:'Slide 1 CTA Button',      section:'Index'},
+  {k:'slide1CTALink',label:'Slide 1 CTA Link',        section:'Index'},
+  {k:'slide2H1',     label:'Slide 2 Headline',        section:'Index'},
+  {k:'slide2Sub',    label:'Slide 2 Subtitle',        section:'Index'},
+  {k:'slide3H1',     label:'Slide 3 Headline',        section:'Index'},
+  {k:'slide3Sub',    label:'Slide 3 Subtitle',        section:'Index'},
+  {k:'quoteText',    label:'Transition Quote',        section:'Index'},
+  {k:'indexAboutH2', label:'Index About Heading',     section:'Index'},
+  {k:'indexAboutP',  label:'Index About Paragraph',   section:'Index'},
+  {k:'indexRoomsP',  label:'Index Rooms Paragraph',   section:'Index'},
+  {k:'indexMeetingsP',label:'Index Meetings Paragraph',section:'Index'},
+  {k:'indexWeddingsP',label:'Index Weddings Paragraph',section:'Index'},
+  // About
+  {k:'aboutH1',      label:'About Hero H1',           section:'About'},
+  {k:'aboutH1Sub',   label:'About Hero Subtitle',     section:'About'},
+  {k:'aboutH2',      label:'About History H2',        section:'About'},
+  {k:'locationDesc', label:'Location Description',    section:'About'},
+  {k:'locationBullets',label:'Location Bullets (one per line)',section:'About'},
+  {k:'locationBenefits',label:'Location Benefits (one per line)',section:'About'},
+  // Rooms
+  {k:'roomsH1Sub',   label:'Rooms Hero Subtitle',     section:'Rooms'},
+  {k:'roomsOverviewH2',label:'Rooms Overview H2',     section:'Rooms'},
+  {k:'roomsOverviewP',label:'Rooms Overview Paragraph',section:'Rooms'},
+  // Dining
+  {k:'diningH1',     label:'Dining Hero H1',          section:'Dining'},
+  {k:'diningH1Sub',  label:'Dining Hero Subtitle',    section:'Dining'},
+  {k:'diningRestName',label:'Restaurant Name',        section:'Dining'},
+  {k:'diningOverviewP',label:'Dining Overview Paragraph',section:'Dining'},
+  {k:'breakfastHours',label:'Breakfast Hours',        section:'Dining'},
+  // Meetings
+  {k:'meetingsH1Sub',  label:'Meetings Hero Subtitle', section:'Meetings'},
+  {k:'meetingsOverviewH2',label:'Meetings Overview H2',section:'Meetings'},
+  {k:'meetingsOverviewP', label:'Meetings Overview Paragraph',section:'Meetings'},
+  // Weddings
+  {k:'weddingsH1Sub',  label:'Weddings Hero Subtitle', section:'Weddings'},
+  {k:'weddingsOverviewH2',label:'Weddings Overview H2',section:'Weddings'},
+  {k:'weddingsOverviewP', label:'Weddings Overview Paragraph',section:'Weddings'},
+  {k:'weddingCTAText',label:'Wedding CTA Text',       section:'Weddings'},
+  // Christmas
+  {k:'xmasH1Sub',    label:'Christmas Hero Subtitle', section:'Christmas'},
+  {k:'xmasOverviewH2',label:'Christmas Overview H2',  section:'Christmas'},
+  {k:'xmasOverviewP',label:'Christmas Overview Paragraph',section:'Christmas'},
+  // Contact / Explore
+  {k:'contactH1Sub', label:'Contact Hero Subtitle',   section:'Contact'},
+  {k:'contactGettingHereH2',label:'Contact Getting Here H2',section:'Contact'},
+  {k:'exploreH1',    label:'Explore Hero H1',         section:'Explore'},
+  {k:'exploreH1Sub', label:'Explore Hero Subtitle',   section:'Explore'},
+  {k:'exploreOverviewH2',label:'Explore Overview H2', section:'Explore'},
+  {k:'exploreOverviewP', label:'Explore Overview Paragraph',section:'Explore'},
+  // SEO
+  {k:'seo_index_title',  label:'SEO: Index Title',    section:'SEO'},
+  {k:'seo_index_desc',   label:'SEO: Index Description',section:'SEO'},
+  {k:'seo_index_kw',     label:'SEO: Index Keywords', section:'SEO'},
+  {k:'seo_about_title',  label:'SEO: About Title',    section:'SEO'},
+  {k:'seo_about_desc',   label:'SEO: About Description',section:'SEO'},
+  {k:'seo_rooms_title',  label:'SEO: Rooms Title',    section:'SEO'},
+  {k:'seo_rooms_desc',   label:'SEO: Rooms Description',section:'SEO'},
+  {k:'seo_dining_title', label:'SEO: Dining Title',   section:'SEO'},
+  {k:'seo_dining_desc',  label:'SEO: Dining Description',section:'SEO'},
+  {k:'seo_meetings_title',label:'SEO: Meetings Title',section:'SEO'},
+  {k:'seo_meetings_desc', label:'SEO: Meetings Desc', section:'SEO'},
+  {k:'seo_weddings_title',label:'SEO: Weddings Title',section:'SEO'},
+  {k:'seo_weddings_desc', label:'SEO: Weddings Desc', section:'SEO'},
+  {k:'seo_contact_title', label:'SEO: Contact Title', section:'SEO'},
+  {k:'seo_contact_desc',  label:'SEO: Contact Desc',  section:'SEO'},
+  {k:'seo_explore_title', label:'SEO: Explore Title', section:'SEO'},
+  {k:'seo_explore_desc',  label:'SEO: Explore Desc',  section:'SEO'},
+];
+
+// Array fields handled via separate sheet / row-type detection
+const BU_ARRAYS = {
+  roomCards:       {fields:['name','p1','p2','filter','imgSlot'],         label:'Room Cards',        rowType:'room'},
+  spaceCards:      {fields:['h3','p','theatre','dinner','reception','boardroom','imgSlot'], label:'Meeting Spaces', rowType:'meeting'},
+  venueCards:      {fields:['h3','p'],                                    label:'Dining Venues',     rowType:'venue'},
+  histCards:       {fields:['h3','p','imgSlot'],                          label:'History Cards',     rowType:'history'},
+  valueCards:      {fields:['icon','h3','p'],                             label:'Value Cards',       rowType:'value'},
+  ceremonyCards:   {fields:['h3','bullets'],                              label:'Wedding Ceremony',  rowType:'ceremony'},
+  packageCards:    {fields:['h3','intro','bullets'],                      label:'Wedding Packages',  rowType:'package'},
+  xmasTabs:        {fields:['id','label','h3','p','imgSlot'],             label:'Christmas Tabs',    rowType:'xmas_tab'},
+  xmasHighlights:  {fields:['icon','h3','p'],                             label:'Xmas Highlights',   rowType:'xmas_hl'},
+  attractionCards: {fields:['h3','p','imgSlot'],                          label:'Attractions',       rowType:'attraction'},
+  highlights:      {fields:['label','href'],                              label:'Homepage Highlights',rowType:'highlight'},
+  thingCards:      {fields:['label','href'],                              label:'Things To Do',      rowType:'thing'},
+  galleryItems:    {fields:['imgSlot','alt','caption','cat'],             label:'Gallery Items',     rowType:'gallery'},
+  diningGallery:   {fields:['imgSlot','alt'],                             label:'Dining Gallery',    rowType:'dining_gallery'},
+};
+
+function triggerBulkUpload(){ openBulkModal(); }
+
+function openBulkModal(){
+  BU = { step:1, rows:[], headers:[], mapping:{}, fileName:'' };
+  document.getElementById('buOverlay').style.display='flex';
+  switchBuTab('upload', document.querySelector('.bu-tab'));
+  document.getElementById('buStatus').style.display='none';
+  document.getElementById('buNextBtn').disabled=true;
+  document.getElementById('buImportBtn').style.display='none';
+  document.getElementById('buNextBtn').style.display='';
+  document.getElementById('buNextBtn').textContent='Next →';
+}
+
+function closeBulkModal(){
+  document.getElementById('buOverlay').style.display='none';
+}
+
+function switchBuTab(tab, btn){
+  ['upload','map','preview'].forEach(t=>{
+    document.getElementById('buTab'+t.charAt(0).toUpperCase()+t.slice(1)).style.display=t===tab?'block':'none';
+  });
+  document.querySelectorAll('.bu-tab').forEach(b=>b.classList.remove('act'));
+  if(btn) btn.classList.add('act');
+}
+
+function handleBulkFile(input){ if(input.files[0]) handleBulkFile2(input.files[0]); }
+
+function handleBulkFile2(file){
+  if(!file){ showBuStatus('err','No file selected.'); return; }
+  BU.fileName = file.name;
+  const ext = file.name.split('.').pop().toLowerCase();
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      let wb;
+      if(ext==='csv'){
+        wb = XLSX.read(e.target.result, {type:'string'});
+      } else {
+        wb = XLSX.read(e.target.result, {type:'binary'});
+      }
+      // Try to find the "Data" sheet, otherwise use first sheet
+      const sheetName = wb.SheetNames.includes('Data') ? 'Data' : wb.SheetNames[0];
+      const ws = wb.Sheets[sheetName];
+      const raw = XLSX.utils.sheet_to_json(ws, {header:1, defval:''});
+      if(!raw || raw.length < 2){ showBuStatus('err','File appears empty or has no data rows.'); return; }
+      BU.headers = raw[0].map(h=>String(h).trim());
+      BU.rows = raw.slice(1).filter(r=>r.some(c=>c!==''));
+      BU.wb = wb;
+      showBuStatus('ok', `✅ Loaded <strong>${BU.rows.length} rows</strong> with <strong>${BU.headers.length} columns</strong> from <em>${file.name}</em>`);
+      document.getElementById('buNextBtn').disabled = false;
+      autoMapColumns();
+    } catch(err){
+      showBuStatus('err','Error reading file: '+err.message);
+    }
+  };
+  if(ext==='csv') reader.readAsText(file);
+  else reader.readAsBinaryString(file);
+}
+
+function showBuStatus(type, msg){
+  const el = document.getElementById('buStatus');
+  el.className = 'bu-status '+type;
+  el.innerHTML = msg;
+  el.style.display = 'block';
+}
+
+function autoMapColumns(){
+  // Auto-map based on template column headers
+  const fieldMap = {};
+  BU.headers.forEach((h,i)=>{
+    const key = h.toLowerCase().replace(/[\s_]+/g,'_');
+    // Direct key match
+    const direct = BU_FIELDS.find(f=>f.k.toLowerCase()===key || f.label.toLowerCase()===h.toLowerCase());
+    if(direct) fieldMap[direct.k] = i;
+    // row_type detection column
+    if(key==='row_type'||key==='type') fieldMap['__rowtype__']=i;
+    // Array field patterns like "room.name", "room_name"
+    Object.entries(BU_ARRAYS).forEach(([arr,{rowType,fields}])=>{
+      fields.forEach(f=>{
+        const patterns=[`${rowType}.${f}`,`${rowType}_${f}`,`${arr}.${f}`,`${arr}_${f}`];
+        if(patterns.includes(key)) fieldMap[`${arr}.${f}`]=i;
+      });
+    });
+  });
+  BU.mapping = fieldMap;
+}
+
+function buNext(){
+  if(BU.step===1){
+    if(!BU.rows.length){ showBuStatus('err','Please upload a file first.'); return; }
+    BU.step=2;
+    buildMapUI();
+    switchBuTab('map', document.querySelectorAll('.bu-tab')[1]);
+    document.getElementById('buNextBtn').textContent='Preview →';
+  } else if(BU.step===2){
+    BU.step=3;
+    buildPreviewUI();
+    switchBuTab('preview', document.querySelectorAll('.bu-tab')[2]);
+    document.getElementById('buNextBtn').style.display='none';
+    document.getElementById('buImportBtn').style.display='';
+  }
+}
+
+function buildMapUI(){
+  const cont = document.getElementById('buMapFields');
+  const sections = [...new Set(BU_FIELDS.map(f=>f.section))];
+  let html = '';
+  sections.forEach(sec=>{
+    const fields = BU_FIELDS.filter(f=>f.section===sec);
+    html += `<div class="bu-field-map"><h4>${sec}</h4>`;
+    fields.forEach(f=>{
+      const sel = buildColSelect(f.k, BU.mapping[f.k]);
+      html += `<div class="bu-map-row"><span>${f.label}</span><span class="bu-map-arrow">→</span>${sel}</div>`;
+    });
+    html += `</div>`;
+  });
+  // Array sections
+  html += `<div class="bu-field-map"><h4>Cards & Arrays (matched via row_type column)</h4>`;
+  html += `<p style="font-size:11px;color:var(--t3);margin-bottom:8px">The template uses a <code>row_type</code> column to identify card rows (e.g. "room", "meeting", "attraction"). Columns are auto-detected from your headers.</p>`;
+  Object.entries(BU_ARRAYS).forEach(([arr,{label,rowType,fields}])=>{
+    html += `<div style="margin-bottom:8px"><strong style="font-size:11px">${label}</strong> <span style="font-size:10px;color:var(--t3)">(row_type: <code>${rowType}</code>)</span>`;
+    fields.forEach(f=>{
+      const sel = buildColSelect(`${arr}.${f}`, BU.mapping[`${arr}.${f}`]);
+      html += `<div class="bu-map-row"><span style="padding-left:10px">${f}</span><span class="bu-map-arrow">→</span>${sel}</div>`;
+    });
+    html += `</div>`;
+  });
+  html += `</div>`;
+  cont.innerHTML = html;
+}
+
+function buildColSelect(fieldKey, selectedIdx){
+  let opts = `<option value="">— skip —</option>`;
+  BU.headers.forEach((h,i)=>{
+    const sel = (selectedIdx===i) ? 'selected' : '';
+    opts += `<option value="${i}" ${sel}>${h||'(col '+(i+1)+')'}</option>`;
+  });
+  return `<select onchange="BU.mapping['${fieldKey}']=this.value===''?undefined:parseInt(this.value)">${opts}</select>`;
+}
+
+function buildPreviewUI(){
+  const status = document.getElementById('buPreviewStatus');
+  const table = document.getElementById('buPreviewTable');
+  const parsed = parseBulkData();
+  const sFields = Object.entries(parsed.fields).filter(([,v])=>v!==undefined&&v!=='');
+  const arrSummary = Object.entries(parsed.arrays).map(([k,v])=>`${k}: ${v.length} rows`).join(', ');
+
+  status.className='bu-status ok';
+  status.innerHTML = `Ready to import <strong>${sFields.length}</strong> field values${arrSummary?` and arrays (${arrSummary})`:''}.`;
+  status.style.display='block';
+
+  let html = `<div class="bu-preview"><table><tr><th>Field</th><th>Section</th><th>Value (preview)</th></tr>`;
+  sFields.slice(0,60).forEach(([k,v])=>{
+    const def = BU_FIELDS.find(f=>f.k===k);
+    const label = def ? def.label : k;
+    const sec = def ? def.section : '';
+    const preview = String(v).substring(0,80)+(String(v).length>80?'…':'');
+    html += `<tr><td>${label}</td><td>${sec}</td><td>${preview}</td></tr>`;
+  });
+  if(sFields.length>60) html+=`<tr><td colspan="3" style="text-align:center;color:var(--t3)">…and ${sFields.length-60} more fields</td></tr>`;
+  // Array previews
+  Object.entries(parsed.arrays).forEach(([arr,rows])=>{
+    if(!rows.length) return;
+    const {label} = BU_ARRAYS[arr];
+    html += `<tr><td colspan="3" style="background:var(--ib);font-weight:700;color:var(--p)">${label} (${rows.length} items)</td></tr>`;
+    rows.slice(0,5).forEach(row=>{
+      const summary = Object.entries(row).filter(([,v])=>v).map(([k,v])=>`${k}: ${String(v).substring(0,30)}`).join(' | ');
+      html += `<tr><td colspan="3" style="padding-left:16px;font-size:10px">${summary}</td></tr>`;
+    });
+  });
+  html += `</table></div>`;
+  table.innerHTML = html;
+}
+
+function parseBulkData(){
+  const fields = {};
+  const arrays = {};
+
+  // Helper to read a cell value from a row by column index
+  const cell = (row, colIdx) => colIdx !== undefined && colIdx !== null ? String(row[colIdx]||'').trim() : '';
+
+  // Scalar fields
+  BU_FIELDS.forEach(f=>{
+    const col = BU.mapping[f.k];
+    if(col === undefined) return;
+    // Try to find a row where the first mapped key column has this field's value
+    // Strategy: look for a row in the data where col 0 (or a "field" col) = f.k, value in col 1
+    // OR: if all data is in column layout (field, value pairs)
+    // Check if data is "key-value" layout (col0=key, col1=value) or "single-row" layout
+    if(BU.mapping['__rowtype__']===undefined){
+      // Try key-value layout first
+      const kvRow = BU.rows.find(r=>String(r[0]||'').trim().toLowerCase()===f.k.toLowerCase());
+      if(kvRow){ fields[f.k] = String(kvRow[1]||'').trim(); return; }
+      // Single-row or multi-column layout: use mapped column from first data row
+      const v = cell(BU.rows[0], col);
+      if(v) fields[f.k] = v;
+    } else {
+      // row_type present — use non-array rows for scalar fields
+      BU.rows.forEach(row=>{
+        const rt = cell(row, BU.mapping['__rowtype__']);
+        if(!rt || rt==='general' || rt===f.section.toLowerCase()){
+          const v = cell(row, col);
+          if(v) fields[f.k] = v;
+        }
+      });
+    }
+  });
+
+  // SEO fields
+  BU_FIELDS.filter(f=>f.k.startsWith('seo_')).forEach(f=>{
+    if(fields[f.k]){
+      const parts = f.k.split('_'); // seo_page_prop
+      const pg = parts[1];
+      const prop = parts[2];
+      if(!fields._seoMap) fields._seoMap={};
+      if(!fields._seoMap[pg]) fields._seoMap[pg]={};
+      fields._seoMap[pg][prop] = fields[f.k];
+    }
+  });
+
+  // Array fields
+  Object.entries(BU_ARRAYS).forEach(([arr,{rowType, fields:arrFields}])=>{
+    arrays[arr]=[];
+    BU.rows.forEach(row=>{
+      const rt = BU.mapping['__rowtype__']!==undefined ? cell(row, BU.mapping['__rowtype__']) : '';
+      if(rt && rt!==rowType) return;
+      const obj={};
+      let hasData=false;
+      arrFields.forEach(f=>{
+        const col = BU.mapping[`${arr}.${f}`];
+        if(col!==undefined){
+          const v = cell(row, col);
+          if(v){ obj[f]=v; hasData=true; }
+        }
+      });
+      if(hasData) arrays[arr].push(obj);
+    });
+  });
+
+  return {fields, arrays};
+}
+
+function buImport(){
+  const parsed = parseBulkData();
+  let count = 0;
+
+  // Apply scalar fields
+  BU_FIELDS.forEach(f=>{
+    if(f.k.startsWith('seo_')) return;
+    const v = parsed.fields[f.k];
+    if(v !== undefined && v !== ''){
+      S[f.k] = v;
+      count++;
+    }
+  });
+
+  // Apply SEO fields
+  BU_FIELDS.filter(f=>f.k.startsWith('seo_')).forEach(f=>{
+    const v = parsed.fields[f.k];
+    if(!v) return;
+    const parts = f.k.split('_');
+    const pg = parts[1], prop = parts.slice(2).join('_');
+    if(S.seo[pg]) { S.seo[pg][prop]=v; count++; }
+  });
+
+  // Apply array fields (only replace if non-empty)
+  Object.entries(parsed.arrays).forEach(([arr, rows])=>{
+    if(rows.length > 0){
+      S[arr] = rows;
+      count += rows.length;
+    }
+  });
+
+  closeBulkModal();
+  render();
+  // Show success notification
+  showToast(`✅ Imported ${count} values successfully!`);
+}
+
+function showToast(msg){
+  let t = document.getElementById('buToast');
+  if(!t){
+    t=document.createElement('div');
+    t.id='buToast';
+    t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2e7d32;color:#fff;padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;z-index:600;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:opacity .4s';
+    document.body.appendChild(t);
+  }
+  t.textContent=msg;
+  t.style.opacity='1';
+  clearTimeout(t._to);
+  t._to=setTimeout(()=>t.style.opacity='0',3500);
+}
+
+// ── TEMPLATE GENERATOR ────────────────────────────────────────────────────────
+function downloadBulkTemplate(){
+  if(typeof XLSX==='undefined'){ alert('SheetJS not loaded yet — please wait a moment and try again.'); return; }
+  const wb = XLSX.utils.book_new();
+
+  // ── Sheet 1: INSTRUCTIONS ──
+  const instrData = [
+    ['Sunday Properties — Website Builder Bulk Upload Template'],
+    [''],
+    ['HOW TO USE THIS TEMPLATE:'],
+    ['1. Fill in the "Data" sheet with your hotel information'],
+    ['2. The "Data" sheet uses row_type to separate different data types'],
+    ['3. Upload the completed file using the "📊 Bulk Upload" button in the tool'],
+    ['4. Map columns if needed, then click Import'],
+    [''],
+    ['ROW TYPES (put in the row_type column):'],
+    ['general  →  General info, contact, social links'],
+    ['index    →  Homepage slides, paragraphs'],
+    ['about    →  About page fields'],
+    ['rooms    →  Rooms overview fields'],
+    ['room     →  One row per room card (name, p1, p2, filter, imgSlot)'],
+    ['dining   →  Dining page fields'],
+    ['venue    →  One row per dining venue card'],
+    ['meetings →  Meetings overview fields'],
+    ['meeting  →  One row per event space card'],
+    ['weddings →  Weddings overview fields'],
+    ['ceremony →  One row per wedding ceremony card'],
+    ['package  →  One row per wedding package card'],
+    ['christmas→  Christmas overview fields'],
+    ['xmas_tab →  One row per Christmas tab'],
+    ['xmas_hl  →  One row per Christmas highlight'],
+    ['contact  →  Contact page fields'],
+    ['explore  →  Explore page fields'],
+    ['attraction→ One row per attraction card'],
+    ['highlight→  One row per homepage highlight card'],
+    ['thing    →  One row per "Things To Do" card'],
+    ['seo      →  SEO meta fields'],
+  ];
+  const instrWs = XLSX.utils.aoa_to_sheet(instrData);
+  instrWs['!cols']=[{wch:70}];
+  XLSX.utils.book_append_sheet(wb, instrWs, 'Instructions');
+
+  // ── Sheet 2: DATA (main sheet) ──
+  const allCols = [
+    'row_type',
+    // Scalar keys
+    ...BU_FIELDS.map(f=>f.k),
+    // Array keys
+    ...Object.entries(BU_ARRAYS).flatMap(([arr,{fields}])=>fields.map(f=>`${arr}.${f}`))
+  ];
+
+  // Remove dupes
+  const headers = [...new Set(allCols)];
+
+  // Build example rows
+  const rows = [headers];
+
+  const addRow = (rowType, data) => {
+    const row = headers.map(h => {
+      if(h==='row_type') return rowType;
+      return data[h] || '';
+    });
+    rows.push(row);
+  };
+
+  // General row (pre-filled with current S values)
+  const generalData = {};
+  BU_FIELDS.filter(f=>['General','Index','About','Rooms','Dining','Meetings','Weddings','Christmas','Contact','Explore','SEO'].includes(f.section)).forEach(f=>{
+    if(f.k.startsWith('seo_')){
+      const parts=f.k.split('_'); const pg=parts[1],prop=parts.slice(2).join('_');
+      generalData[f.k]=(S.seo[pg]&&S.seo[pg][prop])||'';
+    } else {
+      generalData[f.k]=S[f.k]||'';
+    }
+  });
+  addRow('general', generalData);
+  addRow('index', generalData);
+  addRow('about', generalData);
+  addRow('rooms', generalData);
+  addRow('dining', generalData);
+  addRow('meetings', generalData);
+  addRow('weddings', generalData);
+  addRow('christmas', generalData);
+  addRow('contact', generalData);
+  addRow('explore', generalData);
+  addRow('seo', generalData);
+
+  // Array rows
+  const addArrayRows = (arr, rowType) => {
+    const {fields} = BU_ARRAYS[arr];
+    const items = S[arr] || [];
+    if(items.length){
+      items.forEach(item=>{
+        const d={'row_type':rowType};
+        fields.forEach(f=>{ d[`${arr}.${f}`]=item[f]||''; });
+        addRow(rowType,d);
+      });
+    } else {
+      // Blank example row
+      const d={'row_type':rowType};
+      fields.forEach(f=>{ d[`${arr}.${f}`]=''; });
+      addRow(rowType,d);
+    }
+  };
+
+  addArrayRows('roomCards','room');
+  addArrayRows('spaceCards','meeting');
+  addArrayRows('venueCards','venue');
+  addArrayRows('histCards','history');
+  addArrayRows('valueCards','value');
+  addArrayRows('ceremonyCards','ceremony');
+  addArrayRows('packageCards','package');
+  addArrayRows('xmasTabs','xmas_tab');
+  addArrayRows('xmasHighlights','xmas_hl');
+  addArrayRows('attractionCards','attraction');
+  addArrayRows('highlights','highlight');
+  addArrayRows('thingCards','thing');
+  addArrayRows('galleryItems','gallery');
+  addArrayRows('diningGallery','dining_gallery');
+
+  const dataWs = XLSX.utils.aoa_to_sheet(rows);
+  // Style header row width
+  dataWs['!cols'] = headers.map(()=>({wch:28}));
+  XLSX.utils.book_append_sheet(wb, dataWs, 'Data');
+
+  // ── Sheet 3: FIELD REFERENCE ──
+  const refHeaders = ['Field Key','Label','Section','Current Value'];
+  const refRows = [refHeaders, ...BU_FIELDS.map(f=>{
+    let val='';
+    if(f.k.startsWith('seo_')){const parts=f.k.split('_');const pg=parts[1],prop=parts.slice(2).join('_');val=(S.seo[pg]&&S.seo[pg][prop])||'';}
+    else val=S[f.k]||'';
+    return [f.k, f.label, f.section, String(val).substring(0,100)];
+  })];
+  const refWs = XLSX.utils.aoa_to_sheet(refRows);
+  refWs['!cols']=[{wch:30},{wch:35},{wch:15},{wch:60}];
+  XLSX.utils.book_append_sheet(wb, refWs, 'Field Reference');
+
+  XLSX.writeFile(wb, (S.name?sl(S.name)+'-':'') + 'sunday-bulk-template.xlsx');
+  showToast('📥 Template downloaded!');
+}
+</script>
+
+<!-- ── SCRAPE / AI EXTRACT MODAL ─────────────────────────────────────────── -->
+<div class="sc-overlay" id="scOverlay" style="display:none" onclick="if(event.target===this)closeScrapeModal()">
+  <div class="sc-modal">
+    <div class="sc-head">
+      <h2>🌐 Scrape URL — Auto-fill from website or Booking.com</h2>
+      <button class="sc-close" onclick="closeScrapeModal()">×</button>
+    </div>
+    <div class="sc-body" id="scBody">
+
+      <!-- Step 1: URL input -->
+      <div id="scStep1">
+        <div class="ibox" style="margin-bottom:16px">
+          Paste any hotel website or <strong>Booking.com / BDC property page</strong> URL. The AI will extract name, address, phone, email, description, rooms, dining, and more — then let you confirm each field before importing.
+        </div>
+        <div class="sc-url-bar">
+          <input id="scUrlInput" type="url" placeholder="https://www.booking.com/hotel/gb/... or https://www.myhotel.com" value="">
+          <button class="btn bp" onclick="startScrape()">🔍 Fetch &amp; Extract</button>
+        </div>
+        <div id="scStatus" class="sc-status idle">Enter a URL above and click Fetch &amp; Extract to begin.</div>
+        <div class="sc-progress" id="scProgress"><div class="sc-progress-bar" id="scProgressBar"></div></div>
+        <div style="font-size:11px;color:var(--t3);line-height:1.7;margin-top:8px">
+          <strong>Works best with:</strong> Booking.com property pages · hotel official websites · any page with structured hotel information<br>
+          <strong>Note:</strong> Some sites block automated access. If fetch fails, the AI will extract from whatever partial content is available.
+        </div>
+      </div>
+
+      <!-- Step 2: Confirm fields -->
+      <div id="scStep2" style="display:none">
+        <div class="sc-sel-all">
+          <input type="checkbox" id="scSelAll" checked onchange="toggleAllScFields(this.checked)">
+          <label for="scSelAll" style="cursor:pointer;font-weight:600">Select / deselect all fields</label>
+          <span id="scSelectedCount" style="margin-left:auto;color:var(--t3)"></span>
+        </div>
+        <div id="scConfirmGrid" class="sc-confirm-grid"></div>
+      </div>
+
+    </div>
+    <div class="sc-foot">
+      <div class="sc-foot-left" id="scFootLeft"></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn bo" onclick="closeScrapeModal()">Cancel</button>
+        <button class="btn bp" id="scBackBtn" onclick="scBack()" style="display:none">← Back</button>
+        <button class="btn ba" id="scImportBtn" onclick="scImport()" style="display:none">✅ Import Selected Fields</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── SCRAPE ENGINE ─────────────────────────────────────────────────────────────
+
+let SC = { url:'', extracted:{}, source:'' };
+
+function openScrapeModal(){
+  SC = { url:'', extracted:{}, source:'' };
+  document.getElementById('scOverlay').style.display='flex';
+  document.getElementById('scStep1').style.display='block';
+  document.getElementById('scStep2').style.display='none';
+  document.getElementById('scBackBtn').style.display='none';
+  document.getElementById('scImportBtn').style.display='none';
+  document.getElementById('scUrlInput').value='';
+  setScStatus('idle','Enter a URL above and click Fetch & Extract to begin.');
+  setScProgress(0);
+  document.getElementById('scProgress').style.display='none';
+  document.getElementById('scFootLeft').innerHTML='';
+}
+
+function closeScrapeModal(){ document.getElementById('scOverlay').style.display='none'; }
+
+function setScStatus(type, msg){
+  const el=document.getElementById('scStatus');
+  el.className='sc-status '+type;
+  el.innerHTML=msg;
+}
+
+function setScProgress(pct){
+  document.getElementById('scProgress').style.display=pct>0?'block':'none';
+  document.getElementById('scProgressBar').style.width=pct+'%';
+}
+
+async function startScrape(){
+  const url = document.getElementById('scUrlInput').value.trim();
+  if(!url){ setScStatus('err','Please enter a URL.'); return; }
+  if(!/^https?:\/\//i.test(url)){ setScStatus('err','URL must start with http:// or https://'); return; }
+
+  SC.url = url;
+  setScStatus('loading','⏳ Fetching page content…');
+  setScProgress(15);
+  document.getElementById('scProgress').style.display='block';
+
+  // Use a CORS proxy to fetch the page HTML
+  let pageText = '';
+  const proxies = [
+    `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+    `https://corsproxy.io/?${encodeURIComponent(url)}`
+  ];
+
+  for(const proxy of proxies){
+    try {
+      const resp = await fetch(proxy, {signal: AbortSignal.timeout(12000)});
+      if(!resp.ok) continue;
+      const data = await resp.json().catch(()=>null);
+      if(data && data.contents){
+        pageText = data.contents;
+        break;
+      }
+      // corsproxy returns raw text
+      const text = await resp.text().catch(()=>'');
+      if(text.length > 200){ pageText = text; break; }
+    } catch(e){ continue; }
+  }
+
+  setScProgress(40);
+
+  if(!pageText || pageText.length < 100){
+    setScStatus('err','⚠️ Could not fetch the page (the site may block external access). You can still try — the AI will do its best with the URL alone.');
+    // Fall through with empty content — AI will use URL context
+  } else {
+    setScStatus('loading','🤖 AI is extracting hotel data…');
+  }
+
+  // Strip HTML down to readable text (keep structure)
+  let cleanText = '';
+  if(pageText){
+    const tmp = document.createElement('div');
+    tmp.innerHTML = pageText;
+    // Remove scripts/styles/nav/header noise
+    tmp.querySelectorAll('script,style,nav,footer,iframe,noscript').forEach(el=>el.remove());
+    cleanText = tmp.innerText || tmp.textContent || '';
+    // Trim to ~6000 chars for API
+    cleanText = cleanText.replace(/\s+/g,' ').trim().substring(0,6000);
+  }
+
+  setScProgress(55);
+
+  // Detect source type
+  const isBooking = url.includes('booking.com');
+  const sourceLabel = isBooking ? 'Booking.com' : 'Hotel Website';
+  SC.source = sourceLabel;
+
+  // Build the AI prompt
+  const prompt = `You are extracting hotel data from a ${sourceLabel} page to populate a hotel website builder.
+
+URL: ${url}
+
+PAGE CONTENT (truncated):
+${cleanText || '[Page content could not be fetched — use the URL context to infer what you can]'}
+
+Extract as many of these fields as possible from the content. Return ONLY a valid JSON object with these exact keys (omit keys where data is not found):
+
+{
+  "name": "Full hotel name",
+  "tagline": "Short tagline or slogan",
+  "addr": "Full address on one line",
+  "phone": "Phone number",
+  "email": "Reservations email",
+  "emailS": "Sales/events email if different",
+  "bookUrl": "Direct booking URL if found",
+  "instagram": "Instagram URL if found",
+  "facebook": "Facebook URL if found",
+  "byAir": "Directions by air / nearest airport",
+  "byRail": "Directions by rail / nearest station",
+  "byRoad": "Directions by road",
+  "parking": "Parking information",
+  "slide1H1": "Main hero headline (hotel name or tagline)",
+  "slide1Sub": "Hero subtitle",
+  "indexAboutH2": "Short about heading",
+  "indexAboutP": "About paragraph (2-4 sentences)",
+  "aboutH1": "About page h1 (e.g. 'Our Story')",
+  "aboutH1Sub": "About page subtitle",
+  "locationDesc": "Location description paragraph",
+  "roomsOverviewH2": "Rooms section heading",
+  "roomsOverviewP": "Rooms overview paragraph",
+  "diningH1": "Dining page title",
+  "diningRestName": "Restaurant name",
+  "diningOverviewP": "Dining overview paragraph",
+  "meetingsH1Sub": "Meetings hero subtitle",
+  "meetingsOverviewP": "Meetings overview paragraph",
+  "weddingsH1Sub": "Weddings hero subtitle",
+  "weddingsOverviewP": "Weddings overview paragraph",
+  "exploreH1": "Explore page h1",
+  "exploreOverviewP": "Explore overview paragraph",
+  "contactH1Sub": "Contact page subtitle",
+  "seo_index_title": "SEO title for homepage",
+  "seo_index_desc": "SEO meta description for homepage (150-160 chars)",
+  "roomCards": [{"name":"Room type name","p1":"Brief spec e.g. 1 King Bed • Sleeps 2","p2":"Description","filter":"classic"}],
+  "venueCards": [{"h3":"Venue name","p":"Description"}],
+  "attractionCards": [{"h3":"Attraction name","p":"Description"}]
+}
+
+Return ONLY the JSON, no explanation, no markdown.`;
+
+  try {
+    const apiResp = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:1000,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+
+    setScProgress(80);
+
+    if(!apiResp.ok){
+      const err = await apiResp.json().catch(()=>({}));
+      throw new Error(err.error?.message || 'API error '+apiResp.status);
+    }
+
+    const apiData = await apiResp.json();
+    const raw = apiData.content?.find(c=>c.type==='text')?.text || '';
+    
+    // Parse JSON from response
+    let extracted = {};
+    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    if(jsonMatch){
+      try { extracted = JSON.parse(jsonMatch[0]); }
+      catch(e){ throw new Error('Could not parse AI response as JSON.'); }
+    } else {
+      throw new Error('AI did not return valid JSON.');
+    }
+
+    SC.extracted = extracted;
+    setScProgress(100);
+    setScStatus('ok', `✅ Extracted data from <strong>${sourceLabel}</strong>. Review and confirm fields below before importing.`);
+    
+    setTimeout(()=>{
+      buildConfirmGrid(extracted, sourceLabel);
+      document.getElementById('scStep1').style.display='none';
+      document.getElementById('scStep2').style.display='block';
+      document.getElementById('scBackBtn').style.display='';
+      document.getElementById('scImportBtn').style.display='';
+      document.getElementById('scProgress').style.display='none';
+      document.getElementById('scFootLeft').innerHTML=`<span class="sc-source-chip">🌐 ${sourceLabel}</span> ${Object.keys(extracted).length} fields extracted`;
+      updateScCount();
+    }, 400);
+
+  } catch(err){
+    setScProgress(0);
+    document.getElementById('scProgress').style.display='none';
+    setScStatus('err','❌ Extraction failed: '+err.message+'<br><small>Try a different URL, or use the Bulk Upload (Excel) method instead.</small>');
+  }
+}
+
+// Field labels for display
+const SC_LABELS = {
+  name:'Hotel Name', tagline:'Tagline', addr:'Address', phone:'Phone',
+  email:'General Email', emailS:'Sales/Events Email', bookUrl:'Booking URL',
+  instagram:'Instagram', facebook:'Facebook',
+  byAir:'By Air', byRail:'By Rail', byRoad:'By Road', parking:'Parking',
+  slide1H1:'Hero Headline', slide1Sub:'Hero Subtitle',
+  indexAboutH2:'About Heading (Homepage)', indexAboutP:'About Paragraph (Homepage)',
+  aboutH1:'About Page H1', aboutH1Sub:'About Subtitle',
+  locationDesc:'Location Description',
+  roomsOverviewH2:'Rooms Heading', roomsOverviewP:'Rooms Paragraph',
+  diningH1:'Dining H1', diningRestName:'Restaurant Name', diningOverviewP:'Dining Paragraph',
+  meetingsH1Sub:'Meetings Subtitle', meetingsOverviewP:'Meetings Paragraph',
+  weddingsH1Sub:'Weddings Subtitle', weddingsOverviewP:'Weddings Paragraph',
+  exploreH1:'Explore H1', exploreOverviewP:'Explore Paragraph',
+  contactH1Sub:'Contact Subtitle',
+  seo_index_title:'SEO Title (Homepage)', seo_index_desc:'SEO Description',
+  roomCards:'Room Cards', venueCards:'Dining Venue Cards', attractionCards:'Attraction Cards'
+};
+
+const SC_SECTIONS = {
+  name:'General', tagline:'General', addr:'General', phone:'General',
+  email:'General', emailS:'General', bookUrl:'General', instagram:'General', facebook:'General',
+  byAir:'Travel Info', byRail:'Travel Info', byRoad:'Travel Info', parking:'Travel Info',
+  slide1H1:'Homepage', slide1Sub:'Homepage', indexAboutH2:'Homepage', indexAboutP:'Homepage',
+  aboutH1:'About', aboutH1Sub:'About', locationDesc:'About',
+  roomsOverviewH2:'Rooms', roomsOverviewP:'Rooms',
+  diningH1:'Dining', diningRestName:'Dining', diningOverviewP:'Dining',
+  meetingsH1Sub:'Meetings', meetingsOverviewP:'Meetings',
+  weddingsH1Sub:'Weddings', weddingsOverviewP:'Weddings',
+  exploreH1:'Explore', exploreOverviewP:'Explore',
+  contactH1Sub:'Contact',
+  seo_index_title:'SEO', seo_index_desc:'SEO',
+  roomCards:'Cards', venueCards:'Cards', attractionCards:'Cards'
+};
+
+function buildConfirmGrid(data, source){
+  const grid = document.getElementById('scConfirmGrid');
+  const sections = {};
+
+  Object.entries(data).forEach(([k,v])=>{
+    const sec = SC_SECTIONS[k] || 'Other';
+    if(!sections[sec]) sections[sec]=[];
+    sections[sec].push([k,v]);
+  });
+
+  let html = '';
+  Object.entries(sections).forEach(([sec, fields])=>{
+    html += `<div class="sc-group-head"><span>📁 ${sec}</span><span style="font-size:10px;opacity:.7">${fields.length} field${fields.length>1?'s':''}</span></div>`;
+
+    // Header row for this section
+    html += `
+      <div style="background:var(--bg);padding:6px 14px;font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--b);display:flex;align-items:center;gap:8px"><span style="width:30px;text-align:center">✓</span><span style="flex:0 0 180px">Field</span><span>Extracted Value (editable)</span></div>`;
+
+    fields.forEach(([k,v])=>{
+      const isArr = Array.isArray(v);
+      const label = SC_LABELS[k] || k;
+      const existing = SC_SECTIONS[k] ? (S[k]||'') : '';
+      const hasExisting = existing && String(existing).trim();
+
+      if(isArr){
+        const arrSummary = v.map((item,i)=>`${i+1}. `+Object.entries(item).map(([fk,fv])=>`${fk}: ${fv}`).join(' | ')).join('\n');
+        html += `
+          <div style="display:flex;align-items:flex-start;border-bottom:1px solid var(--b)">
+            <div class="sc-check-col"><input type="checkbox" checked data-key="${k}" onchange="updateScCount()"></div>
+            <div class="sc-confirm-label" style="flex:0 0 180px;background:#f0f4ff;color:var(--p)">${label}</div>
+            <div class="sc-confirm-val" style="flex:1;background:#f8f9ff">
+              <textarea rows="${Math.min(v.length*2,6)}" data-key="${k}" data-arr="1" style="width:100%;border:1px solid transparent;background:transparent;padding:0;font-size:11px;font-family:monospace;resize:vertical">${arrSummary}</textarea>
+              <div style="font-size:10px;color:var(--t3);margin-top:3px">${v.length} item${v.length>1?'s':''} — editing not applied to array import; uncheck to skip</div>
+            </div>
+          </div>`;
+      } else {
+        const isLong = String(v).length > 80;
+        const currentHtml = hasExisting ? `<div style="font-size:10px;color:var(--t3);margin-top:3px">Current: <em>${String(existing).substring(0,60)}${String(existing).length>60?'…':''}</em></div>` : '';
+        html += `
+          <div style="display:flex;align-items:${isLong?'flex-start':'center'};border-bottom:1px solid var(--b)">
+            <div class="sc-check-col"><input type="checkbox" checked data-key="${k}" onchange="updateScCount()"></div>
+            <div class="sc-confirm-label" style="flex:0 0 180px">${label}</div>
+            <div class="sc-confirm-val" style="flex:1">
+              ${isLong
+                ? `<textarea rows="3" data-key="${k}" style="width:100%;border:1px solid transparent;background:transparent;padding:0;font-size:12px;font-family:inherit;resize:vertical">${String(v)}</textarea>`
+                : `<input type="text" data-key="${k}" value="${String(v).replace(/"/g,'&quot;')}" style="width:100%;border:1px solid transparent;background:transparent;padding:0;font-size:12px">`
+              }
+              ${currentHtml}
+            </div>
+          </div>`;
+      }
+    });
+  });
+
+  grid.innerHTML = html;
+}
+
+function toggleAllScFields(checked){
+  document.querySelectorAll('#scConfirmGrid input[type=checkbox]').forEach(cb=>cb.checked=checked);
+  updateScCount();
+}
+
+function updateScCount(){
+  const all = document.querySelectorAll('#scConfirmGrid input[type=checkbox]').length;
+  const checked = document.querySelectorAll('#scConfirmGrid input[type=checkbox]:checked').length;
+  document.getElementById('scSelectedCount').textContent = `${checked} of ${all} fields selected`;
+  const selAll = document.getElementById('scSelAll');
+  if(selAll) selAll.checked = checked === all;
+}
+
+function scBack(){
+  document.getElementById('scStep2').style.display='none';
+  document.getElementById('scStep1').style.display='block';
+  document.getElementById('scBackBtn').style.display='none';
+  document.getElementById('scImportBtn').style.display='none';
+  document.getElementById('scFootLeft').innerHTML='';
+  setScStatus('idle','Enter a URL above and click Fetch & Extract to begin.');
+}
+
+function scImport(){
+  let count = 0;
+  const checkboxes = document.querySelectorAll('#scConfirmGrid input[type=checkbox]:checked');
+
+  checkboxes.forEach(cb=>{
+    const k = cb.getAttribute('data-key');
+    const isArr = cb.closest('[style*="flex"]')?.querySelector('[data-arr="1"]');
+    
+    if(isArr){
+      // For arrays, use the original extracted data (user confirmed by keeping it checked)
+      const arrData = SC.extracted[k];
+      if(Array.isArray(arrData) && arrData.length > 0){
+        S[k] = arrData;
+        count += arrData.length;
+      }
+    } else {
+      // Read the potentially-edited value from input/textarea
+      const input = document.querySelector(`#scConfirmGrid [data-key="${k}"]:not([type=checkbox])`);
+      const val = input ? (input.value || input.textContent || '').trim() : '';
+      if(!val) return;
+
+      // Handle SEO fields
+      if(k.startsWith('seo_')){
+        const parts = k.split('_'); const pg=parts[1], prop=parts.slice(2).join('_');
+        if(S.seo[pg]) { S.seo[pg][prop]=val; count++; }
+      } else if(S.hasOwnProperty(k) || BU_FIELDS.find(f=>f.k===k)){
+        S[k] = val;
+        count++;
+      }
+    }
+  });
+
+  closeScrapeModal();
+  render();
+  showToast(`✅ Imported ${count} values from ${SC.source}!`);
+}
+</script>
+</body>
+</html>
